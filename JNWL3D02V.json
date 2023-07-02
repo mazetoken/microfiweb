@@ -1,0 +1,27 @@
+{
+  "Header": {
+    "DTI": "JNWL3D02V",
+    "DTIType": 0,
+    "templateVersion": "V1.0.0"
+  },
+  "Informative": {
+    "LongName": "Microfi Free Flow",
+    "ShortNames": [
+      {
+        "ShortName": "XMI"
+      }
+    ],
+    "UnitMultiplier": 100
+  },
+  "Normative": {
+    "AuxiliaryMechanism": "Fungible CashToken",
+    "AuxiliaryDistributedLedger": "J9K583ZGG",
+    "AuxiliaryTechnicalReference": "8a93e3c629b2d406f4f1623a8a83dd117239afcb62118b710edc0d216abb48e4"
+  },
+  "Metadata": {
+    "recVersion": 1,
+    "recDateTime": "2023-06-02T00:00:00",
+    "Provisional": false,
+    "Private": false
+  }
+}
