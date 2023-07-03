@@ -15,7 +15,6 @@
     <h3><i>Discover the power of CashTokens with Microfi Free Flow</i></h3>
 	<div class="container">
 		<div class="card">
-			<p></p>
 			<img src="./img/description.png" alt="Description">
 			<h2>Summary</h2>
 			<p>Microfi Free Flow (XMI) is a digital asset with no profit incentive, released on the Bitcoin Cash blockchain as a token of appreciation.</p>
@@ -26,7 +25,6 @@
 		</div>
 		
 		<div class="card">
-			<p></p>
 			<img src="./img/token.png" alt="Token">
 			<h2>Basic info</h2>
 			<p>- Name: Microfi Free Flow<br>
@@ -44,7 +42,6 @@
 		</div>
 		
 		<div class="card">
-			<p></p>
 			<img src="./img/tokenomics.png" alt="Tokenomics">
 			<h2>Distribution</h2>
 			<p>Microfi Free Flow is a crypto-asset other than asset-referenced token or e-money token.</p>
@@ -84,9 +81,9 @@
 					<hr>
 				<!-- <button type="button" class="collapsible">Import seed phrase or private key</button>
 				<div class="content"> -->
-					<input id="importSeedPhrase" type="text" size="56" placeholder="seed phrase">
+					<input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase">
 					<p>or</p>
-					<input id="importPrivateKey" type="text" size="56" placeholder="private key (WIF)">
+					<input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)">
 					<p><button type="button" id="login">Import</button></p>
 					<p id="loginConf1"></p>
 					<p id="loginConf2"></p>
@@ -116,26 +113,26 @@
 					<hr>
 				<!-- <button type="button" class="collapsible">Send BCH</button>
 				<div class="content"> -->
-					<input id="sendAddr" type="text" size="56" placeholder="bitcoincash:q... or bitcoincash:z...">
-					<input id="sendAmount" type="text" size="56" placeholder="amount in satoshis">
+					<input id="sendAddr" type="text" size="50" placeholder="bitcoincash:q... or bitcoincash:z...">
+					<input id="sendAmount" type="text" size="50" placeholder="amount in satoshis">
 					<p><button id="sendBCH">Send BCH</button></p>
 					<p id="bchsent"></p>
 				<!-- </div> -->
 					<hr>
 				<!-- <button type="button" class="collapsible">Send fungible CashTokens</button>
 				<div class="content"> -->
-					<input id="sendAddrToken" type="text" size="56" placeholder="bitcoincash:z...">
-					<input id="sendAmountToken" type="text" size="56" placeholder="amount with decimal places">
-					<input id="sendTokenId" type="text" size="56" placeholder="tokenId">
+					<input id="sendAddrToken" type="text" size="50" placeholder="bitcoincash:z...">
+					<input id="sendAmountToken" type="text" size="50" placeholder="amount with decimal places">
+					<input id="sendTokenId" type="text" size="50" placeholder="tokenId">
 					<p><button id="sendTokens">Send tokens</button></p>
 					<p id="ftsent"></p>
 				<!-- </div> -->
 					<hr>
 				<!-- <button type="button" class="collapsible">Send NFT CashTokens</button>
 				<div class="content"> -->
-					<input id="sendAddrToken1" type="text" size="56" placeholder="bitcoincash:z...">
-					<input id="sendNftTokenId" type="text" size="56" placeholder="tokenId">
-					<input id="nftCommitment" type="text" size="56" placeholder="NFT commitment">
+					<input id="sendAddrToken1" type="text" size="50" placeholder="bitcoincash:z...">
+					<input id="sendNftTokenId" type="text" size="50" placeholder="tokenId">
+					<input id="nftCommitment" type="text" size="50" placeholder="NFT commitment">
 					<p><button id="sendNfts">Send NFTs</button></p>
 					<p id="nftsent"></p>
 				<!-- </div> -->
@@ -153,18 +150,20 @@
 					<option value="https://mazetoken.github.io/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
 					<option value="">custom BCMR</option>
 				</select>
-				<input id="bcmrCustom" type="text" size="56" placeholder="custom BCMR">
-				<input id="viewTokenId" type="text" size="56" placeholder="tokenId">
+				<input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR">
+				<input id="viewTokenId" type="text" size="50" placeholder="tokenId">
 				<p><button type="button" id="viewTokens">View</button></p>
 				<p id="tokencategory3"></p>
 				<p id="tokenname3"></p>
 				<p id="tokensymbol3"></p>
 				<p id="tokendecimals3"></p>
 				<p id="tokendescription3"></p>
-				<img src id="tokenicon3" width="200">
+				<div class="card1">
+					<img src id="tokenicon3">
+				</div>
 				<hr>
 				<p>on-chain BCMR (AuthChain)</p>
-				<input id="viewTokenId1" type="text" size="56" placeholder="tokenId">
+				<input id="viewTokenId1" type="text" size="50" placeholder="tokenId">
 				<p><button type="button" id="viewTokens1">View</button></p>
 				<p><i>Wait a few seconds</i></p>
 				<p id="tokencategory4"></p>
@@ -172,7 +171,9 @@
 				<p id="tokensymbol4"></p>
 				<p id="tokendecimals4"></p>
 				<p id="tokendescription4"></p>
-				<img src id="tokenicon4" width="200">
+				<div class="card1">
+					<img src id="tokenicon4" class="card1">
+				</div>
 				<hr>
 				<p>Paytaca api</p>
 				<input id="viewTokenId2" type="text" size="56" placeholder="tokenId">
@@ -183,22 +184,21 @@
 			<div class="card">
 				<h2>Payment request</h2>
 				<p>BCH only</p>
-				<input id="address" type="text" size="56" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s">
-				<input id="amount" type="text" size="56" placeholder="amount e.g. 0.0001">
-				<input id="label" type="text" size="56" placeholder="some text">
+				<input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s">
+				<input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001">
+				<input id="label" type="text" size="50" placeholder="some text">
 				<p><button id="createPaymentRequest">Create payment url</button></p>
 				<p id="payurl"></p>
-				<input id="upayurl" type="text" size="56" placeholder="payment request url">
+				<input id="upayurl" type="text" size="50" placeholder="payment request url">
 				<p><button id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
 				<p id="usepayurl"></p>
 				<hr>
 				<h2>Sign or verify a message</h2>
-				<p></p>
-				<input id="smessage" type="text" size="56" placeholder="message">
+				<input id="smessage" type="text" size="50" placeholder="message">
 				<p><button id="signM">Sign a message</button> * with the Microfi BCH wallet address</p>
 				<p id="signMessage"></p>
-				<input id="vaddress" type="text" size="56" placeholder="signing address">
-				<input id="signH" type="text" size="56" placeholder="signature">
+				<input id="vaddress" type="text" size="50" placeholder="signing address">
+				<input id="signH" type="text" size="50" placeholder="signature">
 				<p><button id="verifyM">Verify a message</button></p>
 				<p id="verifyMessage"></p>
 			</div>

@@ -23,6 +23,7 @@ body p {
 }
 
 .card {
+	overflow-wrap: anywhere;
 	background-color: whitesmoke;
 	color: black;
 	margin: 10px;
@@ -41,6 +42,12 @@ body p {
 .card img {
 	width: 400px;
 	height: 100px;
+	object-fit: cover;
+}
+
+.card1 img {
+	width: 190px;
+	height: 190px;
 	object-fit: cover;
 }
 
