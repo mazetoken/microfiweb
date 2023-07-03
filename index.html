@@ -7,78 +7,12 @@
     <meta name="description" content="Microfi Free Flow CashToken on Bitcoin Cash">
   	<meta name="web" content="https://microfi.eu">
 	<link rel="icon" type="image/ico" sizes="32x32" href="./img/favicon.ico">
-	<style>
-		body {
-			overflow-wrap: anywhere;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 24px;
-            text-align: center;
-			background-color: black;
-			color: whitesmoke;
-			margin: 0;
-			padding: 0;
-		}
-
-		body p {
-			font-size: 16px;
-		}
-		
-		.container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-			margin: 0;
-			padding: 0;
-		}
-		
-		.card {
-			background-color: whitesmoke;
-			color: black;
-			margin: 10px;
-			border-radius: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-			overflow: hidden;
-			width: 400px;
-			height: auto;
-			transition: transform 0.3s;
-		}
-		
-		.card:hover {
-			transform: scale(1.05);
-		}
-		
-		.card img {
-			width: 400px;
-			height: 225px;
-			object-fit: cover;
-		}
-		
-		.card h2 {
-            text-align: left;
-			font-size: 20px;
-			margin: 10px;
-		}
-		
-		.card p {
-            text-align: left;
-			font-size: 14px;
-			margin: 10px;
-		}
-
-        .card p1 {
-            text-align: left;
-			font-size: 12px;
-			margin: 10px;
-		}
-		
-		@media screen and (max-width: 512px) {}
-	</style>
+	<link rel="stylesheet" href="./styles.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@1.1.30/dist/mainnet-1.1.30.js" integrity="sha256-S/RegobQoEoBav/3F8EuKdoQK1hytruPVQNfqpZBZMA=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<p><img src="./img/microfi.png" alt="Microfi" width="400"></p>
-    <p><i>Discover the power of CashTokens with Microfi Free Flow</i></p>
-	<br>
+    <h3><i>Discover the power of CashTokens with Microfi Free Flow</i></h3>
 	<div class="container">
 		<div class="card">
 			<p></p>
@@ -122,11 +56,161 @@
 			<p><a href="https://tapswap.cash/trade/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">TapSwap</a></p>
 		</div>
 	</div>
+
+	<h3><i>Microfi Free Flow mini wallet and token viewer</i></h3>
+	<button type="button" class="collapsible">Open / hide</button>
+	<div class="content">
+		<p>Clear local storage if the wallet is being used on someone else's device.<br>
+			Use it at your own risk and with small amount of BCH.<br>
+			The wallet is under development.<br>
+			Viewing and sending NFT CashTokens is not fully implemented.
+		</p>
+		<div class="container">
+			<div class="card">
+				<h2>Wallet</h2>
+				<!-- <button type="button" class="collapsible">Create wallet</button>
+				<div class="content"> -->
+					<p><button id="create">Create</button> * a new wallet</p>
+					<p id="bchaddress1"></p>
+					<p id="cashtokensaddress1"></p>
+					<p id="bchbalance1"></p>
+					<p id="mnemonic1"></p>
+					<p id="derivation1"></p>
+					<p id="privatekey1"></p>
+					<p id="tokens1"></p>
+					<p id="nfts1"></p>
+					<p>Save seed phrase and private key!</p>
+				<!-- </div> -->
+					<hr>
+				<!-- <button type="button" class="collapsible">Import seed phrase or private key</button>
+				<div class="content"> -->
+					<p><input id="importSeedPhrase" type="text" size="56" placeholder="seed phrase"></p>
+					<p>or</p>
+					<p><input id="importPrivateKey" type="text" size="56" placeholder="private key (WIF)"></p>
+					<p><button type="button" id="login">Import</button></p>
+					<p id="loginConf1"></p>
+					<p id="loginConf2"></p>
+					<p>The seed phrase or private key will be stored in the local storage of the browser.</p>
+				<!-- </div> -->
+					<hr>
+					<!-- <button type="button" class="collapsible">Open wallet</button>
+				<div class="content"> -->
+					<p><button type="button" id="open">Open</button> * the wallet from local storage</p>
+					<p id="bchaddress2"></p>
+					<p id="cashtokensaddress2"></p>
+					<p id="bchbalance2"></p>
+					<p id="mnemonic2"></p>
+					<p id="derivation2"></p>
+					<p id="privatekey2"></p>
+					<p id="tokens2"></p>
+					<p id="nfts2"></p>
+					<p>To update your balances, refresh the page and click "Open".</p>
+				<!-- </div> -->
+					<hr>
+				<!-- <button type="button" class="collapsible">Clear local storage</button>
+				<div class="content"> -->
+					<p><button type="button" id="clear">Clear</button> * local storage</p>
+					<p id="clear1"></p>
+					<p>The seed phrase or private key will be removed from the local storage of the browser.</p>
+				<!-- </div> -->
+					<hr>
+				<!-- <button type="button" class="collapsible">Send BCH</button>
+				<div class="content"> -->
+					<p><input id="sendAddr" type="text" size="56" placeholder="bitcoincash:q... or bitcoincash:z..."></p>
+					<p><input id="sendAmount" type="text" size="56" placeholder="amount in satoshis"></p>
+					<p><button id="sendBCH">Send BCH</button></p>
+					<p id="bchsent"></p>
+				<!-- </div> -->
+					<hr>
+				<!-- <button type="button" class="collapsible">Send fungible CashTokens</button>
+				<div class="content"> -->
+					<p><input id="sendAddrToken" type="text" size="56" placeholder="bitcoincash:z..."></p>
+					<p><input id="sendAmountToken" type="text" size="56" placeholder="amount with decimal places"></p>
+					<p><input id="sendTokenId" type="text" size="56" placeholder="tokenId"></p>
+					<p><button id="sendTokens">Send tokens</button></p>
+					<p id="ftsent"></p>
+				<!-- </div> -->
+					<hr>
+				<!-- <button type="button" class="collapsible">Send NFT CashTokens</button>
+				<div class="content"> -->
+					<p><input id="sendAddrToken1" type="text" size="56" placeholder="bitcoincash:z..."></p>
+					<p><input id="sendNftTokenId" type="text" size="56" placeholder="tokenId"></p>
+					<p><input id="nftCommitment" type="text" size="56" placeholder="NFT commitment"></p>
+					<p><button id="sendNfts">Send NFTs</button></p>
+					<p id="nftsent"></p>
+				<!-- </div> -->
+			</div>
+		
+			<div class="card">
+				<h2>View</h2>
+				<p>Choose metadata registry from the list.<br>
+					If custom BCMR is selected, paste url in the input field.
+				</p>
+				<select id="bcmrList">
+					<option value="https://otr.cash/.well-known/bitcoin-cash-metadata-registry.json">Open Token Registry</option>
+					<option value="https://mazetoken.github.io/.well-known/bitcoin-cash-metadata-registry.json">Maze Token MTU BCMR</option>
+					<option value="https://mazetoken.github.io/darklabs/bcmr/darklabsbcmr.json">Dark Labs CRC20 BCMR</option>
+					<option value="https://mazetoken.github.io/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
+					<option value="">custom BCMR</option>
+				</select>
+				<p><input id="bcmrCustom" type="text" size="56" placeholder="custom BCMR"></p>
+				<p><input id="viewTokenId" type="text" size="56" placeholder="tokenId"></p>
+				<p><button type="button" id="viewTokens">View</button></p>
+				<p id="tokencategory3"></p>
+				<p id="tokenname3"></p>
+				<p id="tokensymbol3"></p>
+				<p id="tokendecimals3"></p>
+				<p id="tokendescription3"></p>
+				<p img src id="tokenicon3" width="200"></p>
+				<hr>
+				<p>on-chain BCMR (AuthChain)</p>
+				<p><input id="viewTokenId1" type="text" size="56" placeholder="tokenId"></p>
+				<p><button type="button" id="viewTokens1">View</button></p>
+				<p><i>Wait a few seconds</i></p>
+				<p id="tokencategory4"></p>
+				<p id="tokenname4"></p>
+				<p id="tokensymbol4"></p>
+				<p id="tokendecimals4"></p>
+				<p id="tokendescription4"></p>
+				<p img src id="tokenicon4" width="200"></p>
+				<hr>
+				<p>Paytaca api</p>
+				<p><input id="viewTokenId2" type="text" size="56" placeholder="tokenId"></p>
+				<p><button type="button" id="viewTokens2">View</button></p>
+				<p id="tokenapi"></p>
+			</div>
+
+			<div class="card">
+				<h2>Payment request</h2>
+				<p>BCH only</p>
+				<p><input id="address" type="text" size="56" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
+				<p><input id="amount" type="text" size="56" placeholder="amount e.g. 0.0001"></p>
+				<p><input id="label" type="text" size="56" placeholder="some text"></p>
+				<p><button id="createPaymentRequest">Create payment url</button></p>
+				<p id="payurl"></p>
+				<p><input id="upayurl" type="text" size="56" placeholder="payment request url"></p>
+				<p><button id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
+				<p id="usepayurl"></p>
+				<hr>
+				<h2>Sign or verify a message</h2>
+				<p></p>
+				<p><input id="smessage" type="text" size="56" placeholder="message"></p>
+				<p><button id="signM">Sign a message</button> * with the Microfi BCH wallet address</p>
+				<p id="signMessage"></p>
+				<p><input id="vaddress" type="text" size="56" placeholder="signing address"></p>
+				<p><input id="signH" type="text" size="56" placeholder="signature"></p>
+				<p><button id="verifyM">Verify a message</button></p>
+				<p id="verifyMessage"></p>
+			</div>
+		</div>
+	</div>
     <br><br>
 	<footer>
     <p><a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="Telegram" width="42"></a> <a href="https://github.com/mazetoken/microfi/"><img src="./img/github.png" alt="Github" width="42"></a></p>
 	<p>Maze Tokens Underworld, 2023</p>
     </footer>
 	<br>
+	<script src="./collapsible.js"></script>
+	<script src="./wallet.js"></script>
 </body>
 </html>
