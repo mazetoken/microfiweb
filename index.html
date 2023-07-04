@@ -22,6 +22,7 @@
 			<p>Despite the lack of profit incentive, Microfi Free Flow can still be a valuable crypto-asset for those who appreciate its sentimental and collectible value.</p>
 			<h2>Risk</h2>
 			<p>Users should be aware that XMI can also be a volatile and speculative asset, dependent on supply and demand in the market, and may be subject to significant price fluctuations.</p>
+			<br>
 		</div>
 		
 		<div class="card">
@@ -51,6 +52,7 @@
 			<p>XMI holders <a href="https://registry.cash/">list</a>*.</p>
 			<h2>Exchanges</h2>
 			<p><a href="https://tapswap.cash/trade/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">TapSwap</a></p>
+			<br>
 		</div>
 	</div>
 
@@ -67,7 +69,7 @@
 				<h2>Wallet</h2>
 				<!-- <button type="button" class="collapsible">Create wallet</button>
 				<div class="content"> -->
-					<p><button id="create">Create</button> * a new wallet</p>
+					<p><button class="button" id="create">Create</button> * a new wallet</p>
 					<p id="bchaddress1"></p>
 					<p id="cashtokensaddress1"></p>
 					<p id="bchbalance1"></p>
@@ -84,7 +86,7 @@
 					<input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase">
 					<p>or</p>
 					<input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)">
-					<p><button type="button" id="login">Import</button></p>
+					<p><button class="button" id="login">Import</button></p>
 					<p id="loginConf1"></p>
 					<p id="loginConf2"></p>
 					<p>The seed phrase or private key will be stored in the local storage of the browser.</p>
@@ -92,7 +94,7 @@
 					<hr>
 					<!-- <button type="button" class="collapsible">Open wallet</button>
 				<div class="content"> -->
-					<p><button type="button" id="open">Open</button> * the wallet from local storage</p>
+					<p><button class="button" id="open">Open</button> * the wallet from local storage</p>
 					<p id="bchaddress2"></p>
 					<p id="cashtokensaddress2"></p>
 					<p id="bchbalance2"></p>
@@ -106,7 +108,7 @@
 					<hr>
 				<!-- <button type="button" class="collapsible">Clear local storage</button>
 				<div class="content"> -->
-					<p><button type="button" id="clear">Clear</button> * local storage</p>
+					<p><button class="button" id="clear">Clear</button> * local storage</p>
 					<p id="clear1"></p>
 					<p>The seed phrase or private key will be removed from the local storage of the browser.</p>
 				<!-- </div> -->
@@ -115,7 +117,7 @@
 				<div class="content"> -->
 					<input id="sendAddr" type="text" size="50" placeholder="bitcoincash:q... or bitcoincash:z...">
 					<input id="sendAmount" type="text" size="50" placeholder="amount in satoshis">
-					<p><button id="sendBCH">Send BCH</button></p>
+					<p><button class="button" id="sendBCH">Send BCH</button></p>
 					<p id="bchsent"></p>
 				<!-- </div> -->
 					<hr>
@@ -124,7 +126,7 @@
 					<input id="sendAddrToken" type="text" size="50" placeholder="bitcoincash:z...">
 					<input id="sendAmountToken" type="text" size="50" placeholder="amount with decimal places">
 					<input id="sendTokenId" type="text" size="50" placeholder="tokenId">
-					<p><button id="sendTokens">Send tokens</button></p>
+					<p><button class="button" id="sendTokens">Send tokens</button></p>
 					<p id="ftsent"></p>
 				<!-- </div> -->
 					<hr>
@@ -133,7 +135,7 @@
 					<input id="sendAddrToken1" type="text" size="50" placeholder="bitcoincash:z...">
 					<input id="sendNftTokenId" type="text" size="50" placeholder="tokenId">
 					<input id="nftCommitment" type="text" size="50" placeholder="NFT commitment">
-					<p><button id="sendNfts">Send NFTs</button></p>
+					<p><button class="button" id="sendNfts">Send NFTs</button></p>
 					<p id="nftsent"></p>
 				<!-- </div> -->
 			</div>
@@ -152,7 +154,7 @@
 				</select>
 				<input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR">
 				<input id="viewTokenId" type="text" size="50" placeholder="tokenId">
-				<p><button type="button" id="viewTokens">View</button></p>
+				<p><button class="button" id="viewTokens">View</button></p>
 				<p id="tokencategory3"></p>
 				<p id="tokenname3"></p>
 				<p id="tokensymbol3"></p>
@@ -164,7 +166,7 @@
 				<hr>
 				<p>on-chain BCMR (AuthChain)</p>
 				<input id="viewTokenId1" type="text" size="50" placeholder="tokenId">
-				<p><button type="button" id="viewTokens1">View</button></p>
+				<p><button class="button" id="viewTokens1">View</button></p>
 				<p><i>Wait a few seconds</i></p>
 				<p id="tokencategory4"></p>
 				<p id="tokenname4"></p>
@@ -176,8 +178,8 @@
 				</div>
 				<hr>
 				<p>Paytaca api</p>
-				<input id="viewTokenId2" type="text" size="56" placeholder="tokenId">
-				<p><button type="button" id="viewTokens2">View</button></p>
+				<input id="viewTokenId2" type="text" size="50" placeholder="tokenId">
+				<p><button class="button" id="viewTokens2">View</button></p>
 				<p id="tokenapi"></p>
 			</div>
 
@@ -187,20 +189,22 @@
 				<input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s">
 				<input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001">
 				<input id="label" type="text" size="50" placeholder="some text">
-				<p><button id="createPaymentRequest">Create payment url</button></p>
+				<p><button class="button" id="createPaymentRequest">Create payment url</button></p>
 				<p id="payurl"></p>
 				<input id="upayurl" type="text" size="50" placeholder="payment request url">
-				<p><button id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
+				<p><button class="button" id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
 				<p id="usepayurl"></p>
+				<br><br><br><br><br><br>
 				<hr>
 				<h2>Sign or verify a message</h2>
 				<input id="smessage" type="text" size="50" placeholder="message">
-				<p><button id="signM">Sign a message</button> * with the Microfi BCH wallet address</p>
+				<p><button class="button" id="signM">Sign a message</button> * with the Microfi BCH wallet address</p>
 				<p id="signMessage"></p>
 				<input id="vaddress" type="text" size="50" placeholder="signing address">
 				<input id="signH" type="text" size="50" placeholder="signature">
-				<p><button id="verifyM">Verify a message</button></p>
+				<p><button class="button" id="verifyM">Verify a message</button></p>
 				<p id="verifyMessage"></p>
+				<br><br><br><br><br><br>
 			</div>
 		</div>
 		<p>Powered by <a href="https://mainnet.cash">mainnet-js</a></p>

@@ -13,6 +13,11 @@ body p {
 	font-size: 16px;
 }
 
+.button {
+	font-size: 14px;
+	border-radius: 12px;
+}
+
 .container {
 	display: flex;
 	flex-wrap: wrap;
@@ -35,9 +40,9 @@ body p {
 	transition: transform 0.3s;
 }
 
-.card:hover {
-	transform: scale(1.05);
-}
+//.card:hover {
+	//transform: scale(1.05);
+//}
 
 .card img {
 	width: 400px;
