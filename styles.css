@@ -18,6 +18,17 @@ body p {
 	border-radius: 12px;
 }
 
+a:link {
+	color: teal;
+	background-color: transparent;
+	text-decoration: none;
+}
+a:visited {
+	color: teal;
+	background-color: transparent;
+	text-decoration: none;
+}
+
 .container {
 	display: flex;
 	flex-wrap: wrap;
@@ -68,11 +79,6 @@ body p {
 	margin: 10px;
 }
 
-.card p1 {
-	text-align: left;
-	font-size: 12px;
-	margin: 10px;
-}
 .collapsible {
 	background-color: teal;
 	border-radius: 12px;
