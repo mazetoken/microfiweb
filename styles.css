@@ -19,12 +19,14 @@ body p {
 }
 
 a:link {
-	color: #0AC18E;
+	//color: #0AC18E;
+	color: teal;
 	background-color: transparent;
 	text-decoration: none;
 }
 a:visited {
-	color: #0AC18E;
+	//color: #0AC18E;
+	color: teal;
 	background-color: transparent;
 	text-decoration: none;
 }
