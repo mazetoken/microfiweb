@@ -22,13 +22,13 @@ a:link {
 	//color: #0AC18E;
 	color: teal;
 	background-color: transparent;
-	text-decoration: none;
+	text-decoration: underline;
 }
 a:visited {
 	//color: #0AC18E;
 	color: teal;
 	background-color: transparent;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 .container {
