@@ -19,8 +19,8 @@
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_icon.png">
 	<style>
 		body {
-			text-align: center;
 			overflow-wrap: anywhere;
+			text-align: center;
 			max-width: 800px;
 			margin: auto;
 			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -63,8 +63,7 @@
 			overflow: hidden;
 			background-color: black;
 		}
-		@media screen and (max-width: 512px) {
-		}
+		@media screen and (max-width: 512px) {}
 	</style>
 	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@1.1.33/dist/mainnet-1.1.33.js" integrity="sha256-Y+1HCS1byQxqHEtnDOhhPjafa97MLORYwv9qcf4/UMg=" crossorigin="anonymous"></script>
 </head>
@@ -76,7 +75,7 @@
 		<p>Microfi wallet can be used locally, on a pendrive, SD card, floppy disk, etc.<br>
 			Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet.
 		</p>
-		<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (you can import the BCH wallet private key derived from your MetaMask account).</p>
+		<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (import wallet private key).</p>
 		<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.</p>
 		<p><b><a href="../paperwallet/">PAPER WALLET</a> | <a href="../qrscanner/">QR CODE SCANNER</a></b></p>
 		<hr>
@@ -191,16 +190,17 @@
 				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
 				<p><button type="button" id="burnFt">Burn fungible tokens</button></p>
 				<p id="burnFtTx"></p>
+				<br>
 				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
 				<!-- <p><input id="burnNftAmount" type="text" size="50" placeholder="amount"></p> -->
 				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
-				<!-- <select id="capabilityList">
+				<select id="capabilityList">
 					<option value="NFTCapability.none">Immutable</option>
 					<option value="NFTCapability.minting">Minting</option>
 					<option value="NFTCapability.mutable">Mutable</option>
 				</select>
-				<p>* choose NFT capability from the list</p> -->
-				<p><button type="button" id="burnNft">Burn immutable NFT</button></p>
+				<p>* choose NFT capability from the list</p>
+				<p><button type="button" id="burnNft">Burn NFT</button></p>
 				<p id="burnNftTx"></p>
 			</div>
 		</div>
@@ -264,7 +264,7 @@
 		<hr>
 		<br><br>
 		<footer>
-			<p><a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="32"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="32"></a></p>
+			<p><a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
 			<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a>
 				| <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a>
 			</p>
@@ -498,14 +498,16 @@
 			const wallet = await Wallet.named("mazey");
 			const burnNftTokenId = document.querySelector("#burnNftId").value;
 			//const burnNftAmount = document.querySelector("#burnNftAmount").value;
-			//const capabilityList = document.querySelector("#capabilityList").value;
+			const capabilityList = document.querySelector("#capabilityList").value;
+			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
+			console.log(capabilityBurn);
 			const burnCommitment = document.querySelector("#burnCommitment").value;
 			const burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnNftTokenId,
 					//amount: burnNftAmount,
-					capability: NFTCapability.none,
-					//capability: capabilityList,
+					//capability: NFTCapability.none,
+					capability: capabilityBurn,
     				commitment: burnCommitment,
 				},
 				"burn",
