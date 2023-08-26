@@ -178,7 +178,13 @@
 				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
 				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
 				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
-				<p><button type="button" id="sendNfts">Send immutable NFT</button></p>
+				<select id="capabilityLists">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><button type="button" id="sendNfts">Send NFT</button></p>
 				<p id="nftsent"></p>
 			</div>
 		</div>
@@ -470,8 +476,10 @@
 			const tokenAddress1 = document.querySelector("#sendAddrToken1").value;
 			const token1 = document.querySelector("#sendNftTokenId").value;
 			const nftCommitment = document.querySelector("#nftCommitment").value;
+			const capabilityLists = document.querySelector("#capabilityLists").value;
+			let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress1, tokenId: token1, commitment: nftCommitment, capability: NFTCapability.none })]);
+			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress1, tokenId: token1, commitment: nftCommitment, capability: capabilitySend })]);
 			document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
@@ -497,16 +505,12 @@
 			try {
 			const wallet = await Wallet.named("mazey");
 			const burnNftTokenId = document.querySelector("#burnNftId").value;
-			//const burnNftAmount = document.querySelector("#burnNftAmount").value;
 			const capabilityList = document.querySelector("#capabilityList").value;
 			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
-			console.log(capabilityBurn);
 			const burnCommitment = document.querySelector("#burnCommitment").value;
 			const burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnNftTokenId,
-					//amount: burnNftAmount,
-					//capability: NFTCapability.none,
 					capability: capabilityBurn,
     				commitment: burnCommitment,
 				},
