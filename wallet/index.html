@@ -1,629 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
 	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Bitcoin Cash CashTokens wallet</title>
-	<meta name="description" content="Microfi Bitcoin Cash CashTokens wallet">
-  	<meta name="web" content="https://microfi.eu/wallet/">
-	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_icon.png">
-	<style>
-		body {
-			overflow-wrap: anywhere;
-			text-align: center;
-			max-width: 800px;
-			margin: auto;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			background-color: black;
-			font-size: large;
-			color: whitesmoke;
-		}
-		p {
-			font-size: 16px;
-		}
-		a:link {
-			color: teal;
-			background-color: transparent;
-			text-decoration: underline;
-		}
-		a:visited {
-			color: #0AC18E;
-			background-color: transparent;
-			text-decoration: underline;
-		}
-		.collapsible {
-			background-color: #0AC18E;
-			border-radius: 12px;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			color: white;
-			cursor: pointer;
-			padding: 18px;
-			width: 50%;
-			border: none;
-			text-align: center;
-			outline: none;
-			font-size: 16px;
-		}
-		.active, .collapsible:hover {
-			background-color: #0AC18E;
-		}
-		.content {
-			padding: 0 16px;
-			display: none;
-			overflow: hidden;
-			background-color: black;
-		}
-		@media screen and (max-width: 512px) {}
-	</style>
-	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@1.1.33/dist/mainnet-1.1.33.js" integrity="sha256-Y+1HCS1byQxqHEtnDOhhPjafa97MLORYwv9qcf4/UMg=" crossorigin="anonymous"></script>
+	<title>Microfi Free Flow CashTokens and applications</title>
+    <meta name="description" content="Microfi Free Flow (XMI) Bitcoin Cash CashTokens and applications (wallet, distribution app, paper wallet qr code scanner)">
+  	<meta name="web" content="https://microfi.eu">
+	<link rel="icon" type="image/png" sizes="42x42" href="./img/microfi_icon.png">
+	<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-	<div>
-		<h1><a href="https://microfi.eu">Microfi Free Flow</a></h1>
-		<img src="../img/microfi_icon.png" alt="XMI icon" width="128">
-		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> wallet</h3>
-		<p>Microfi wallet can be used locally, on a pendrive, SD card, floppy disk, etc.<br>
-			Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet.
-		</p>
-		<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (import wallet private key).</p>
-		<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.</p>
-		<p><b><a href="../paperwallet/">PAPER WALLET</a> | <a href="../qrscanner/">QR CODE SCANNER</a></b></p>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Create or import a wallet</button>
-			<div class="content">
-				<p>Create a new wallet:</p>
-				<p><button type="button" id="create">Create</button></p>
-				<p>Import a wallet from seed phrase or private key:</p>
-				<p><input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase"></p>
-				<p>or</p>
-				<p><input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)"></p>
-				<p><button type="button" id="import">Import</button></p>
-				<p id="alert1"></p>
-			</div>
+	<p><img src="./img/microfi.png" alt="Microfi" width="400"></p>
+	<p><img src="./img/bitcoin-cash-logo.png" alt="BCH" width="200"></p>
+    <h3><i>Discover the power of <a href="https://cashtokens.org">CashTokens</a> with Microfi tokens and applications</i></h3>
+	<p><b><a href="./wallet/">WALLET</a> | <a href="https://microfi.onrender.com">DISTRIBUTION APP</a> | <a href="./paperwallet/">PAPER WALLET</a> | <a href="./qrscanner">QR CODE SCANNER</a></b></p>
+	<div class="container">
+		<div class="card">
+			<img src="./img/xmi1.png" alt="XMI1" width="400">
+			<h2>Summary</h2>
+			<p>Microfi Free Flow (XMI) CashTokens are crypto-assets created on the Bitcoin Cash blockchain, used, for example, to commemorate special events, show appreciation or express creativity.</p>
+			<p>XMI can be a valuable asset for those who appreciate low token supply, sentimental and collector's value and are not afraid of the speculative nature of crypto-assets.</p>
+			<p>Microfi Free Flow (XMI) has ISO 24165-1:2021 digital token identifier (<a href="https://dtif.org/token-registry-search/">DTI</a>): JNWL3D02V | XMI DTI <a href="./JNWL3D02V.json">json</a> file.</p>
+			<br>
+			<h2>Risk</h2>
+			<p>Users should be aware that XMI can be a volatile asset, dependent on supply and demand in the market.</p>
+			<p>XMI may be subject to significant price fluctuations.</p>
+			<p>Some users may collect more tokens during distribution than others.</p>
+			<h1><span style='font-size:80px;'>&#9738;</span></h1>
 		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Open wallet</button>
-			<div class="content">
-				<p><button type="button" id="open">Open</button></p>
-				<p id="bchaddress"></p>
-				<p id="walletPubKey"></p>
-				<p id="cashtokensaddress"></p>
-				<p id="bchbalance"></p>
-				<p id="derivation"></p>
-				<p id="mnemonic"></p>
-				<p id="privatekey"></p>
-				<p id="tokens"></p>
-				<p id="nfts"></p>
-				<p>To update your balances, refresh the page and open the wallet again.<br>
-					View token details below.
-				</p>
-				<p><button type="button" id="refresh">Refresh</button></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Clear local storage</button>
-			<div class="content">
-				<p><button type="button" id="clear">Clear</button></p>
-				<p>The wallet will be deleted - the seed phrase / private key will be removed from the local storage of the browser.</p>
-				<p id="alert2"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">View token details</button>
-			<div class="content">
-				<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><button type="button" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
-				<p><button type="button" id="viewTokens2">View - Paytaca token Api</button></p>
-				<p>Choose metadata registry from the list.<br>
-					If custom BCMR is selected, paste url in the input field.</p>
-				<select id="bcmrList">
-					<option value="https://mazetoken.github.io/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
-					<option value="https://mazetoken.github.io/.well-known/bitcoin-cash-metadata-registry.json">Maze Token MTU BCMR</option>
-					<option value="https://mazetoken.github.io/darklabs/bcmr/darklabsbcmr.json">Dark Labs CRC20 BCMR</option>
-					<option value="https://otr.cash/.well-known/bitcoin-cash-metadata-registry.json">Open Token Registry BCMR</option>
-					<option value="">custom BCMR</option>
-				</select>
-				<p><input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR"></p>
-				<p><button type="button" id="viewTokens3">View - BCMR list</button></p>
-				<p id="tokencategory"></p>
-				<p id="tokenname"></p>
-				<p id="tokensymbol"></p>
-				<p id="tokendecimals"></p>
-				<p id="tokendescription"></p>
-				<img src id="tokenicon" width="200"></p>
-				<p id="explorer"></p>
-				<p id="tokenapi"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Send BCH</button>
-			<div class="content">
-				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshis"></p>
-				<p><button id="sendBCH">Send BCH</button></p>
-				<p><button id="sendBCHmax">Send the entire BCH balance</button></p>
-				<p id="bchsent"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Send fungible CashTokens</button>
-			<div class="content">
-				<p><input id="sendAddrToken" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
-				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><button type="button" id="sendTokens">Send tokens</button></p>
-				<p id="ftsent"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Send NFT CashTokens</button>
-			<div class="content">
-				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
-				<select id="capabilityLists">
-					<option value="NFTCapability.none">Immutable</option>
-					<option value="NFTCapability.minting">Minting</option>
-					<option value="NFTCapability.mutable">Mutable</option>
-				</select>
-				<p>* choose NFT capability from the list</p>
-				<p><button type="button" id="sendNfts">Send NFT</button></p>
-				<p id="nftsent"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Burn tokens</button>
-			<div class="content">
-				<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
-				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
-				<p><button type="button" id="burnFt">Burn fungible tokens</button></p>
-				<p id="burnFtTx"></p>
-				<br>
-				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
-				<!-- <p><input id="burnNftAmount" type="text" size="50" placeholder="amount"></p> -->
-				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
-				<select id="capabilityList">
-					<option value="NFTCapability.none">Immutable</option>
-					<option value="NFTCapability.minting">Minting</option>
-					<option value="NFTCapability.mutable">Mutable</option>
-				</select>
-				<p>* choose NFT capability from the list</p>
-				<p><button type="button" id="burnNft">Burn NFT</button></p>
-				<p id="burnNftTx"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Sweep paper wallet</button>
-			<div class="content">
-				<p>Before sweeping, check the balance of the paper wallet.<br> 
-					You can create a wallet or import an existing wallet into Microfi wallet and paste the BCH address into the recipient field, or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
-				</p>
-				<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
-				<p><button id="balancePw">Check paper wallet balance</button></p>
-				<p id="bchbalancePw"></p>
-				<p id="tokenbalancePw"></p>
-				<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-				<p><button id="sweepPw">Sweep tokens and BCH</button> * if paper the wallet has tokens and BCH</p>
-				<p><button id="sweepPwBch">Sweep BCH</button> * if the paper wallet has only BCH</p>
-				<p id="swept"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Watch wallet</button>
-			<div class="content">
-				<p><input id="wAddress" type="text" size="50" placeholder="bitcoincash:..."></p>
-				<p><button type="button" id="spy">Watch wallet balances</button></p>
-				<p id="wbchbalance"></p>
-				<p id="wtokens"></p>
-				<p id="wnfts"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Payment request url (BCH only)</button>
-			<div class="content">
-				<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
-				<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
-				<p><input id="label" type="text" size="50" placeholder="some text"></p>
-				<p><button type="button" id="createPaymentRequest">Create payment url</button></p>
-				<p id="payurl"></p>
-				
-				<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
-				<p><button type="button" id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
-				<p id="usepayurl"></p>
-			</div>
-		</div>
-		<hr>
-		<div>
-			<button type="button" class="collapsible">Sign or verify a message</button>
-			<div class="content">
-				<p><input id="smessage" type="text" size="50" placeholder="message"></p>
-				<p><button type="button" id="signM">Sign a message</button> * with Microfi wallet</p>
-				<p id="signMessage"></p>
-				
-				<p><input id="vaddress" type="text" size="50" placeholder="signing address"></p>
-				<p><input id="signH" type="text" size="50" placeholder="signature"></p>
-				<p><button type="button" id="verifyM">Verify a message</button></p>
-				<p id="verifyMessage"></p>
-			</div>
-		</div>
-		<hr>
-		<br><br>
-		<footer>
-			<p><a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
-			<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a>
-				| <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a>
+		
+		<div class="card">
+			<img src="./img/xmi2.png" alt="XMI2" width="400">
+			<h2>Basic info</h2>
+			<p>
+				Name: Microfi Free Flow<br>
+				Symbol: XMI<br>
+				Decimals: 2<br>
+				The smallest unit: MI (represents a decimal, 0 and 1)<br>
+				Total fixed supply: 1000000.00<br>
+				Category (token Id): b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe
 			</p>
-			<!-- <p>Wallet on <a href="https://mazetoken.github.io/mazey/testnet/">testnet</a></p> -->
-			<p>Maze Tokens Underworld, 2023</p>
-		</footer>
-		<br>
+			<p>Icon <a href="https://github.com/mazetoken/microfiweb/blob/main/img/microfi_icon.png?raw=true">link</a>.</p>
+			<p>XMI on BCH CashTokens <a href="https://explorer.salemkode.com/token/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">explorer</a>.<br>
+				XMI`s genesis <a href="https://explorer.bitcoinunlimited.info/tx/8a93e3c629b2d406f4f1623a8a83dd117239afcb62118b710edc0d216abb48e4">txId</a>.<br>
+				Chain resolved registry <a href="https://cashtokens.org/docs/bcmr/chip/#chain-resolved-registries">(AuthChain)</a> - <a href="https://explorer.bitcoinunlimited.info/tx/402d8c6f8d5269e0960ff15babfcfe8fe43d9316627e8c2258ba1ba1c871a6af">txId</a>.<br>
+				DNS resolved registry <a href="https://cashtokens.org/docs/bcmr/chip/#dns-resolved-registries">(BCMR)</a> - <a href="https://bafkreib7tvunwhzcttqbefsxmitz6x744wushflyulp4vknlvdyxo72b4a.ipfs.dweb.link/">ipfs link</a>.<br>
+				XMI`s AuthHead migration <a href="./AuthHeadMigration.md">doc</a>.
+			</p>
+			<br>
+			<h2>Wallets</h2>
+			<p><a href="https://cashonize.com">Cashonize</a> | <a href="https://electroncash.org">Electron Cash</a> | <a href="https://paytaca.com/#wallet">Paytaca</a> | <a href="./wallet/">Microfi</a> | <a href="https://zapit.io">Zapit</a></p>
+			<h1><span style='font-size:80px;'>&#9739;</span></h1>
+		</div>
+		
+		<div class="card">
+			<img src="./img/xmi3.png" alt="XMI3" width="400">
+			<h2>Distribution</h2>
+			<p>Microfi Free Flow is a crypto-asset with no profit incentive, other than asset-referenced token or e-money token.</p>
+			<p>There was no pre-sale, no initial offer, no token allocation for the XMI developer.</p>
+			<p>XMI's distribution ran from May 25, 2023 to June 28, 2023. Anyone could claim Microfi Free Flow for free until the total supply of 1 million XMI was distributed.</p>
+			<p>Distribution wallet <a href="https://explorer.bitcoinunlimited.info/address/qrx0t6cv5m7ks7za8j52839q7vjqkahkcux4hxfvrz">address</a> and transactions history.</p>
+			<p>Distribution application <a href="https://github.com/mazetoken/microfiapp/">source code</a> | <a href="https://microfi.onrender.com">web</a>.</p>
+			<p>XMI holders <a href="https://www.registry.cash/coins/XMI-b69f76548653033603cd.html">list</a> (the first two addresses do not belong to the developer of XMI).</p>
+			<br>
+			<h2>Trade</h2>
+			<p><a href="https://tapswap.cash/trade/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">TapSwap</a> | <a href="https://fex.cash">Fex</a> | <a href="https://app.cauldron.quest">Cauldron</a> (coming soon)</p>
+			<h1><span style='font-size:80px;'>&#9740;</span></h1>
+		</div>
 	</div>
-
-	<script>
-		var coll = document.getElementsByClassName("collapsible");
-		var i;
-		for (i = 0; i < coll.length; i++) {
-		  coll[i].addEventListener("click", function() {
-			this.classList.toggle("active");
-			var content = this.nextElementSibling;
-			if (content.style.display === "block") {
-			  content.style.display = "none";
-			} else {
-			  content.style.display = "block";
-			}
-		  });
-		}
-	</script>
-
-	<script>
-	document.addEventListener("DOMContentLoaded", async (event) => {
-		globalThis.exports = globalThis.exports || {};
-		Object.assign(globalThis, await __mainnetPromise);
-		Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
-		//Config.EnforceCashTokenReceiptAddresses = true;
-
-		document.getElementById("create").onclick = async () => {
-			const wallet = await Wallet.named("mazey");
-			localStorage.setItem("seed", wallet.mnemonic);
-			localStorage.setItem("wif", wallet.privateKeyWif);
-			alert("Done. You can open the wallet. Save the seed phrase and private key.");
-			document.getElementById("alert1").textContent = "Done. You can open the wallet. Save the seed phrase and private key.";
-		};
-
-		document.getElementById("import").onclick = async () => {
-			const seedphrase = document.querySelector("#importSeedPhrase").value;
-			localStorage.setItem("seed", seedphrase);
-			const privatekey = document.querySelector("#importPrivateKey").value;
-			localStorage.setItem("wif", privatekey);
-			alert("Done. The wallet is imported. You can open the wallet.");
-			document.getElementById("alert1").textContent = "Done. The wallet is imported. You can open the wallet.";
-		}
-
-		document.getElementById("open").onclick = async () => {
-			var wallet = await Wallet.named("mazey");
-			const sd = localStorage.getItem("seed");
-			const derivationPath = "m/44'/145'/0'/0/0";
-			var walletId1 = `seed:mainnet:${sd}:${derivationPath}`;
-			const pk = localStorage.getItem("wif");
-			var walletId2 = `wif:mainnet:${pk}`;
-			if (wallet = sd) {
-				var wallet = await Wallet.replaceNamed("mazey", walletId1);
-			} else if (wallet = pk) {
-				var wallet = await Wallet.replaceNamed("mazey", walletId2);
-			}
-			const bchAddress = await wallet.getDepositAddress();
-			const walletPubKey = wallet.getPublicKey(true);
-			const tokenAddress = await wallet.getTokenDepositAddress();
-			let bchBalance = await wallet.getBalance();
-			let tokensAddressBalance = await wallet.getAllTokenBalances();
-			let nftsAddressBalance = await wallet.getAllNftTokenBalances();
-			
-			document.getElementById("bchaddress").textContent = "BCH address: " + bchAddress;
-			document.getElementById("walletPubKey").textContent = "PubKey (hex): " + walletPubKey;
-			document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
-			document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
-			document.getElementById("derivation").textContent = "Derivation path: " + wallet.derivationPath;
-			document.getElementById("mnemonic").textContent = "Seed phrase: " + wallet.mnemonic;
-			document.getElementById("privatekey").textContent ="Private key: " + wallet.privateKeyWif;
-			document.getElementById("tokens").textContent = "tokenId(category): amount: " + JSON.stringify(tokensAddressBalance, null, "\t");
-			document.getElementById("nfts").textContent = "NFT Id(category): amount: " + JSON.stringify(nftsAddressBalance, null, "\t");
-		};
-
-		document.getElementById("refresh").onclick = async () => {
-			location.reload();
-		}
-
-		document.getElementById("clear").onclick = async () => {
-			indexedDB.deleteDatabase("bitcoincash");
-			//localStorage.clear();
-			localStorage.removeItem("seed");
-			localStorage.removeItem("wif");
-			alert("Seed phrase / private key were removed. You have to import a wallet again.");
-			document.getElementById("alert2").textContent = "Seed phrase / private key were removed. You have to import a wallet again.";
-			location.reload();
-		}
-
-		document.getElementById("viewTokens1").onclick = async () => {
-			const viewTokenId1 = document.querySelector("#viewTokenId").value;
-			const authChain = await BCMR.buildAuthChain({
-				transactionHash: viewTokenId1,
-				followToHead: true
-			})
-			if (authChain.at(-1)) {
-			try {
-				await BCMR.addMetadataRegistryFromUri(authChain.at(-1).httpsUrl);
-			} catch (error) { alert(error) }
-			}
-			const tokenInfo = BCMR.getTokenInfo(viewTokenId1);
-			document.getElementById("tokencategory").textContent = "Category/tokenId: " + tokenInfo.token.category;
-			document.getElementById("tokenname").textContent = "Name: " + tokenInfo.name;
-			document.getElementById("tokensymbol").textContent = "Symbol: " + tokenInfo.token.symbol;
-			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
-			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
-
-			const viewIcon = tokenInfo.uris.icon;
-			const HttpsPrefix = "https://";
-			const IpfsPrefix = "ipfs://";
-			if (viewIcon.startsWith(HttpsPrefix)) {
-				document.getElementById("tokenicon").src = viewIcon;
-			} else if (viewIcon.startsWith(IpfsPrefix)) {
-				document.getElementById("tokenicon").src = "https://dweb.link/ipfs/" + viewIcon.substr(7, viewIcon.length);
-			}
-
-			//document.getElementById("tokenicon").src = tokenInfo.uris.icon;
-			document.getElementById("explorer").textContent = "https://explorer.salemkode.com/token/" + viewTokenId1;
-		};
-
-		document.getElementById("viewTokens2").onclick = async () => {
-			const viewTokenId2 = document.querySelector("#viewTokenId").value;
-			const apiUrl = "https://bcmr.paytaca.com/api/tokens/" + viewTokenId2;
-			const explorer = "https://explorer.salemkode.com/token/" + viewTokenId2;
-			fetch(apiUrl)
-				.then(response => response.json())
-				.then(data => document.getElementById("tokenapi").textContent = "Name: " + data.name + " " + "| Symbol: " + data.token.symbol + " " + "| Decimals: " + data.token.decimals + " " + "| Description: " + data.description + " " + " " + "| Web: " + data.uris.web + " " + "| Icon: " + data.uris.icon + " " + "| Explorer: " + explorer);
-		};
-
-		document.getElementById("viewTokens3").onclick = async () => {
-			const viewTokenId3 = document.querySelector("#viewTokenId").value;
-			const bcmrList = document.querySelector("#bcmrList").value;
-			if (bcmrUrl = bcmrList) {
-			try {
-				await BCMR.addMetadataRegistryFromUri(bcmrList);
-			} catch (error) { alert(error) }
-			}
-			const bcmrCustom = document.querySelector("#bcmrCustom").value;
-			if (bcmrUrl = bcmrCustom) {
-			try {
-				await BCMR.addMetadataRegistryFromUri(bcmrCustom);
-			} catch (error) { alert(error) }
-			}
-			const tokenInfo = BCMR.getTokenInfo(viewTokenId3);
-			document.getElementById("tokencategory").textContent = "Category/tokenId: " + tokenInfo.token.category;
-			document.getElementById("tokenname").textContent = "Name: " + tokenInfo.name;
-			document.getElementById("tokensymbol").textContent = "Symbol: " + tokenInfo.token.symbol;
-			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
-			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
-
-			const viewIcon = tokenInfo.uris.icon;
-			const HttpsPrefix = "https://";
-			const IpfsPrefix = "ipfs://";
-			if (viewIcon.startsWith(HttpsPrefix)) {
-				document.getElementById("tokenicon").src = viewIcon;
-			} else if (viewIcon.startsWith(IpfsPrefix)) {
-				document.getElementById("tokenicon").src = "https://" + viewIcon.substr(7, viewIcon.length) + ".ipfs.dweb.link/";
-			}
-
-			//document.getElementById("tokenicon").src = tokenInfo.uris.icon;
-			document.getElementById("explorer").textContent = "https://explorer.salemkode.com/token/" + viewTokenId3;
-		};
-
-		document.getElementById("sendBCH").onclick = async () => {
-			try {
-			const bchAddress = document.querySelector("#sendAddr").value;
-			const bchAmount = document.querySelector("#sendAmount").value;
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([{ cashaddr: bchAddress, value: bchAmount, unit: "sats" }]);
-			document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("sendBCHmax").onclick = async () => {
-			try {
-			const bchAddress = document.querySelector("#sendAddr").value;
-			const wallet = await Wallet.named("mazey");
-			let bchBalanceMax = await wallet.getBalance();
-			bchBalanceObj = Object.values({...bchBalanceMax});
-			let bchBalMax = bchBalanceObj[1];
-			const { txId } = await wallet.send([{ cashaddr: bchAddress, value: bchBalMax - 546, unit: "sats", }]);
-			document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("sendTokens").onclick = async () => {
-			try {
-			const tokenAddress = document.querySelector("#sendAddrToken").value;
-			const tokenAmount = document.querySelector("#sendAmountToken").value;
-			const token = document.querySelector("#sendTokenId").value;
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress, amount: tokenAmount, tokenId: token })]);
-			document.getElementById("ftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("sendNfts").onclick = async () => {
-			try {
-			const tokenAddress1 = document.querySelector("#sendAddrToken1").value;
-			const token1 = document.querySelector("#sendNftTokenId").value;
-			const nftCommitment = document.querySelector("#nftCommitment").value;
-			const capabilityLists = document.querySelector("#capabilityLists").value;
-			let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress1, tokenId: token1, commitment: nftCommitment, capability: capabilitySend })]);
-			document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("burnFt").onclick = async () => {
-			try {
-			const wallet = await Wallet.named("mazey");
-			const burnTokenId = document.querySelector("#burnTokenId").value;
-			const burnAmount = document.querySelector("#burnAmount").value;
-			const burnResponse = await wallet.tokenBurn(
-				{
-					tokenId: burnTokenId,
-					amount: burnAmount
-				},
-				"burn",
-				);
-			const { txId } = burnResponse;
-			document.getElementById("burnFtTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("burnNft").onclick = async () => {
-			try {
-			const wallet = await Wallet.named("mazey");
-			const burnNftTokenId = document.querySelector("#burnNftId").value;
-			const capabilityList = document.querySelector("#capabilityList").value;
-			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
-			const burnCommitment = document.querySelector("#burnCommitment").value;
-			const burnResponse = await wallet.tokenBurn(
-				{
-					tokenId: burnNftTokenId,
-					capability: capabilityBurn,
-    				commitment: burnCommitment,
-				},
-				"burn",
-				);
-			const { txId } = burnResponse;
-			document.getElementById("burnNftTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("balancePw").onclick = async () => {
-			try {
-			const sweepPk = document.querySelector("#sweepPk").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
-			let bchBalancePw = await tempWallet.getBalance();
-			let tokensAddressBalancePw = await tempWallet.getAllTokenBalances();
-			document.getElementById("bchbalancePw").textContent = "BCH balance: " + JSON.stringify(bchBalancePw);
-			document.getElementById("tokenbalancePw").textContent = "Token balance: " + JSON.stringify(tokensAddressBalancePw);
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("sweepPw").onclick = async () => {
-			try {
-			var wallet = await Wallet.named("mazey");
-			const sweepPk = document.querySelector("#sweepPk").value;
-			const recipientPw = document.querySelector("#recipientAddress").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
-			let bchBalancePw = await tempWallet.getBalance();
-			bchBalanceObj = Object.values({...bchBalancePw});
-			let bchBal = bchBalanceObj[1];
-			let tokensAddressBalancePw = await tempWallet.getAllTokenBalances();
-			tokenCategoriesObj = Object.keys({...tokensAddressBalancePw});
-			let tokenCat = tokenCategoriesObj[0];
-			tokenAmountsObj = Object.values({...tokensAddressBalancePw});
-			let tokenAmo = tokenAmountsObj[0];
-			const { txId } = await tempWallet.send([
-				{
-				cashaddr: recipientPw,
-				value: bchBal - 800,
-				unit: "sats",
-				},
-				new TokenSendRequest(
-				{
-				cashaddr: recipientPw,
-				amount: tokenAmo,
-				tokenId: tokenCat,
-				}),
-			]);
-			document.getElementById("swept").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-
-		document.getElementById("sweepPwBch").onclick = async () => {
-			try {
-			var wallet = await Wallet.named("mazey");
-			const sweepPk = document.querySelector("#sweepPk").value;
-			const recipientPw = document.querySelector("#recipientAddress").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
-			let bchBalancePw = await tempWallet.getBalance();
-			bchBalanceObj = Object.values({...bchBalancePw});
-			let bchBal = bchBalanceObj[1];
-			const { txId } = await tempWallet.send([
-				{
-				cashaddr: recipientPw,
-				value: bchBal - 546,
-				unit: "sats",
-				},
-			]);
-			document.getElementById("swept").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-			} catch (error) { alert(error) }
-		};
-	});
-	</script>
-
-	<script>
-		document.getElementById("spy").onclick = async () => {
-			const wAddress = document.querySelector("#wAddress").value;
-			const wallet = await Wallet.watchOnly(wAddress);
-			let wbchBalance = await wallet.getBalance();
-			let wtokensAddressBalance = await wallet.getAllTokenBalances();
-			let wnftsAddressBalance = await wallet.getAllNftTokenBalances();
-			document.getElementById("wbchbalance").textContent = "BCH balance: " + JSON.stringify(wbchBalance);
-			document.getElementById("wtokens").textContent = "tokenId(category): amount: " + JSON.stringify(wtokensAddressBalance, null, "\t");
-			document.getElementById("wnfts").textContent = "NFT Id(category): amount: " + JSON.stringify(wnftsAddressBalance, null, "\t");
-		};
-	</script>
-
-	<script>
-		document.getElementById("createPaymentRequest").onclick = async () => {
-			const pAddress = document.querySelector("#address").value;
-			const pAmount = document.querySelector("#amount").value;
-			const pLabel = document.querySelector("#label").value;
-			const pUrl = pAddress + "?amount=" + pAmount + "&label=" + pLabel;">";
-			document.getElementById("payurl").textContent = pUrl;
-			//location.href = pUrl;
-		};
-		document.getElementById("usePaymentRequest").onclick = async () => {
-			const uPayUrl = document.querySelector("#upayurl").value;
-			//const upUrl = uPayUrl;
-			document.getElementById("usepayurl").textContent = uPayUrl;
-			location.href = uPayUrl;
-		};
-	</script>
-
-	<script>
-		document.getElementById("signM").onclick = async () => {
-			const sMessage = document.querySelector("#smessage").value;
-			const wallet = await Wallet.named("mazey");
-			wallet.cashaddr;
-			sign = (await wallet.sign(sMessage)).signature;
-			document.getElementById("signMessage").textContent = sign;
-		};
-		document.getElementById("verifyM").onclick = async () => {
-			const vAddress = document.querySelector("#vaddress").value;
-			const signatureHash = document.querySelector("#signH").value;
-			someWallet = await Wallet.watchOnly(vAddress);
-			verifyResult = await someWallet.verify(vAddress, signatureHash);
-			document.getElementById("verifyMessage").textContent = verifyResult.valid;
-		};
-	</script>
+	<br><br>
+	<footer>
+	<p>
+		<a href="https://mazetoken.github.io/darklabs/">Dark Labs</a> CashTokens (CRC20)<br>
+		<a href="https://tapswap.cash/trade/4b53fb421e760fa3d6d1250b921a7833a6dad04e3566314164059aa0afd987d6">The Legendary Zombie Government</a> CashTokens NFTs
+	</p>
+	<br>
+    <p><a href="https://github.com/mazetoken/microfiweb/"><img src="./img/githubwhite.png" alt="Github" width="32"></a> | <a href="https://t.me/mazetokens/"><img src="./img/telegram.png" alt="Telegram" width="32"></a></p>
+	<p>Maze Tokens Underworld, 2023</p>
+    </footer>
+	<br>
 </body>
 </html>
