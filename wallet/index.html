@@ -6,8 +6,8 @@
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Bitcoin Cash CashTokens wallet</title>
-	<meta name="description" content="Microfi Bitcoin Cash CashTokens wallet">
+  	<title>Microfi CashTokens wallet</title>
+	<meta name="description" content="Microfi CashTokens wallet on Bitcoin Cash">
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
 	<style>
@@ -298,7 +298,7 @@
 		globalThis.exports = globalThis.exports || {};
 		Object.assign(globalThis, await __mainnetPromise);
 		Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
-		//Config.EnforceCashTokenReceiptAddresses = true;
+		Config.EnforceCashTokenReceiptAddresses = true;
 
 		document.getElementById("create").onclick = async () => {
 			const wallet = await Wallet.named("mazey");

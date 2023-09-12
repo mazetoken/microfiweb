@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Bitcoin Cash CashTokens paper wallet</title>
-	<meta name="description" content="Microfi Bitcoin Cash CashTokens paper wallet">
+  	<title>Microfi CashTokens paper wallet</title>
+	<meta name="description" content="Microfi CashTokens paper wallet on Bitcoin Cash">
   	<meta name="web" content="https://microfi.eu/paperwallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_icon.png">
 	<style>
@@ -38,7 +37,7 @@
 		@media screen and (max-width: 512px) {
 		}
 	</style>
-	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@1.1.33/dist/mainnet-1.1.33.js" integrity="sha256-Y+1HCS1byQxqHEtnDOhhPjafa97MLORYwv9qcf4/UMg=" crossorigin="anonymous"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@2.0.1/dist/mainnet-2.0.1.js" integrity="sha256-aMUeH2bkSYAMV7t9EWReDcI/ZaeKVOe2Gb2B4QXeKCM=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
@@ -47,14 +46,13 @@
 		<img src="../img/microfi_icon.png" alt="XMI icon" width="128">
 		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper wallet</h3>
 		<p><button type="button" id="createPW">Generate CashTokens paper wallet</button></p>
-		<p>Send min 1500 BCH satoshis and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
-			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/wallet/">Microfi</a> wallet (https://microfi.eu/wallet/).</p>
+		<p>Send min 1600 satoshi (0.000016 BCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
+			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/wallet/">Microfi</a> wallet (https://microfi.eu/wallet/).
+		</p>
 		<hr>
 		<div>
 			<p id="bchaddress1"></p>
-			<qr-code id="qr1" style="width: 200px; height: 200px; margin: auto;">
-				<!-- <img src="assets/1.2-x-to-y-ratio-icon.svg" slot="icon" /> -->
-			</qr-code>
+			<qr-code id="qr1" style="width: 200px; height: 200px; margin: auto;"></qr-code>
 			<hr>
 			<p id="cashtokensaddress1"></p>
 			<qr-code id="qr2" style="width: 200px; height: 200px; margin: auto;"></qr-code>
@@ -79,6 +77,7 @@
 		globalThis.exports = globalThis.exports || {};
 		Object.assign(globalThis, await __mainnetPromise);
 		Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
+		Config.EnforceCashTokenReceiptAddresses = true;
 
 		document.getElementById("createPW").onclick = async () => {
 			const wallet = await Wallet.newRandom();
