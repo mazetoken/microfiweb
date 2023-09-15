@@ -6,8 +6,8 @@
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi CashTokens wallet</title>
-	<meta name="description" content="Microfi CashTokens wallet on Bitcoin Cash">
+  	<title>Microfi Free Flow Bitcoin Cash CashTokens wallet</title>
+	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens wallet">
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
 	<style>
@@ -59,6 +59,7 @@
 		@media screen and (max-width: 512px) {}
 	</style>
 	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@2.1.1/dist/mainnet-2.1.1.js" integrity="sha256-lALgdp/hHuufy1qhTD/PBuldxACtzpyj6MN3sf4j1ao=" crossorigin="anonymous"></script>
+	<script defer src="http://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.1.1.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@mainnet-cash/contract@2.1.1/dist/contract-2.1.1.js" integrity="sha256-jCWhkNuVakBya8q0R6BqmKrCqLPNerRuI/uXAQkwOQQ=" crossorigin="anonymous"></script> -->
 </head>
 <body>
@@ -97,8 +98,6 @@
 				<p id="bchaddress"></p>
 				<p><img src id="bchQr" width="200"></p>
 				<p id="bchbalance"></p>
-				<!-- <p id="pubKey"></p> -->
-				<p id="sig"></p>
 				<p id="cashtokensaddress"></p>
 				<p><img src id="tokenQr" width="200"></p>
 				<p id="tokensbalance"></p>
@@ -195,7 +194,6 @@
 				<p id="burnFtTx"></p>
 				<br>
 				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
-				<!-- <p><input id="burnNftAmount" type="text" size="50" placeholder="amount"></p> -->
 				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
 				<select id="capabilityList">
 					<option value="NFTCapability.none">Immutable</option>
@@ -265,14 +263,23 @@
 			</div>
 		</div>
 		<hr>
+		<div>
+			<button type="button" class="collapsible">Send blockchain message</button>
+			<div class="content">
+				<p>Sending a message in opreturn requires 0.01 XMI and a few satoshi for transactions fee</p>
+				<p><input id="opmessage" type="text" size="50" placeholder="message"></p>
+				<p><button type="button" id="sendOp">Send</button></p>
+				<p id="opsent"></p>
+			</div>
+		</div>
+		<hr>
 		<br><br>
 		<footer>
 			<p><a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
 			<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a>
 				| <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a>
 			</p>
-			<!-- <p>Wallet on <a href="https://mazetoken.github.io/mazey/testnet/">testnet</a></p> -->
-			<p>Maze Tokens Underworld, 2023</p>
+			<p>Microfi Free Flow, 2023</p>
 		</footer>
 		<br>
 	</div>
@@ -299,9 +306,10 @@
 		Object.assign(globalThis, await __mainnetPromise);
 		Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
 		Config.EnforceCashTokenReceiptAddresses = true;
+		BaseWallet.StorageProvider = IndexedDBProvider;
 
 		document.getElementById("create").onclick = async () => {
-			const wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("mazey");
 			localStorage.setItem("seed", wallet.mnemonic);
 			localStorage.setItem("wif", wallet.privateKeyWif);
 			alert("Done. You can open the wallet. Save the seed phrase and private key.");
@@ -309,9 +317,9 @@
 		};
 
 		document.getElementById("import").onclick = async () => {
-			const seedphrase = document.querySelector("#importSeedPhrase").value;
+			let seedphrase = document.querySelector("#importSeedPhrase").value;
 			localStorage.setItem("seed", seedphrase);
-			const privatekey = document.querySelector("#importPrivateKey").value;
+			let privatekey = document.querySelector("#importPrivateKey").value;
 			localStorage.setItem("wif", privatekey);
 			alert("Done. The wallet is imported. You can open the wallet.");
 			document.getElementById("alert1").textContent = "Done. The wallet is imported. You can open the wallet.";
@@ -319,40 +327,34 @@
 
 		document.getElementById("open").onclick = async () => {
 			var wallet = await Wallet.named("mazey");
-			const sd = localStorage.getItem("seed");
+			let sd = localStorage.getItem("seed");
 			const derivationPath = "m/44'/145'/0'/0/0";
-			var walletId1 = `seed:mainnet:${sd}:${derivationPath}`;
-			const pk = localStorage.getItem("wif");
-			var walletId2 = `wif:mainnet:${pk}`;
+			let walletId1 = `seed:mainnet:${sd}:${derivationPath}`;
+			let pk = localStorage.getItem("wif");
+			let walletId2 = `wif:mainnet:${pk}`;
 			if (wallet = sd) {
 				var wallet = await Wallet.replaceNamed("mazey", walletId1);
 			} else if (wallet = pk) {
 				var wallet = await Wallet.replaceNamed("mazey", walletId2);
 			}
-			const bchAddress = await wallet.getDepositAddress();
-			const bchQr = await wallet.getDepositQr();
-			//const pubKey = await wallet.getPublicKey(true);
-			//const pubKey = await wallet.getPublicKeyCompressed(true);
-			//const sig = await wallet.getSignatureTemplate();
-			const tokenAddress = await wallet.getTokenDepositAddress();
-			const tokenQr = await wallet.getTokenDepositQr();
+			let bchAddress = await wallet.getDepositAddress();
+			let bchQr = await wallet.getDepositQr();
 			let bchBalance = await wallet.getBalance();
-			let tokensAddressBalance = await wallet.getAllTokenBalances();
-			let nftsAddressBalance = await wallet.getAllNftTokenBalances();
+			let tokenAddress = await wallet.getTokenDepositAddress();
+			let tokenQr = await wallet.getTokenDepositQr();
+			let tokenBalance = await wallet.getAllTokenBalances();
+			let nftBalance = await wallet.getAllNftTokenBalances();
 
 			document.getElementById("derivation").textContent = "Derivation path: " + wallet.derivationPath;
 			document.getElementById("mnemonic").textContent = "Seed phrase: " + wallet.mnemonic;
 			document.getElementById("privatekey").textContent ="Private key: " + wallet.privateKeyWif;
-			
 			document.getElementById("bchaddress").textContent = "BCH address: " + bchAddress;
 			document.getElementById("bchQr").src = wallet.getDepositQr().src;
 			document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
-			//document.getElementById("pubKey").textContent = "PubKey (hex): " + pubKey;
-			//document.getElementById("sig").textContent = "Signature Template: " + sig;
 			document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
 			document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
-			document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokensAddressBalance, null, "\t");
-			document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftsAddressBalance, null, "\t");
+			document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
+			document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
 		};
 
 		document.getElementById("refresh").onclick = async () => {
@@ -370,24 +372,26 @@
 		}
 
 		document.getElementById("viewTokens1").onclick = async () => {
-			const viewTokenId1 = document.querySelector("#viewTokenId").value;
-			const authChain = await BCMR.buildAuthChain({
-				transactionHash: viewTokenId1,
-				followToHead: true
-			})
+			let viewTokenId1 = document.querySelector("#viewTokenId").value;
+			let authChain = await BCMR.buildAuthChain(
+				{
+					transactionHash: viewTokenId1,
+					followToHead: true
+				}
+			)
 			if (authChain.at(-1)) {
 			try {
 				await BCMR.addMetadataRegistryFromUri(authChain.at(-1).httpsUrl);
 			} catch (error) { alert(error) }
 			}
-			const tokenInfo = BCMR.getTokenInfo(viewTokenId1);
+			let tokenInfo = BCMR.getTokenInfo(viewTokenId1);
 			document.getElementById("tokencategory").textContent = "Category/tokenId: " + tokenInfo.token.category;
 			document.getElementById("tokenname").textContent = "Name: " + tokenInfo.name;
 			document.getElementById("tokensymbol").textContent = "Symbol: " + tokenInfo.token.symbol;
 			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
 			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
 
-			const viewIcon = tokenInfo.uris.icon;
+			let viewIcon = tokenInfo.uris.icon;
 			const HttpsPrefix = "https://";
 			const IpfsPrefix = "ipfs://";
 			if (viewIcon.startsWith(HttpsPrefix)) {
@@ -401,36 +405,36 @@
 		};
 
 		document.getElementById("viewTokens2").onclick = async () => {
-			const viewTokenId2 = document.querySelector("#viewTokenId").value;
-			const apiUrl = "https://bcmr.paytaca.com/api/tokens/" + viewTokenId2;
-			const explorer = "https://explorer.salemkode.com/token/" + viewTokenId2;
+			let viewTokenId2 = document.querySelector("#viewTokenId").value;
+			let apiUrl = "https://bcmr.paytaca.com/api/tokens/" + viewTokenId2;
+			let explorer = "https://explorer.salemkode.com/token/" + viewTokenId2;
 			fetch(apiUrl)
 				.then(response => response.json())
 				.then(data => document.getElementById("tokenapi").textContent = "Name: " + data.name + " " + "| Symbol: " + data.token.symbol + " " + "| Decimals: " + data.token.decimals + " " + "| Description: " + data.description + " " + " " + "| Web: " + data.uris.web + " " + "| Icon: " + data.uris.icon + " " + "| Explorer: " + explorer);
 		};
 
 		document.getElementById("viewTokens3").onclick = async () => {
-			const viewTokenId3 = document.querySelector("#viewTokenId").value;
-			const bcmrList = document.querySelector("#bcmrList").value;
+			let viewTokenId3 = document.querySelector("#viewTokenId").value;
+			let bcmrList = document.querySelector("#bcmrList").value;
 			if (bcmrUrl = bcmrList) {
 			try {
 				await BCMR.addMetadataRegistryFromUri(bcmrList);
 			} catch (error) { alert(error) }
 			}
-			const bcmrCustom = document.querySelector("#bcmrCustom").value;
+			let bcmrCustom = document.querySelector("#bcmrCustom").value;
 			if (bcmrUrl = bcmrCustom) {
 			try {
 				await BCMR.addMetadataRegistryFromUri(bcmrCustom);
 			} catch (error) { alert(error) }
 			}
-			const tokenInfo = BCMR.getTokenInfo(viewTokenId3);
+			let tokenInfo = BCMR.getTokenInfo(viewTokenId3);
 			document.getElementById("tokencategory").textContent = "Category/tokenId: " + tokenInfo.token.category;
 			document.getElementById("tokenname").textContent = "Name: " + tokenInfo.name;
 			document.getElementById("tokensymbol").textContent = "Symbol: " + tokenInfo.token.symbol;
 			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
 			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
 
-			const viewIcon = tokenInfo.uris.icon;
+			let viewIcon = tokenInfo.uris.icon;
 			const HttpsPrefix = "https://";
 			const IpfsPrefix = "ipfs://";
 			if (viewIcon.startsWith(HttpsPrefix)) {
@@ -445,124 +449,152 @@
 
 		document.getElementById("sendBCH").onclick = async () => {
 			try {
-			const bchAddress = document.querySelector("#sendAddr").value;
-			const bchAmount = document.querySelector("#sendAmount").value;
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([{ cashaddr: bchAddress, value: bchAmount, unit: "sats" }]);
+			var wallet = await Wallet.named("mazey");
+			let bchAddress = document.querySelector("#sendAddr").value;
+			let bchAmount = document.querySelector("#sendAmount").value;
+			let { txId } = await wallet.send([
+				{
+					cashaddr: bchAddress,
+					value: bchAmount,
+					unit: "sats"
+				}
+			]);
 			document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("sendBCHmax").onclick = async () => {
 			try {
-			const bchAddress = document.querySelector("#sendAddr").value;
-			const wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("mazey");
+			let bchAddress = document.querySelector("#sendAddr").value;
 			let bchBalanceMax = await wallet.getBalance();
 			bchBalanceObj = Object.values({...bchBalanceMax});
 			let bchBalMax = bchBalanceObj[1];
-			const { txId } = await wallet.send([{ cashaddr: bchAddress, value: bchBalMax - 546, unit: "sats", }]);
+			let { txId } = await wallet.send([
+				{
+					cashaddr: bchAddress,
+					value: bchBalMax - 546,
+					unit: "sats"
+				}
+			]);
 			document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("sendTokens").onclick = async () => {
 			try {
-			const tokenAddress = document.querySelector("#sendAddrToken").value;
-			const tokenAmount = document.querySelector("#sendAmountToken").value;
-			const token = document.querySelector("#sendTokenId").value;
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress, amount: tokenAmount, tokenId: token })]);
+			var wallet = await Wallet.named("mazey");
+			let tokenAddress = document.querySelector("#sendAddrToken").value;
+			let tokenAmount = document.querySelector("#sendAmountToken").value;
+			let token = document.querySelector("#sendTokenId").value;
+			let { txId } = await wallet.send([ new TokenSendRequest(
+				{
+					cashaddr: tokenAddress,
+					amount: tokenAmount,
+					tokenId: token
+				}
+			)
+			]);
 			document.getElementById("ftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("sendNfts").onclick = async () => {
 			try {
-			const tokenAddress1 = document.querySelector("#sendAddrToken1").value;
-			const token1 = document.querySelector("#sendNftTokenId").value;
-			const nftCommitment = document.querySelector("#nftCommitment").value;
-			const capabilityLists = document.querySelector("#capabilityLists").value;
+			var wallet = await Wallet.named("mazey");
+			let tokenAddress1 = document.querySelector("#sendAddrToken1").value;
+			let token1 = document.querySelector("#sendNftTokenId").value;
+			let nftCommitment = document.querySelector("#nftCommitment").value;
+			let capabilityLists = document.querySelector("#capabilityLists").value;
 			let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
-			const wallet = await Wallet.named("mazey");
-			const { txId } = await wallet.send([new TokenSendRequest({ cashaddr: tokenAddress1, tokenId: token1, commitment: nftCommitment, capability: capabilitySend })]);
+			let { txId } = await wallet.send([ new TokenSendRequest(
+				{
+					cashaddr: tokenAddress1,
+					tokenId: token1,
+					commitment: nftCommitment,
+					capability: capabilitySend
+				}
+			)
+			]);
 			document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("burnFt").onclick = async () => {
 			try {
-			const wallet = await Wallet.named("mazey");
-			const burnTokenId = document.querySelector("#burnTokenId").value;
-			const burnAmount = document.querySelector("#burnAmount").value;
-			const burnResponse = await wallet.tokenBurn(
+			var wallet = await Wallet.named("mazey");
+			let burnTokenId = document.querySelector("#burnTokenId").value;
+			let burnAmount = document.querySelector("#burnAmount").value;
+			let burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnTokenId,
 					amount: burnAmount
 				},
 				"burn",
-				);
-			const { txId } = burnResponse;
+			);
+			let { txId } = burnResponse;
 			document.getElementById("burnFtTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("burnNft").onclick = async () => {
 			try {
-			const wallet = await Wallet.named("mazey");
-			const burnNftTokenId = document.querySelector("#burnNftId").value;
-			const capabilityList = document.querySelector("#capabilityList").value;
+			var wallet = await Wallet.named("mazey");
+			let burnNftTokenId = document.querySelector("#burnNftId").value;
+			let capabilityList = document.querySelector("#capabilityList").value;
 			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
-			const burnCommitment = document.querySelector("#burnCommitment").value;
-			const burnResponse = await wallet.tokenBurn(
+			let burnCommitment = document.querySelector("#burnCommitment").value;
+			let burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnNftTokenId,
 					capability: capabilityBurn,
-    				commitment: burnCommitment,
+    				commitment: burnCommitment
 				},
 				"burn",
-				);
-			const { txId } = burnResponse;
+			);
+			let { txId } = burnResponse;
 			document.getElementById("burnNftTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("balancePw").onclick = async () => {
 			try {
-			const sweepPk = document.querySelector("#sweepPk").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
+			let sweepPk = document.querySelector("#sweepPk").value;
+			let tempWallet = await Wallet.fromWIF(sweepPk);
 			let bchBalancePw = await tempWallet.getBalance();
-			let tokensAddressBalancePw = await tempWallet.getAllTokenBalances();
+			let tokenBalancePw = await tempWallet.getAllTokenBalances();
 			document.getElementById("bchbalancePw").textContent = "BCH balance: " + JSON.stringify(bchBalancePw);
-			document.getElementById("tokenbalancePw").textContent = "Token balance: " + JSON.stringify(tokensAddressBalancePw);
+			document.getElementById("tokenbalancePw").textContent = "Token balance: " + JSON.stringify(tokenBalancePw);
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("sweepPw").onclick = async () => {
 			try {
 			var wallet = await Wallet.named("mazey");
-			const sweepPk = document.querySelector("#sweepPk").value;
-			const recipientPw = document.querySelector("#recipientAddress").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
+			let sweepPk = document.querySelector("#sweepPk").value;
+			let recipientPw = document.querySelector("#recipientAddress").value;
+			let tempWallet = await Wallet.fromWIF(sweepPk);
 			let bchBalancePw = await tempWallet.getBalance();
 			bchBalanceObj = Object.values({...bchBalancePw});
 			let bchBal = bchBalanceObj[1];
-			let tokensAddressBalancePw = await tempWallet.getAllTokenBalances();
-			tokenCategoriesObj = Object.keys({...tokensAddressBalancePw});
+			let tokenBalancePw = await tempWallet.getAllTokenBalances();
+			tokenCategoriesObj = Object.keys({...tokenBalancePw});
 			let tokenCat = tokenCategoriesObj[0];
-			tokenAmountsObj = Object.values({...tokensAddressBalancePw});
+			tokenAmountsObj = Object.values({...tokenBalancePw});
 			let tokenAmo = tokenAmountsObj[0];
-			const { txId } = await tempWallet.send([
+			let { txId } = await tempWallet.send([
 				{
-				cashaddr: recipientPw,
-				value: bchBal - 800,
-				unit: "sats",
+					cashaddr: recipientPw,
+					value: bchBal - 800,
+					unit: "sats",
 				},
 				new TokenSendRequest(
 				{
-				cashaddr: recipientPw,
-				amount: tokenAmo,
-				tokenId: tokenCat,
-				}),
+					cashaddr: recipientPw,
+					amount: tokenAmo,
+					tokenId: tokenCat
+				}
+				)
 			]);
 			document.getElementById("swept").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
@@ -571,18 +603,18 @@
 		document.getElementById("sweepPwBch").onclick = async () => {
 			try {
 			var wallet = await Wallet.named("mazey");
-			const sweepPk = document.querySelector("#sweepPk").value;
-			const recipientPw = document.querySelector("#recipientAddress").value;
-			var tempWallet = await Wallet.fromWIF(sweepPk);
+			let sweepPk = document.querySelector("#sweepPk").value;
+			let recipientPw = document.querySelector("#recipientAddress").value;
+			let tempWallet = await Wallet.fromWIF(sweepPk);
 			let bchBalancePw = await tempWallet.getBalance();
 			bchBalanceObj = Object.values({...bchBalancePw});
 			let bchBal = bchBalanceObj[1];
-			const { txId } = await tempWallet.send([
+			let { txId } = await tempWallet.send([
 				{
-				cashaddr: recipientPw,
-				value: bchBal - 546,
-				unit: "sats",
-				},
+					cashaddr: recipientPw,
+					value: bchBal - 546,
+					unit: "sats"
+				}
 			]);
 			document.getElementById("swept").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
@@ -592,29 +624,27 @@
 
 	<script>
 		document.getElementById("spy").onclick = async () => {
-			const wAddress = document.querySelector("#wAddress").value;
-			const wallet = await Wallet.watchOnly(wAddress);
+			let wAddress = document.querySelector("#wAddress").value;
+			let wallet = await Wallet.watchOnly(wAddress);
 			let wbchBalance = await wallet.getBalance();
-			let wtokensAddressBalance = await wallet.getAllTokenBalances();
-			let wnftsAddressBalance = await wallet.getAllNftTokenBalances();
+			let wtokenBalance = await wallet.getAllTokenBalances();
+			let wnftBalance = await wallet.getAllNftTokenBalances();
 			document.getElementById("wbchbalance").textContent = "BCH balance: " + JSON.stringify(wbchBalance);
-			document.getElementById("wtokens").textContent = "tokenId(category): amount: " + JSON.stringify(wtokensAddressBalance, null, "\t");
-			document.getElementById("wnfts").textContent = "NFT Id(category): amount: " + JSON.stringify(wnftsAddressBalance, null, "\t");
+			document.getElementById("wtokens").textContent = "tokenId(category): amount: " + JSON.stringify(wtokenBalance, null, "\t");
+			document.getElementById("wnfts").textContent = "NFT Id(category): amount: " + JSON.stringify(wnftBalance, null, "\t");
 		};
 	</script>
 
 	<script>
 		document.getElementById("createPaymentRequest").onclick = async () => {
-			const pAddress = document.querySelector("#address").value;
-			const pAmount = document.querySelector("#amount").value;
-			const pLabel = document.querySelector("#label").value;
-			const pUrl = pAddress + "?amount=" + pAmount + "&label=" + pLabel;">";
+			let pAddress = document.querySelector("#address").value;
+			let pAmount = document.querySelector("#amount").value;
+			let pLabel = document.querySelector("#label").value;
+			let pUrl = pAddress + "?amount=" + pAmount + "&label=" + pLabel;">";
 			document.getElementById("payurl").textContent = pUrl;
-			//location.href = pUrl;
 		};
 		document.getElementById("usePaymentRequest").onclick = async () => {
-			const uPayUrl = document.querySelector("#upayurl").value;
-			//const upUrl = uPayUrl;
+			let uPayUrl = document.querySelector("#upayurl").value;
 			document.getElementById("usepayurl").textContent = uPayUrl;
 			location.href = uPayUrl;
 		};
@@ -622,18 +652,38 @@
 
 	<script>
 		document.getElementById("signM").onclick = async () => {
-			const sMessage = document.querySelector("#smessage").value;
-			const wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("mazey");
+			let sMessage = document.querySelector("#smessage").value;
 			wallet.cashaddr;
 			sign = (await wallet.sign(sMessage)).signature;
 			document.getElementById("signMessage").textContent = sign;
 		};
 		document.getElementById("verifyM").onclick = async () => {
-			const vAddress = document.querySelector("#vaddress").value;
-			const signatureHash = document.querySelector("#signH").value;
+			let vAddress = document.querySelector("#vaddress").value;
+			let signatureHash = document.querySelector("#signH").value;
 			someWallet = await Wallet.watchOnly(vAddress);
 			verifyResult = await someWallet.verify(vAddress, signatureHash);
 			document.getElementById("verifyMessage").textContent = verifyResult.valid;
+		};
+	</script>
+
+	<script>
+		document.getElementById("sendOp").onclick = async () => {
+			try {
+			var wallet = await Wallet.named("mazey");
+			let opMessage = document.querySelector("#opmessage").value;
+			let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
+			let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
+			let { txId } = await wallet.send([ OpReturnData.from("XMI" + opMessage), new TokenSendRequest(
+				{
+					cashaddr: tokenAddress2,
+					amount: 1,
+					tokenId: tokenId4
+				}
+			)
+			]);
+			document.getElementById("opsent").textContent = "https://explorer.bitcoinunlimited.info//tx/" + txId;
+			} catch (error) { alert(error) }
 		};
 	</script>
 </body>
