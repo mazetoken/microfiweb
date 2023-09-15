@@ -64,15 +64,15 @@
 </head>
 <body>
 	<div>
-		<h1><a href="https://microfi.eu">Microfi Free Flow</a></h1>
-		<img src="../img/microfi_icon.png" alt="XMI icon" width="128">
-		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> wallet</h3>
+		<p><img src="../img/microfi.png" alt="XMI icon" width="400"></p>
+		<p><img src="../img/bitcoin-cash-logo.png" alt="BCH logo" width="200"></p>
+		<p><b><a href="../index.html">HOME</a> | <a href="https://microfi.onrender.com">DISTRIBUTION APP</a> | <a href="../paperwallet/">PAPER WALLET</a> | <a href="../qrscanner/">QR CODE SCANNER</a></b></p>
+		<h3>Microfi Free Flow Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> wallet</h3>
 		<p>Microfi wallet can be used locally, on a pendrive, SD card, floppy disk, etc.<br>
 			Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet.
 		</p>
 		<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (import wallet private key).</p>
 		<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.</p>
-		<p><b><a href="../paperwallet/">PAPER WALLET</a> | <a href="../qrscanner/">QR CODE SCANNER</a></b></p>
 		<hr>
 		<div>
 			<button type="button" class="collapsible">Create or import a wallet</button>
@@ -674,7 +674,9 @@
 			let opMessage = document.querySelector("#opmessage").value;
 			let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
 			let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
-			let { txId } = await wallet.send([ OpReturnData.from("XMI" + opMessage), new TokenSendRequest(
+			let chunks = ["XMI", opMessage];
+    		let opreturnData = OpReturnData.fromArray(chunks);
+			let { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
 				{
 					cashaddr: tokenAddress2,
 					amount: 1,
@@ -682,7 +684,7 @@
 				}
 			)
 			]);
-			document.getElementById("opsent").textContent = "https://explorer.bitcoinunlimited.info//tx/" + txId;
+			document.getElementById("opsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 	</script>
