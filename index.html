@@ -11,6 +11,7 @@
     <meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens and applications (wallet, distribution app, paper wallet qr code scanner)">
   	<meta name="web" content="https://microfi.eu">
 	<link rel="icon" type="image/png" sizes="42x42" href="./img/microfi_icon.png">
+	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 	<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -71,6 +72,15 @@
 			<p><a href="https://tapswap.cash/trade/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">TapSwap</a> | <a href="https://fex.cash">Fex</a> | <a href="https://dangerzone.cauldron.quest">Cauldron</a> (beta)</p>
 			<h1><span style='font-size:80px;'>&#9740;</span></h1>
 		</div>
+
+		<div class="card">
+			<h2>XMI/BCH satoshi</h2>
+			<p id="viewchart"></p>
+			<!-- <p><button type="button" id="load">View chart</button></p> -->
+			<p>The chart shows historical data (updated daily)</p>
+			<p>Source <a href="https://fex.cash">Fex</a></p>
+			<p>Powered by Trading View <a href="https://www.tradingview.com/lightweight-charts/">Lightweight Charts</a></p>
+		</div>
 	</div>
 	<br><br>
 	<footer>
@@ -84,5 +94,6 @@
 	<p>Microfi Free Flow, 2023</p>
     </footer>
 	<br>
+	<script src="./xmichart.js"></script>
 </body>
 </html>
