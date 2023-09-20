@@ -2,98 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Microfi Free Flow Bitcoin Cash CashTokens and applications</title>
-    <meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens and applications (wallet, distribution app, paper wallet qr code scanner)">
+	<title>Microfi Free Flow Project</title>
+    <meta name="description" content="Microfi Free Flow Project. CashTokens and Applications on Bitcoin Cash.">
   	<meta name="web" content="https://microfi.eu">
-	<link rel="icon" type="image/png" sizes="42x42" href="./img/microfi_icon.png">
-	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-	<link rel="stylesheet" href="./styles.css">
+	<link rel="icon" type="image/png" sizes="42x42" href="./img/microfiweb.png">
+	<style>
+		body {
+			background-color: #000000;
+			color: #ffffff;
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-size: 18px;
+			margin: auto;
+			max-width: 800px;
+			overflow-wrap: anywhere;
+			text-align: center;
+		}
+		p {
+			font-size: 16px;
+		}
+		a:link {
+			color: #ffffff;
+			background-color: transparent;
+			text-decoration: underline;
+		}
+		a:visited {
+			color: #ffffff;
+			background-color: transparent;
+			text-decoration: underline;
+		}
+		.button {
+			background-color: #212121;
+			border: none;
+			border-radius: 12px;
+			color: #ffffff;
+			cursor: pointer;
+			display: inline-block;
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-size: 16px;
+			margin: 4px 2px;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			width: 70%;
+		}
+		@media screen and (max-width: 600px) {}
+	</style>
 </head>
 <body>
-	<p><img src="./img/microfi.png" alt="Microfi" width="400"></p>
+	<p><img src="./img/microfi.png" alt="Microfi" width="420"></p>
 	<p><img src="./img/bitcoin-cash-logo.png" alt="BCH" width="200"></p>
-    <h3><i>Discover the power of <a href="https://cashtokens.org">CashTokens</a> with Microfi tokens and applications</i></h3>
-	<p><b><a href="./wallet/">WALLET</a> | <a href="https://microfi.onrender.com">DISTRIBUTION APP</a> | <a href="./paperwallet/">PAPER WALLET</a> | <a href="./qrscanner">QR CODE SCANNER</a></b></p>
-	<div class="container">
-		<div class="card">
-			<img src="./img/xmi1.png" alt="XMI1" width="400">
-			<h2>Summary</h2>
-			<p>Microfi Free Flow (XMI) CashTokens are crypto-assets created on the Bitcoin Cash blockchain, used, for example, to commemorate special events, show appreciation or express creativity.</p>
-			<p>XMI can be a valuable asset for those who appreciate low token supply, sentimental and collector's value and are not afraid of the speculative nature of crypto-assets.</p>
-			<p>Microfi Free Flow (XMI) has ISO 24165-1:2021 digital token identifier (<a href="https://dtif.org/token-registry-search/">DTI</a>): JNWL3D02V | XMI DTI <a href="./JNWL3D02V.json">json</a> file.</p>
-			<br>
-			<h2>Risk</h2>
-			<p>Users should be aware that XMI can be a volatile asset, dependent on supply and demand in the market.</p>
-			<p>XMI may be subject to significant price fluctuations.</p>
-			<p>Some users may collect more tokens during distribution than others.</p>
-			<h1><span style='font-size:80px;'>&#9738;</span></h1>
-		</div>
-		
-		<div class="card">
-			<img src="./img/xmi2.png" alt="XMI2" width="400">
-			<h2>Basic info</h2>
-			<p>
-				Name: Microfi Free Flow<br>
-				Symbol: XMI<br>
-				Decimals: 2<br>
-				The smallest unit: MI (represents a decimal, 0 and 1)<br>
-				Total fixed supply: 1000000.00<br>
-				Category (token Id): b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe belongs to Microfi Free Flow project
-			</p>
-			<p>Icon <a href="https://github.com/mazetoken/microfiweb/blob/main/img/microfi_icon.png?raw=true">link</a>.</p>
-			<p>XMI on BCH CashTokens <a href="https://explorer.salemkode.com/token/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">explorer</a>.<br>
-				XMI`s genesis <a href="https://explorer.bitcoinunlimited.info/tx/8a93e3c629b2d406f4f1623a8a83dd117239afcb62118b710edc0d216abb48e4">txId</a>.<br>
-				Chain resolved registry <a href="https://cashtokens.org/docs/bcmr/chip/#chain-resolved-registries">(AuthChain)</a> - <a href="https://explorer.bitcoinunlimited.info/tx/402d8c6f8d5269e0960ff15babfcfe8fe43d9316627e8c2258ba1ba1c871a6af">txId</a>.<br>
-				DNS resolved registry <a href="https://cashtokens.org/docs/bcmr/chip/#dns-resolved-registries">(BCMR)</a> - <a href="https://bafkreib7tvunwhzcttqbefsxmitz6x744wushflyulp4vknlvdyxo72b4a.ipfs.dweb.link/">ipfs link</a>.<br>
-				XMI`s AuthHead migration <a href="./AuthHeadMigration.md">doc</a>.
-			</p>
-			<br>
-			<h2>Wallets</h2>
-			<p><a href="https://cashonize.com">Cashonize</a> | <a href="https://electroncash.org">Electron Cash</a> | <a href="https://paytaca.com/#wallet">Paytaca</a> | <a href="./wallet/">Microfi</a> | <a href="https://zapit.io">Zapit</a></p>
-			<h1><span style='font-size:80px;'>&#9739;</span></h1>
-		</div>
-		
-		<div class="card">
-			<img src="./img/xmi3.png" alt="XMI3" width="400">
-			<h2>Distribution</h2>
-			<p>Microfi Free Flow is a crypto-asset with no profit incentive, other than asset-referenced token or e-money token.</p>
-			<p>There was no pre-sale, no initial offer, no token allocation for the XMI developer.</p>
-			<p>XMI's distribution ran from May 25, 2023 to June 28, 2023. Anyone could claim Microfi Free Flow for free until the total supply of 1 million XMI was distributed.</p>
-			<p>Distribution wallet <a href="https://explorer.bitcoinunlimited.info/address/qrx0t6cv5m7ks7za8j52839q7vjqkahkcux4hxfvrz">address</a> and transactions history.</p>
-			<p>Distribution application <a href="https://github.com/mazetoken/microfiapp/">source code</a> | <a href="https://microfi.onrender.com">web</a>.</p>
-			<p>XMI holders <a href="https://www.registry.cash/coins/XMI-b69f76548653033603cd.html">list</a> (the first two addresses do not belong to the developer of XMI).</p>
-			<br>
-			<h2>Trade</h2>
-			<p><a href="https://tapswap.cash/trade/b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe">TapSwap</a> | <a href="https://fex.cash">Fex</a> | <a href="https://dangerzone.cauldron.quest">Cauldron</a> (beta)</p>
-			<h1><span style='font-size:80px;'>&#9740;</span></h1>
-		</div>
-
-		<div class="card">
-			<h2>XMI/BCH satoshi</h2>
-			<p id="viewchart"></p>
-			<!-- <p><button type="button" id="load">View chart</button></p> -->
-			<p>The chart shows historical data (updated daily)</p>
-			<p>Source <a href="https://fex.cash">Fex</a></p>
-			<p>Powered by Trading View <a href="https://www.tradingview.com/lightweight-charts/">Lightweight Charts</a></p>
-		</div>
+	<h2><b>Microfi Free Flow Project</b></h2>
+    <h2><a href="https://cashtokens.org"><b>CashTokens</b></a> <b>and Applications</b></h3>
+	<br>
+	<div>
+		<p><button type="button" class="button"><b><a href="./token/">XMI Token</a></b></button></p>
+		<p><button type="button" class="button"><b><a href="./wallet/">BCH CashTokens Wallet</a></b></button></p>
+		<p><button type="button" class="button"><b><a href="https://microfi.onrender.com">CashTokens Distribution App (faucet)</a></b></button></p>
+		<p><button type="button" class="button"><b><a href="./paperwallet/">BCH CashTokens Paper Wallet</a></b></button></p>
+		<p><button type="button" class="button"><b><a href="./qrscanner">Qr-code Scanner</a></b></button></p>
 	</div>
 	<br><br>
 	<footer>
-	<p>
-		<a href="https://mazetoken.github.io/darklabs/">Dark Labs</a> CashTokens (CRC20, CRC721)<br>
-		<a href="https://tapswap.cash/trade/4b53fb421e760fa3d6d1250b921a7833a6dad04e3566314164059aa0afd987d6">The Legendary Zombie Government</a> CashTokens NFTs
-	</p>
-	<br>
-    <p><a href="https://github.com/mazetoken/microfiweb/"><img src="./img/githubwhite.png" alt="Github" width="32"></a> | <a href="https://t.me/mazetokens/"><img src="./img/telegram.png" alt="Telegram" width="32"></a></p>
-	<p1>XMI token category </p1>
-	<p>Microfi Free Flow, 2023</p>
+    <p><a href="https://github.com/mazetoken/microfiweb/"><img src="./img/githubwhite.png" alt="Github" width="32"></a> <a href="https://t.me/mazetokens/"><img src="./img/telegram.png" alt="Telegram" width="32"></a></p>
+	<p>Microfi Free Flow Project, 2023</p>
     </footer>
-	<br>
-	<script src="./xmichart.js"></script>
 </body>
 </html>

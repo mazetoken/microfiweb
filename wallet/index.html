@@ -6,8 +6,8 @@
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Free Flow Bitcoin Cash CashTokens wallet</title>
-	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens wallet">
+  	<title>Microfi Free Flow CashTokens Wallet on Bitcoin Cash</title>
+	<meta name="description" content="Microfi Free Flow CashTokens Wallet on Bitcoin Cash">
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
 	<style>
@@ -17,68 +17,83 @@
 			max-width: 800px;
 			margin: auto;
 			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			background-color: black;
-			font-size: large;
-			color: whitesmoke;
+			background-color: #000000;
+			font-size: 18px;
+			color: #ffffff;
 		}
 		p {
 			font-size: 16px;
 		}
 		a:link {
-			color: teal;
+			color: #ffffff;
 			background-color: transparent;
 			text-decoration: underline;
 		}
 		a:visited {
-			color: #0AC18E;
+			color: #ffffff;
 			background-color: transparent;
 			text-decoration: underline;
 		}
+		.button {
+			background-color: #212121;
+			border: none;
+			border-radius: 12px;
+			color: #ffffff;
+			cursor: pointer;
+			display: inline-block;
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-size: 14px;
+			margin: 2px 2px;
+			padding: 5px;
+			text-align: center;
+			text-decoration: none;
+			width: 15%;
+		}
 		.collapsible {
-			background-color: #0AC18E;
+			background-color: #212121;
 			border-radius: 12px;
 			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			color: white;
+			color: #ffffff;
 			cursor: pointer;
 			padding: 18px;
-			width: 50%;
+			width: 70%;
 			border: none;
 			text-align: center;
 			outline: none;
 			font-size: 16px;
 		}
-		.active, .collapsible:hover {
-			background-color: #0AC18E;
-		}
 		.content {
 			padding: 0 16px;
 			display: none;
 			overflow: hidden;
-			background-color: black;
+			background-color: #000000;
 		}
-		@media screen and (max-width: 512px) {}
+		@media screen and (max-width: 600px) {}
 	</style>
-	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@2.1.1/dist/mainnet-2.1.1.js" integrity="sha256-lALgdp/hHuufy1qhTD/PBuldxACtzpyj6MN3sf4j1ao=" crossorigin="anonymous"></script>
-	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.1.1.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/@mainnet-cash/contract@2.1.1/dist/contract-2.1.1.js" integrity="sha256-jCWhkNuVakBya8q0R6BqmKrCqLPNerRuI/uXAQkwOQQ=" crossorigin="anonymous"></script> -->
+	<script defer src="https://cdn.mainnet.cash/mainnet-2.2.0.js" integrity="sha384-RZVBVMu/wR4/yAkZNdipqYWpCMuTYidCpRHNzCcAmfyd01yhdV+gjJORi9Re+4K4" crossorigin="anonymous"></script>
+	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.2.0.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.2.0.js" integrity="sha384-bRtfzokfnoUHbKE5JGDxWvT45LfyhNaIySVtXltm9Xc2Quleax5nYvhGti4W6C8a" crossorigin="anonymous"></script> -->
+
 </head>
 <body>
 	<div>
-		<p><img src="../img/microfi.png" alt="XMI icon" width="400"></p>
-		<p><img src="../img/bitcoin-cash-logo.png" alt="BCH logo" width="200"></p>
-		<p><b><a href="../index.html">HOME</a> | <a href="https://microfi.onrender.com">DISTRIBUTION APP</a> | <a href="../paperwallet/">PAPER WALLET</a> | <a href="../qrscanner/">QR CODE SCANNER</a></b></p>
-		<h3>Microfi Free Flow Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> wallet</h3>
-		<p>Microfi wallet can be used locally, on a pendrive, SD card, floppy disk, etc.<br>
-			Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet.
+		<div>
+		<p>
+			<button type="button" class="button"><a href="../index.html">Home</a></button>
+			<button type="button" class="button"><a href="https://microfi.onrender.com">Application</a></button>
+			<button type="button" class="button"><a href="../paperwallet/">Paper Wallet</a></button>
+			<button type="button" class="button"><a href="../qrscanner/">QR-code Scanner</a></button>
 		</p>
-		<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (import wallet private key).</p>
-		<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.</p>
-		<hr>
+		</div>
+		<p><img src="../img/microfi.png" alt="XMI icon" width="420"></p>
+		<p><img src="../img/bitcoin-cash-logo.png" alt="BCH logo" width="200"></p>
+		<h3>Microfi Free Flow Project</h3>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Create or import a wallet</button>
 			<div class="content">
 				<p>Create a new wallet:</p>
-				<p><button type="button" id="create">Create</button></p>
+				<p><button type="button" class="button" id="create">Create</button></p>
 				<p>Import a wallet from seed phrase or private key:</p>
 				<p><input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase"></p>
 				<p>or</p>
@@ -87,16 +102,17 @@
 				<p id="alert1"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
-			<button type="button" class="collapsible">Open wallet</button>
+			<button type="button" class="collapsible" id="open">Open wallet</button>
 			<div class="content">
-				<p><button type="button" id="open">Open</button></p>
+				<!-- <p><button type="button" id="open">Open</button></p> -->
 				<p id="derivation"></p>
 				<p id="mnemonic"></p>
 				<p id="privatekey"></p>
 				<p id="bchaddress"></p>
 				<p><img src id="bchQr" width="200"></p>
+				<p id="pubKey"></p>
 				<p id="bchbalance"></p>
 				<p id="cashtokensaddress"></p>
 				<p><img src id="tokenQr" width="200"></p>
@@ -105,25 +121,25 @@
 				<p>To update your balances, refresh the page and open the wallet again.<br>
 					View token details below.
 				</p>
-				<p><button type="button" id="refresh">Refresh</button></p>
+				<p><button type="button" class="button" id="refresh">Refresh</button></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Clear local storage</button>
 			<div class="content">
-				<p><button type="button" id="clear">Clear</button></p>
+				<p><button type="button" class="button" id="clear">Clear</button></p>
 				<p>The wallet will be deleted - the seed phrase / private key will be removed from the local storage of the browser.</p>
 				<p id="alert2"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">View token details</button>
 			<div class="content">
 				<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><button type="button" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
-				<p><button type="button" id="viewTokens2">View - Paytaca token Api</button></p>
+				<p><button type="button" class="button" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
+				<p><button type="button" class="button" id="viewTokens2">View - Paytaca token Api</button></p>
 				<p>Choose metadata registry from the list.<br>
 					If custom BCMR is selected, paste url in the input field.</p>
 				<select id="bcmrList">
@@ -134,7 +150,7 @@
 					<option value="">custom BCMR</option>
 				</select>
 				<p><input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR"></p>
-				<p><button type="button" id="viewTokens3">View - BCMR list</button></p>
+				<p><button type="button" class="button" id="viewTokens3">View - BCMR list</button></p>
 				<p id="tokencategory"></p>
 				<p id="tokenname"></p>
 				<p id="tokensymbol"></p>
@@ -145,29 +161,29 @@
 				<p id="tokenapi"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Send BCH</button>
 			<div class="content">
 				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
 				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshis"></p>
-				<p><button id="sendBCH">Send BCH</button></p>
-				<p><button id="sendBCHmax">Send the entire BCH balance</button></p>
+				<p><button type="button" class="button" id="sendBCH">Send BCH</button></p>
+				<p><button type="button" class="button" id="sendBCHmax">Send the entire BCH balance</button></p>
 				<p id="bchsent"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Send fungible CashTokens</button>
 			<div class="content">
 				<p><input id="sendAddrToken" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
 				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
 				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><button type="button" id="sendTokens">Send tokens</button></p>
+				<p><button type="button" class="button" id="sendTokens">Send tokens</button></p>
 				<p id="ftsent"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Send NFT CashTokens</button>
 			<div class="content">
@@ -180,17 +196,17 @@
 					<option value="NFTCapability.mutable">Mutable</option>
 				</select>
 				<p>* choose NFT capability from the list</p>
-				<p><button type="button" id="sendNfts">Send NFT</button></p>
+				<p><button type="button" class="button" id="sendNfts">Send NFT</button></p>
 				<p id="nftsent"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Burn tokens</button>
 			<div class="content">
 				<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
 				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
-				<p><button type="button" id="burnFt">Burn fungible tokens</button></p>
+				<p><button type="button" class="button" id="burnFt">Burn fungible tokens</button></p>
 				<p id="burnFtTx"></p>
 				<br>
 				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
@@ -201,11 +217,26 @@
 					<option value="NFTCapability.mutable">Mutable</option>
 				</select>
 				<p>* choose NFT capability from the list</p>
-				<p><button type="button" id="burnNft">Burn NFT</button></p>
+				<p><button type="button" class="button" id="burnNft">Burn NFT</button></p>
 				<p id="burnNftTx"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
+		<!-- <div>
+			<button type="button" class="collapsible">Paper wallet</button>
+			<div class="content">
+				<p><button type="button" id="createPW">Generate BCH CashTokens Paper Wallet</button></p>
+				<p id="bchaddress1"></p>
+				<p><img src id="bchQrPw" width="200"></p>
+				<br>
+				<p id="cashtokensaddress1"></p>
+				<p><img src id="tokenQrPw" width="200"></p>
+				<br>
+				<p id="privatekey1"></p>
+				<p><img src id="WifQrPw" width="200"></p>
+			</div>
+		</div>
+		<br> -->
 		<div>
 			<button type="button" class="collapsible">Sweep paper wallet</button>
 			<div class="content">
@@ -213,34 +244,34 @@
 					You can create a wallet or import an existing wallet into Microfi wallet and paste the BCH address into the recipient field, or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
 				</p>
 				<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
-				<p><button id="balancePw">Check paper wallet balance</button></p>
+				<p><button type="button" class="button" id="balancePw">Check paper wallet balance</button></p>
 				<p id="bchbalancePw"></p>
 				<p id="tokenbalancePw"></p>
 				<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-				<p><button id="sweepPw">Sweep tokens and BCH</button> * if paper the wallet has tokens and BCH</p>
-				<p><button id="sweepPwBch">Sweep BCH</button> * if the paper wallet has only BCH</p>
+				<p><button type="button" class="button"id="sweepPw">Sweep tokens and BCH</button> * if paper the wallet has tokens and BCH</p>
+				<p><button type="button" class="button" id="sweepPwBch">Sweep BCH</button> * if the paper wallet has only BCH</p>
 				<p id="swept"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Watch wallet</button>
 			<div class="content">
-				<p><input id="wAddress" type="text" size="50" placeholder="bitcoincash:..."></p>
-				<p><button type="button" id="spy">Watch wallet balances</button></p>
+				<p><input id="wAddress" type="text" size="50" placeholder="bitcoincash:q..."></p>
+				<p><button type="button" class="button" id="spy">Watch wallet balances</button></p>
 				<p id="wbchbalance"></p>
 				<p id="wtokens"></p>
 				<p id="wnfts"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Payment request url (BCH only)</button>
 			<div class="content">
 				<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
 				<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
 				<p><input id="label" type="text" size="50" placeholder="some text"></p>
-				<p><button type="button" id="createPaymentRequest">Create payment url</button></p>
+				<p><button type="button" class="button" id="createPaymentRequest">Create payment url</button></p>
 				<p id="payurl"></p>
 				
 				<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
@@ -248,38 +279,40 @@
 				<p id="usepayurl"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Sign or verify a message</button>
 			<div class="content">
 				<p><input id="smessage" type="text" size="50" placeholder="message"></p>
-				<p><button type="button" id="signM">Sign a message</button> * with Microfi wallet</p>
+				<p><button type="button" class="button" id="signM">Sign a message</button> * with Microfi wallet</p>
 				<p id="signMessage"></p>
 				
 				<p><input id="vaddress" type="text" size="50" placeholder="signing address"></p>
 				<p><input id="signH" type="text" size="50" placeholder="signature"></p>
-				<p><button type="button" id="verifyM">Verify a message</button></p>
+				<p><button type="button" class="button" id="verifyM">Verify a message</button></p>
 				<p id="verifyMessage"></p>
 			</div>
 		</div>
-		<hr>
+		<br>
 		<div>
 			<button type="button" class="collapsible">Send blockchain message</button>
 			<div class="content">
 				<p>Sending a message in op_return with Microfi wallet requires 0.01 XMI and a few satoshi for a transaction fee</p>
 				<p><input id="opmessage" type="text" size="50" placeholder="message"></p>
-				<p><button type="button" id="sendOp">Send</button></p>
+				<p><button type="button" class="button" id="sendOp">Send</button></p>
 				<p id="opsent"></p>
 			</div>
 		</div>
-		<hr>
 		<br><br>
 		<footer>
+			<p>Microfi wallet can be used locally, on a pendrive, SD card, floppy disk, etc.<br> Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet.</p>
+			<p>The wallet also supports <a href="https://crc20.cash">CRC20</a> CashTokens (import wallet private key).</p>
+			<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.</p>
+			<br>
 			<p><a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
-			<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a>
-				| <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a>
+			<p>Credits:<br><a href="https://mainnet.cash">mainnet-js</a> | <a href="https://cashonize.com">Cashonize</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a> | <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a>
 			</p>
-			<p>Microfi Free Flow, 2023</p>
+			<p>Microfi Free Flow Project, 2023</p>
 		</footer>
 		<br>
 	</div>
@@ -309,7 +342,7 @@
 		BaseWallet.StorageProvider = IndexedDBProvider;
 
 		document.getElementById("create").onclick = async () => {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			localStorage.setItem("seed", wallet.mnemonic);
 			localStorage.setItem("wif", wallet.privateKeyWif);
 			alert("Done. You can open the wallet. Save the seed phrase and private key.");
@@ -326,22 +359,21 @@
 		}
 
 		document.getElementById("open").onclick = async () => {
-			var wallet = await Wallet.named("mazey");
-			let sd = localStorage.getItem("seed");
+			var wallet = await Wallet.named("microfi");
+			const sd = localStorage.getItem("seed");
 			const derivationPath = "m/44'/145'/0'/0/0";
-			let walletId1 = `seed:mainnet:${sd}:${derivationPath}`;
-			let pk = localStorage.getItem("wif");
-			let walletId2 = `wif:mainnet:${pk}`;
+			const walletId1 = `seed:mainnet:${sd}:${derivationPath}`;
+			const pk = localStorage.getItem("wif");
+			const walletId2 = `wif:mainnet:${pk}`;
 			if (wallet = sd) {
-				var wallet = await Wallet.replaceNamed("mazey", walletId1);
+				var wallet = await Wallet.replaceNamed("microfi", walletId1);
 			} else if (wallet = pk) {
-				var wallet = await Wallet.replaceNamed("mazey", walletId2);
+				var wallet = await Wallet.replaceNamed("microfi", walletId2);
 			}
 			let bchAddress = await wallet.getDepositAddress();
-			let bchQr = await wallet.getDepositQr();
+			let pubKey = await wallet.getPublicKey(true);
 			let bchBalance = await wallet.getBalance();
 			let tokenAddress = await wallet.getTokenDepositAddress();
-			let tokenQr = await wallet.getTokenDepositQr();
 			let tokenBalance = await wallet.getAllTokenBalances();
 			let nftBalance = await wallet.getAllNftTokenBalances();
 
@@ -351,6 +383,7 @@
 			document.getElementById("bchaddress").textContent = "BCH address: " + bchAddress;
 			document.getElementById("bchQr").src = wallet.getDepositQr().src;
 			document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
+			document.getElementById("pubKey").textContent = "pubKey: " + pubKey;
 			document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
 			document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
 			document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
@@ -373,7 +406,7 @@
 
 		document.getElementById("viewTokens1").onclick = async () => {
 			let viewTokenId1 = document.querySelector("#viewTokenId").value;
-			let authChain = await BCMR.buildAuthChain(
+			const authChain = await BCMR.buildAuthChain(
 				{
 					transactionHash: viewTokenId1,
 					followToHead: true
@@ -391,7 +424,7 @@
 			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
 			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
 
-			let viewIcon = tokenInfo.uris.icon;
+			const viewIcon = tokenInfo.uris.icon;
 			const HttpsPrefix = "https://";
 			const IpfsPrefix = "ipfs://";
 			if (viewIcon.startsWith(HttpsPrefix)) {
@@ -434,7 +467,7 @@
 			document.getElementById("tokendecimals").textContent = "Decimals: " + tokenInfo.token.decimals;
 			document.getElementById("tokendescription").textContent = "Description: " + tokenInfo.description;
 
-			let viewIcon = tokenInfo.uris.icon;
+			const viewIcon = tokenInfo.uris.icon;
 			const HttpsPrefix = "https://";
 			const IpfsPrefix = "ipfs://";
 			if (viewIcon.startsWith(HttpsPrefix)) {
@@ -449,10 +482,10 @@
 
 		document.getElementById("sendBCH").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let bchAddress = document.querySelector("#sendAddr").value;
 			let bchAmount = document.querySelector("#sendAmount").value;
-			let { txId } = await wallet.send([
+			const { txId } = await wallet.send([
 				{
 					cashaddr: bchAddress,
 					value: bchAmount,
@@ -465,12 +498,12 @@
 
 		document.getElementById("sendBCHmax").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let bchAddress = document.querySelector("#sendAddr").value;
 			let bchBalanceMax = await wallet.getBalance();
 			bchBalanceObj = Object.values({...bchBalanceMax});
 			let bchBalMax = bchBalanceObj[1];
-			let { txId } = await wallet.send([
+			const { txId } = await wallet.send([
 				{
 					cashaddr: bchAddress,
 					value: bchBalMax - 546,
@@ -483,11 +516,11 @@
 
 		document.getElementById("sendTokens").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let tokenAddress = document.querySelector("#sendAddrToken").value;
 			let tokenAmount = document.querySelector("#sendAmountToken").value;
 			let token = document.querySelector("#sendTokenId").value;
-			let { txId } = await wallet.send([ new TokenSendRequest(
+			const { txId } = await wallet.send([ new TokenSendRequest(
 				{
 					cashaddr: tokenAddress,
 					amount: tokenAmount,
@@ -501,13 +534,13 @@
 
 		document.getElementById("sendNfts").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let tokenAddress1 = document.querySelector("#sendAddrToken1").value;
 			let token1 = document.querySelector("#sendNftTokenId").value;
 			let nftCommitment = document.querySelector("#nftCommitment").value;
 			let capabilityLists = document.querySelector("#capabilityLists").value;
 			let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
-			let { txId } = await wallet.send([ new TokenSendRequest(
+			const { txId } = await wallet.send([ new TokenSendRequest(
 				{
 					cashaddr: tokenAddress1,
 					tokenId: token1,
@@ -522,7 +555,7 @@
 
 		document.getElementById("burnFt").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let burnTokenId = document.querySelector("#burnTokenId").value;
 			let burnAmount = document.querySelector("#burnAmount").value;
 			let burnResponse = await wallet.tokenBurn(
@@ -532,19 +565,19 @@
 				},
 				"burn",
 			);
-			let { txId } = burnResponse;
+			const { txId } = burnResponse;
 			document.getElementById("burnFtTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
 
 		document.getElementById("burnNft").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let burnNftTokenId = document.querySelector("#burnNftId").value;
 			let capabilityList = document.querySelector("#capabilityList").value;
 			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
 			let burnCommitment = document.querySelector("#burnCommitment").value;
-			let burnResponse = await wallet.tokenBurn(
+			const burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnNftTokenId,
 					capability: capabilityBurn,
@@ -552,10 +585,22 @@
 				},
 				"burn",
 			);
-			let { txId } = burnResponse;
+			const { txId } = burnResponse;
 			document.getElementById("burnNftTx").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 			} catch (error) { alert(error) }
 		};
+
+		//document.getElementById("createPW").onclick = async () => {
+			//var wallet = await Wallet.newRandom();
+			//let bchAddressPw = await wallet.getDepositAddress();
+			//let tokenAddressPw = await wallet.getTokenDepositAddress();
+			//document.getElementById("bchaddress1").textContent = "BCH address: " + bchAddressPw;
+			//document.getElementById("bchQrPw").src = wallet.getDepositQr().src;
+			//document.getElementById("cashtokensaddress1").textContent = "CashTokens address: " + tokenAddressPw;
+			//document.getElementById("tokenQrPw").src = wallet.getTokenDepositQr().src;
+			//document.getElementById("privatekey1").textContent ="Private key: " + wallet.privateKeyWif;
+			//document.getElementById("WifQrPw").src = wallet.getPrivateKeyWifQr().src;
+		//};
 
 		document.getElementById("balancePw").onclick = async () => {
 			try {
@@ -570,7 +615,7 @@
 
 		document.getElementById("sweepPw").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let sweepPk = document.querySelector("#sweepPk").value;
 			let recipientPw = document.querySelector("#recipientAddress").value;
 			let tempWallet = await Wallet.fromWIF(sweepPk);
@@ -582,7 +627,7 @@
 			let tokenCat = tokenCategoriesObj[0];
 			tokenAmountsObj = Object.values({...tokenBalancePw});
 			let tokenAmo = tokenAmountsObj[0];
-			let { txId } = await tempWallet.send([
+			const { txId } = await tempWallet.send([
 				{
 					cashaddr: recipientPw,
 					value: bchBal - 800,
@@ -602,14 +647,14 @@
 
 		document.getElementById("sweepPwBch").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let sweepPk = document.querySelector("#sweepPk").value;
 			let recipientPw = document.querySelector("#recipientAddress").value;
-			let tempWallet = await Wallet.fromWIF(sweepPk);
+			var tempWallet = await Wallet.fromWIF(sweepPk);
 			let bchBalancePw = await tempWallet.getBalance();
 			bchBalanceObj = Object.values({...bchBalancePw});
 			let bchBal = bchBalanceObj[1];
-			let { txId } = await tempWallet.send([
+			const { txId } = await tempWallet.send([
 				{
 					cashaddr: recipientPw,
 					value: bchBal - 546,
@@ -652,7 +697,7 @@
 
 	<script>
 		document.getElementById("signM").onclick = async () => {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let sMessage = document.querySelector("#smessage").value;
 			wallet.cashaddr;
 			sign = (await wallet.sign(sMessage)).signature;
@@ -661,8 +706,8 @@
 		document.getElementById("verifyM").onclick = async () => {
 			let vAddress = document.querySelector("#vaddress").value;
 			let signatureHash = document.querySelector("#signH").value;
-			someWallet = await Wallet.watchOnly(vAddress);
-			verifyResult = await someWallet.verify(vAddress, signatureHash);
+			let someWallet = await Wallet.watchOnly(vAddress);
+			let verifyResult = await someWallet.verify(vAddress, signatureHash);
 			document.getElementById("verifyMessage").textContent = verifyResult.valid;
 		};
 	</script>
@@ -670,13 +715,13 @@
 	<script>
 		document.getElementById("sendOp").onclick = async () => {
 			try {
-			var wallet = await Wallet.named("mazey");
+			var wallet = await Wallet.named("microfi");
 			let opMessage = document.querySelector("#opmessage").value;
 			let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
 			let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
 			let chunks = ["XMI", opMessage];
     		let opreturnData = OpReturnData.fromArray(chunks);
-			let { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
+			const { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
 				{
 					cashaddr: tokenAddress2,
 					amount: 1,
