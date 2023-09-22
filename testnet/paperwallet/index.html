@@ -6,10 +6,10 @@
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Free Flow CashTokens Paper Wallet on Bitcoin Cash</title>
+  	<title>Microfi Free Flow CashTokens Testnet Paper Wallet on Bitcoin Cash</title>
 	<meta name="description" content="Microfi Free Flow Project. Bitcoin Cash CashTokens Paper Wallet.">
-  	<meta name="web" content="https://microfi.eu/paperwallet/">
-	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
+  	<meta name="web" content="https://microfi.eu/testnet/paperwallet/">
+	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_icon.png">
 	<style>
 		body {
 			text-align: center;
@@ -57,13 +57,14 @@
 </head>
 <body>
 	<div>
-		<p><button type="button" class="button"><a href="../"><b>Home</b></a></button> <button type="button" class="button"><a href="../testnet/paperwallet/"><b>Testnet paper wallet</b></a></button></p>
+		<p><button type="button" class="button"><a href="../"><b>Home</b></a></button> <button type="button" class="button"><a href="../paperwallet/"><b>Mainnet paper wallet</b></a></button></p>
 		<img src="../img/microfi.png" alt="XMI icon" width="420">
 		<h2>Microfi Free Flow Project</h2>
+		<h3>testnet (chipnet)</h3>
 		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper wallet</h3>
 		<p><button type="button" class="button" id="createPW">Generate CashTokens paper wallet</button></p>
-		<p>Send min 1600 satoshi (0.000016 BCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
-			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/wallet/">Microfi</a> wallet (https://microfi.eu/wallet/).
+		<p>Send min 1600 satoshi (0.000016 tBCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
+			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/testnet/">Microfi</a> wallet (https://microfi.eu/testnet/).
 		</p>
 		<hr>
 		<div>
@@ -95,10 +96,10 @@
 		Config.EnforceCashTokenReceiptAddresses = true;
 
 		document.getElementById("createPW").onclick = async () => {
-			const wallet = await Wallet.newRandom();
+			const wallet = await TestNetWallet.newRandom();
 			const bchAddress = await wallet.getDepositAddress();
 			const tokenAddress = await wallet.getTokenDepositAddress();
-			document.getElementById("bchaddress1").textContent = "BCH address: " + bchAddress;
+			document.getElementById("bchaddress1").textContent = "tBCH address: " + bchAddress;
 			document.getElementById("qr1").contents = bchAddress;
 			document.getElementById("cashtokensaddress1").textContent = "CashTokens address: " + tokenAddress;
 			document.getElementById("qr2").contents = tokenAddress;
