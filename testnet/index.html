@@ -566,9 +566,7 @@
 			let cashtokensAddress = await wallet.getTokenDepositAddress();
 			let tokenId1 = document.getElementById("mnftId").value;
 			let mnftCommitment = document.getElementById("mnftCommitment").value;
-			let encoded = Buffer.from(mnftCommitment).toString("hex");
-			//console.log(encoded);
-			let commitmentNft = encoded;
+			let commitmentHex = mnftCommitment.toString(16);
 			let capabilityList1 = document.querySelector("#capabilityList1").value;
 			let capabilityMint = capabilityList1.substr(14, capabilityList1.length);
 			const response1 = await wallet.tokenMint(
@@ -576,7 +574,7 @@
 				[
 				new TokenMintRequest({
 					cashaddr: cashtokensAddress,
-					commitment: commitmentNft,
+					commitment: commitmentHex,
 					capability: capabilityMint,
 					value: 800
 				}),
