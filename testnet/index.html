@@ -174,7 +174,54 @@
 		</div>
 		<br>
 		<div>
-			<button type="button" class="collapsible">Burn tokens</button>
+			<button type="button" class="collapsible">Create CashTokens</button>
+			<div class="content">
+				<h3>Generate tokenId</h3>
+				<!-- <p>Before creating a token or NFT generate tokenId and create token metadata registry <a href="...">BCMR</a><br>
+				Copy generated tokenId and paste to BCMR<br> -->
+				<p>Generate a new tokenId for every new token</p>
+				<p><button type="button" class="button" id="createTokenId">Generate</button></p>
+				<p id="generateId"></p>
+		
+				<h3>Create fungible tokens</h3>
+				<p>For testing we do not use BCMR uri<br>Token symbol and name are on-chain</p>
+				<!-- <p>Token symbol, name and BCMR uri are on-chain (in op_return)</p>
+				<input id="tokenUri" type="text" size="50" placeholder="token BCMR json url without https://">
+				<br> -->
+				<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol"></p>
+				<p><input id="tokenName1" type="text" size="50" placeholder="name"></p>
+				<p><input id="tokenAmount" type="text" size="50" placeholder="amount with decimals"></p>
+				<p><button type="button" class="button" id="createTokens">Create tokens</button></p>
+				<p id="createFt"></p>
+				<br>
+
+				<h3>Create semi-fungible group tokens</h3>
+				<p>For testing we do not use BCMR uri<br>Token symbol and name are on-chain</p>
+				<p>Genesis commitment is "00"</p>
+				<!-- <p><input id="tokenUriSf" type="text" size="50" placeholder="BCMR json url without https:// and with / at the end"></p> -->
+				<p><input id="tokenSymbol2" type="text" size="50" placeholder="symbol"></p>
+				<p><input id="tokenName2" type="text" size="50" placeholder="name"></p>
+				<p><input id="sfAmount" type="text" size="50" placeholder="amount (no decimals) e.g. 100"></p>
+				<p><button type="button" class="button" id="createGroupTokens">Create group tokens</button></p>
+				<p id="createGroup"></p>
+
+				<h3>Mint NFT from group tokens</h3>
+				<p>Amount of group tokens will decrease</p>
+				<p><input id="mnftId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="mnftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
+				<select id="capabilityList1">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><button type="button" class="button" id="mintNft">Mint NFT</button></p>
+				<p id="mintGroup"></p>
+			</div>
+		</div>
+		<br>
+		<div>
+			<button type="button" class="collapsible">Burn CashTokens</button>
 			<div class="content">
 				<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
 				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
@@ -183,7 +230,7 @@
 				<br>
 				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
 				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
-				<select id="capabilityList">
+				<select id="capabilityList2">
 					<option value="NFTCapability.none">Immutable</option>
 					<option value="NFTCapability.minting">Minting</option>
 					<option value="NFTCapability.mutable">Mutable</option>
@@ -433,6 +480,114 @@
 			} catch (error) { alert(error) }
 		};
 
+		document.getElementById("createTokenId").onclick = async () => {
+			try {
+			var wallet = await TestNetWallet.named("tmicrofi");
+			async function getValidPreGensis() {
+				let walletUtxos = await wallet.getAddressUtxos();
+				return walletUtxos.filter(utxo => !utxo.token && utxo.vout === 0);
+			}
+			let validPreGenesis = await getValidPreGensis();
+			console.log(validPreGenesis);
+			if (validPreGenesis.length === 0) {
+				await wallet.send([{ cashaddr: wallet.tokenaddr, value: 1000, unit: "sats" }]);
+				//console.log("Created output with vout zero for token genesis");
+				validPreGenesis = await getValidPreGensis();
+			}
+			const tokenId = validPreGenesis[0].txid;
+			document.getElementById("generateId").textContent = "tokenId: " + tokenId;
+			} catch (error) { alert(error) }
+		};
+
+		document.getElementById("createTokens").onclick = async () => {
+			try {
+			var wallet = await TestNetWallet.named("tmicrofi");
+			let cashtokensAddress = await wallet.getTokenDepositAddress();
+			//const fetchLocation = "https://" + document.getElementById("tokenUri").value;
+			//const url = document.getElementById("tokenUri").value;
+			//const response = await fetch(fetchLocation);
+			//const bcmrContent = await response.text();
+			//const document_hash = sha256.hash(utf8ToBin(bcmrContent));
+			let symbol = document.getElementById("tokenSymbol1").value;
+			let name = document.getElementById("tokenName1").value;
+			let tokenAmount = document.getElementById("tokenAmount").value;
+			let opreturnData;
+			//const chunks = ["BCMR", document_hash, url, symbol, name];
+			const chunks = [symbol, name];
+			opreturnData = OpReturnData.fromArray(chunks);
+			const genesisResponse = await wallet.tokenGenesis(
+				{
+					cashaddr: cashtokensAddress,
+					amount: tokenAmount,
+					value: 800
+				},
+				opreturnData
+			);
+			const tokenId = genesisResponse.tokenIds[0];
+			const { txId } = genesisResponse;
+			document.getElementById("createFt").textContent = "tokenId: " + tokenId + " " + "txId: " + "https://chipnet.imaginary.cash/tx/" + txId;
+			} catch (error) { alert(error) }
+		};
+
+		document.getElementById("createGroupTokens").onclick = async () => {
+			try {
+			var wallet = await TestNetWallet.named("tmicrofi");
+			let cashtokensAddress = await wallet.getTokenDepositAddress();
+			let sfAmount = document.getElementById("sfAmount").value;
+			//let fetchLocation = "https://" + document.getElementById("tokenUriSf").value;
+			//let url = document.getElementById("tokenUriSf").value;
+			//let response = await fetch(fetchLocation);
+			//let bcmrContent = await response.text();
+			//let document_hash = sha256.hash(utf8ToBin(bcmrContent));
+			//const chunks = ["BCMR", document_hash, url];
+			let symbol = document.getElementById("tokenSymbol2").value;
+			let name = document.getElementById("tokenName2").value;
+			const chunks = [symbol, name];
+			const opreturnData = OpReturnData.fromArray(chunks);
+			const genesisResponse = await wallet.tokenGenesis(
+				{
+					cashaddr: cashtokensAddress,
+					amount: sfAmount,
+					commitment: "00",
+					capability: NFTCapability.minting,
+					value: 800
+				}, 
+				opreturnData
+			);
+			const tokenId = genesisResponse.tokenIds[0];
+			const { txId } = genesisResponse;
+			document.getElementById("createGroup").textContent = "Group tokenId: " + tokenId + " " + "https://chipnet.imaginary.cash/tx/" + txId;
+			} catch (error) { alert(error) }
+		};
+
+		document.getElementById("mintNft").onclick = async () => {
+			try {
+			var wallet = await TestNetWallet.named("tmicrofi");
+			let cashtokensAddress = await wallet.getTokenDepositAddress();
+			let tokenId1 = document.getElementById("mnftId").value;
+			let mnftCommitment = document.getElementById("mnftCommitment").value;
+			let encoded = Buffer.from(mnftCommitment).toString("hex");
+			//console.log(encoded);
+			let commitmentNft = encoded;
+			let capabilityList1 = document.querySelector("#capabilityList1").value;
+			let capabilityMint = capabilityList1.substr(14, capabilityList1.length);
+			const response1 = await wallet.tokenMint(
+				tokenId1,
+				[
+				new TokenMintRequest({
+					cashaddr: cashtokensAddress,
+					commitment: commitmentNft,
+					capability: capabilityMint,
+					value: 800
+				}),
+				],
+				true,
+			);
+			const { txId } = response1;
+			document.getElementById("mintGroup").textContent = "https://chipnet.imaginary.cash/tx/" + txId;
+			} catch (error) { alert(error) }
+		};
+
 		document.getElementById("burnFt").onclick = async () => {
 			try {
 			var wallet = await TestNetWallet.named("tmicrofi");
@@ -454,14 +609,14 @@
 			try {
 			var wallet = await TestNetWallet.named("tmicrofi");
 			let burnNftTokenId = document.querySelector("#burnNftId").value;
-			let capabilityList = document.querySelector("#capabilityList").value;
-			let capabilityBurn = capabilityList.substr(14, capabilityList.length);
 			let burnCommitment = document.querySelector("#burnCommitment").value;
+			let capabilityList2 = document.querySelector("#capabilityList2").value;
+			let capabilityBurn = capabilityList2.substr(14, capabilityList2.length);
 			const burnResponse = await wallet.tokenBurn(
 				{
 					tokenId: burnNftTokenId,
-					capability: capabilityBurn,
-    				commitment: burnCommitment
+    				commitment: burnCommitment,
+					capability: capabilityBurn
 				},
 				"burn",
 			);
