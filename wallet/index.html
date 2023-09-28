@@ -146,7 +146,7 @@
 				<select id="bcmrList">
 					<option value="https://mazetoken.github.io/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
 					<option value="https://mazetoken.github.io/.well-known/bitcoin-cash-metadata-registry.json">Maze Token MTU BCMR</option>
-					<option value="https://mazetoken.github.io/darklabs/bcmr/darklabsbcmr.json">Dark Labs CRC20 BCMR</option>
+					<option value="https://darklabs.pages.dev/bcmr/darklabsbcmr.json">Dark Labs CRC20 and CRC721 BCMR</option>
 					<option value="https://otr.cash/.well-known/bitcoin-cash-metadata-registry.json">Open Token Registry BCMR</option>
 					<option value="">custom BCMR</option>
 				</select>
@@ -357,7 +357,7 @@
 				var wallet = await Wallet.replaceNamed("microfi", walletId2);
 			}
 			let bchAddress = await wallet.getDepositAddress();
-			let pubKey = await wallet.getPublicKey(true);
+			let pubKey = await wallet.getPublicKeyCompressed(true);
 			let bchBalance = await wallet.getBalance();
 			let tokenAddress = await wallet.getTokenDepositAddress();
 			let tokenBalance = await wallet.getAllTokenBalances();
@@ -369,7 +369,7 @@
 			document.getElementById("bchaddress").textContent = "BCH address: " + bchAddress;
 			document.getElementById("bchQr").src = wallet.getDepositQr().src;
 			document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
-			document.getElementById("pubKey").textContent = "pubKey: " + pubKey;
+			document.getElementById("pubKey").textContent = "Public Key compressed: " + pubKey;
 			document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
 			document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
 			document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
