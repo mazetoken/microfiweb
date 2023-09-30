@@ -10,123 +10,46 @@
 	<meta name="description" content="Microfi Free Flow Project Ecosystem">
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
-	<style>
-		body {
-			overflow-wrap: anywhere;
-			text-align: center;
-			max-width: 800px;
-			margin: auto;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			background-color: #000000;
-			font-size: 18px;
-			color: #ffffff;
-		}
-		p {
-			font-size: 16px;
-		}
-		a:link {
-			color: #ffffff;
-			background-color: transparent;
-			text-decoration: underline;
-		}
-		a:visited {
-			color: #ffffff;
-			background-color: transparent;
-			text-decoration: underline;
-		}
-		.button {
-			background-color: #212121;
-			border: none;
-			border-radius: 12px;
-			color: #ffffff;
-			cursor: pointer;
-			display: inline-block;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			font-size: 14px;
-			margin: 2px 2px;
-			padding: 5px;
-			text-align: center;
-			text-decoration: none;
-			width: 25%;
-		}
-		.collapsible {
-			background-color: #212121;
-			border-radius: 12px;
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			color: #ffffff;
-			cursor: pointer;
-			padding: 18px;
-			width: 70%;
-			border: none;
-			text-align: center;
-			outline: none;
-			font-size: 16px;
-		}
-		.content {
-			padding: 0 16px;
-			display: none;
-			overflow: hidden;
-			background-color: #000000;
-		}
-		@media screen and (max-width: 600px) {}
-	</style>
-
+	<link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 	<div>
-		<div>
-		<p><button type="button" class="button"><a href="../"><b>Home</b></a></button></p>
-		</div>
+		<p><button type="button" class="buttonB"><a href="../"><b>Home</b></a></button></p>
 		<p><img src="../img/microfi.png" alt="XMI icon" width="420"></p>
 		<h3>Microfi Free Flow Project Ecosystem</h3>
-		<br>
-		<div>
-			<button type="button" class="collapsible">Legendary Zombie Government NFTs</button>
-			<div class="content">
-				<h3>Legendary Zombie Government NFTs on Bitcoin Cash</h3>
-				<p>Trade on <a href="https://tapswap.cash/trade/4b53fb421e760fa3d6d1250b921a7833a6dad04e3566314164059aa0afd987d6">TapSwap</a></p>
-			</div>
-		</div>
-		<br>
-		<div>
-			<button type="button" class="collapsible">DarkLabs CashTokens</button>
-			<div class="content">
-				<h3>Dark Labs CashTokens and NFTs</h3>
-				<p>CRC20 and CRC721 CashTokens on Bitcoin Cash</p>
-				<p>MESH, DARK, LOLLIPOP and MITSUKI NFTs</p>
-				<p><a href="https://darklabs.pages.dev">DarkLabs</a></p>
-			</div>
-		</div>
-		<br>
-		<div>
-			<button type="button" class="collapsible">Ghostwriter NFTs</button>
-			<div class="content">
-				<h3>Ghostwriter Text-based NFTs on Bitcoin Cash</h3>
-				<p><a href="https://ghostwriter.onrender.com">Ghostwriter</a> minting app</p>
-			</div>
-		</div>
-		<br><br>
-		<footer>
-			<p><a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
-			<p>Microfi Free Flow Project Ecosystem, 2023</p>
-		</footer>
-		<br>
 	</div>
-
-	<script>
-		var coll = document.getElementsByClassName("collapsible");
-		var i;
-		for (i = 0; i < coll.length; i++) {
-		  coll[i].addEventListener("click", function() {
-			this.classList.toggle("active");
-			var content = this.nextElementSibling;
-			if (content.style.display === "block") {
-			  content.style.display = "none";
-			} else {
-			  content.style.display = "block";
-			}
-		  });
-		}
-	</script>
+	<br>
+	<div>
+		<button type="button" class="collapsible">Legendary Zombie Government NFTs</button>
+		<div class="content">
+			<h3>Legendary Zombie Government NFTs on Bitcoin Cash</h3>
+			<p>Trade on <a href="https://tapswap.cash/trade/4b53fb421e760fa3d6d1250b921a7833a6dad04e3566314164059aa0afd987d6">TapSwap</a></p>
+		</div>
+	</div>
+	<br>
+	<div>
+		<button type="button" class="collapsible">DarkLabs CashTokens</button>
+		<div class="content">
+			<h3>Dark Labs CashTokens and NFTs</h3>
+			<p>CRC20 and CRC721 CashTokens on Bitcoin Cash</p>
+			<p>MESH, DARK, LOLLIPOP and MITSUKI NFTs</p>
+			<p><a href="https://darklabs.pages.dev">DarkLabs</a></p>
+		</div>
+	</div>
+	<br>
+	<div>
+		<button type="button" class="collapsible">Ghostwriter NFTs</button>
+		<div class="content">
+			<h3>Ghostwriter Text-based NFTs on Bitcoin Cash</h3>
+			<p><a href="https://ghostwriter.onrender.com">Ghostwriter</a> minting app</p>
+		</div>
+	</div>
+	<br><br>
+	<footer>
+		<p><a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="32"></a></p>
+		<p>Microfi Free Flow Project Ecosystem, 2023</p>
+	</footer>
+	<br>
+	<script src="../collapsible.js"></script>
 </body>
 </html>

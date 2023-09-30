@@ -1,0 +1,35 @@
+{
+    "$schema": "https://cashtokens.org/bcmr-v2.schema.json",
+    "version": { "major": 1, "minor": 1, "patch": 0 },
+    "latestRevision": "2023-09-09T20:45:00.000Z",
+    "registryIdentity": {
+        "name": "Microfi Free Flow BCMR",
+        "description": "Microfi Free Flow Bitcoin Cash Metadata Registry",
+        "uris": {
+            "icon": "",
+            "web": "https://microfi.eu",
+            "registry": "https://microfi.eu/bcmr/microfibcmr.json"
+        }
+    },
+    "identities": {
+        "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe": {
+            "2023-09-09T20:45:00.000Z": {
+                "name": "Microfi Free Flow",
+                "description": "Microfi Free Flow (XMI) is a crypto-asset with no profit incentive, other than asset-referenced token or e-money token. It is used to power the Microfi Free Flow Project, show appreciation, commemorate special events or express creativity. XMI can be a valuable asset for those who value the low supply of tokens, sentimental and collector's value and are not afraid of the speculative nature of crypto-assets.",
+                "token": {
+                    "category": "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe",
+                    "decimals": 2,
+                    "symbol": "XMI"
+                },
+                "migrated": "2023-09-09T20:45:00.000Z",
+                "uris": {
+                    "icon": "ipfs://bafybeiekc4wo27tmfi26zzujs3qfn2z5osncs74zzdr53l52apu2toswzm",
+                    "web": "https://microfi.eu",
+                    "telegram": "https://t.me/mazetokens/",
+                    "registry":""
+                }
+            }
+        }
+    },
+    "license": "CC0-1.0"
+}

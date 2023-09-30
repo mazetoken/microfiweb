@@ -6,59 +6,36 @@
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Microfi Free Flow Project QR-code scanner</title>
+    <title>Microfi Free Flow QR-code scanner</title>
     <meta name="description" content="Microfi Free Flow Project QR-code scanner">
     <meta name="web" content="https://microfi.eu/qrscanner/">
-    <link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
-    <style>
-        body {
-            text-align: center;
-            overflow-wrap: anywhere;
-            max-width: 800px;
-            margin: auto;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: white;
-            font-size: large;
-            color: black;
-        }
-        p {
-            font-size: 16px;
-        }
-        a:link {
-            color: teal;
-            background-color: transparent;
-            text-decoration: underline;
-        }
-        a:visited {
-            color: #0AC18E;
-            background-color: transparent;
-            text-decoration: underline;
-        }
-        @media screen and (max-width: 512px) {
-        }
-    </style>
+    <link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_icon.png">
+    <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js" integrity="sha256-ZgsSQ3sddH4+aLi+BoXAjLcoFAEQrSE/FnsUtm+LHY4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div>
-        <p><button type="button" class="button"><a href="https://microfi.eu">Home</a></button></p>
-        <img src="../img/microfi.png" alt="XMI icon" width="420">
+        <p><button type="button" class="buttonB"><a href="https://microfi.eu">Home</a></button></p>
+        <p><img src="../img/microfi.png" alt="XMI icon" width="420"></p>
         <h3>Microfi Free Flow Project</h3>
-        <p>Scan and copy e.g. Bitcoin Cash wallet address QR code.</p>
-        <div id="qr-reader"></div>
+        <p>Scan e.g. Bitcoin Cash wallet address QR code and copy it</p>
+    </div>
+    <div id="qr-reader"></div>
+    <div>
         <p id="scanresult"></p>
         <button type="button" class="button" style="background: none; padding: 0;" onclick="copyTextContent('scanresult')">
             <img class="copyIcon icon" alt="copybutton" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGNsYXNzPSJoYXMtc29saWQgIiB2aWV3Qm94PSIwIDAgMzYgMzYiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGZvY3VzYWJsZT0iZmFsc2UiIHJvbGU9ImltZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJjdXJyZW50Q29sb3IiPjxwYXRoIGQ9Ik0yOS41LDdoLTE5QTEuNSwxLjUsMCwwLDAsOSw4LjV2MjRBMS41LDEuNSwwLDAsMCwxMC41LDM0aDE5QTEuNSwxLjUsMCwwLDAsMzEsMzIuNVY4LjVBMS41LDEuNSwwLDAsMCwyOS41LDdaTTI5LDMySDExVjlIMjlaIiBjbGFzcz0iY2xyLWktb3V0bGluZSBjbHItaS1vdXRsaW5lLXBhdGgtMSIvPjxwYXRoIGQ9Ik0yNiwzLjVBMS41LDEuNSwwLDAsMCwyNC41LDJINS41QTEuNSwxLjUsMCwwLDAsNCwzLjV2MjRBMS41LDEuNSwwLDAsMCw1LjUsMjlINlY0SDI2WiIgY2xhc3M9ImNsci1pLW91dGxpbmUgY2xyLWktb3V0bGluZS1wYXRoLTIiLz48cGF0aCBkPSJNMjcsMy41NkExLjU2LDEuNTYsMCwwLDAsMjUuNDMsMkg1LjU3QTEuNTYsMS41NiwwLDAsMCw0LDMuNTZWMjguNDRBMS41NiwxLjU2LDAsMCwwLDUuNTcsMzBoLjUyVjQuMDdIMjdaIiBjbGFzcz0iY2xyLWktc29saWQgY2xyLWktc29saWQtcGF0aC0xIiBzdHlsZT0iZGlzcGxheTpub25lIi8+PHJlY3QgeD0iOCIgeT0iNiIgd2lkdGg9IjIzIiBoZWlnaHQ9IjI4IiByeD0iMS41IiByeT0iMS41IiBjbGFzcz0iY2xyLWktc29saWQgY2xyLWktc29saWQtcGF0aC0yIiBzdHlsZT0iZGlzcGxheTpub25lIi8+PC9zdmc+" />
         </button>
-        <br><br>
-        <footer>
-            <p><a href="https://github.com/mazetoken/microfiweb/tree/main/qrscanner/index.html"><img src="../img/github.png" alt="Github" width="32"></a> | <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="32"></a></p>
-            <p>Credits: <a href="https://github.com/mebjas/html5-qrcode/">html5-qrcode</a></p>
-            <p>Microfi Free Flow Project, 2023</p>
-        </footer>
-    </div>
-
+    <div>
+    <br><br>
+    <footer>
+        <p>Credits: <a href="https://github.com/mebjas/html5-qrcode/">html5-qrcode</a></p>
+        <br>
+        <p><a href="https://github.com/mazetoken/microfiweb/tree/main/qrscanner/index.html"><img src="../img/githubwhite.png" alt="Github" width="32"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="32"></a></p>
+        <p>Microfi Free Flow Project, 2023</p>
+    </footer>
+    <br>
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             console.log(`Code scanned = ${decodedText}`, decodedResult);
@@ -69,7 +46,6 @@
         var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 16, qrbox : { width: 250, height: 250 } });
         html5QrcodeScanner.render(onScanSuccess);
     </script>
-
     <script>
         window.copyTextContent = function copyTextContent(id) {
             var element = document.getElementById(id);

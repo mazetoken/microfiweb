@@ -1,6 +1,6 @@
-# Microfi Free Flow
+# Microfi Free Flow Project
 
-website for Microfi Free Flow (XMI) CashTokens and applications on Bitcoin Cash
+on Bitcoin Cash
 
 https://microfi.eu
 
