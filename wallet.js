@@ -167,7 +167,7 @@ document.getElementById("sendBCHmax").onclick = async () => {
 	let bchBalanceMax = await wallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
-	const { txId } = await wallet.sendMax([
+	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress,
 			value: bchBalMax - 546,
@@ -182,8 +182,8 @@ document.getElementById("sendTokens").onclick = async () => {
 	try {
 	var wallet = await Wallet.named("microfi");
 	let tokenAddress = document.querySelector("#sendAddrToken").value;
-	let tokenAmount = document.querySelector("#sendAmountToken").value;
 	let token = document.querySelector("#sendTokenId").value;
+	let tokenAmount = document.querySelector("#sendAmountToken").value;
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress,

@@ -106,8 +106,8 @@ document.getElementById("sendTokens").onclick = async () => {
 	try {
 	var wallet = await TestNetWallet.named("tmicrofi");
 	let tokenAddress = document.querySelector("#sendAddrToken").value;
-	let tokenAmount = document.querySelector("#sendAmountToken").value;
 	let token = document.querySelector("#sendTokenId").value;
+	let tokenAmount = document.querySelector("#sendAmountToken").value;
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress,
