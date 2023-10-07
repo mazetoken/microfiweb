@@ -391,9 +391,10 @@ document.getElementById("sendOp").onclick = async () => {
 	try {
 	var wallet = await TestNetWallet.named("tmicrofi");
 	let opMessage = document.querySelector("#opmessage").value;
+	let document_hash = sha256.hash(utf8ToBin(opMessage));
 	//let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
 	//let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
-	let chunks = ["XMI", opMessage];
+	let chunks = ["MicrofiNotary", opMessage, document_hash];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ opreturnData ]);
 	//const { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
@@ -405,5 +406,23 @@ document.getElementById("sendOp").onclick = async () => {
 	//)
 	//]);
 	document.getElementById("opsent").textContent = "https://chipnet.imaginary.cash/tx/" + txId;
+	fetch("https://chipnet.imaginary.cash/api/raw-tx-with-inputs/" + txId)
+	.then(response => response.json())
+	.then(data => { 
+		let result = data[0].transactions[0].vout[0].scriptPubKey.asm;
+		//console.log(result);
+		let messages = [];
+		if (result.includes("OP_RETURN")) {
+			result = result.replace("OP_RETURN", " ");
+			result = result.trim();
+		}
+		let dat = result.split(" ");
+		dat.forEach((message) => {
+			message = Buffer.from(message, "utf8").toString();
+			messages.push(message);
+		});
+		//console.log(messages[2]);
+		document.getElementById("dochash").textContent = "Document hash: " + messages[2];
+	});
 	} catch (error) { alert(error) }
 };
