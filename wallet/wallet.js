@@ -23,6 +23,7 @@ document.getElementById("import").onclick = async () => {
 }
 
 document.getElementById("open").onclick = async () => {
+	try {
 	var wallet = await Wallet.named("microfi");
 	const sd = localStorage.getItem("seed");
 	const derivationPath = "m/44'/145'/0'/0/0";
@@ -52,6 +53,8 @@ document.getElementById("open").onclick = async () => {
 	document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
 	document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
 	document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
+
+	} catch (error) { alert(error) }
 };
 
 document.getElementById("refresh").onclick = async () => {

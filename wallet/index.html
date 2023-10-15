@@ -25,9 +25,9 @@
 	</div>
 	<br>
 	<div>
-	<p>Microfi wallet is under development<br>Use it at your own risk and with small amount of BCH<br>
-		This is a client-side wallet for demonstration purposes<br>Microfi Free Flow is not Virtual Asset Service Provider<br>Download the source code from Github and run it locally<br>
-		Delete Microfi wallet from your browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet
+	<p>Microfi wallet is under development.<br>Use it at your own risk and with small amount of BCH.<br>
+		This is a non-custodial client-side wallet for demonstration purposes.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>Download the source code from Github and run it locally.<br><br>
+		Delete the wallet from your browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
 	</p>
 	</div>
 	<br>
@@ -59,9 +59,8 @@
 			<p><img src id="tokenQr" width="200"></p>
 			<p id="tokensbalance"></p>
 			<p id="nftsbalance"></p>
-			<p>To update your balances, refresh the page and open the wallet again.<br>
-				View token details below.
-			</p>
+			<p>Wait a few seconds.</p>
+			<p>To update your balances, refresh the page and open the wallet again.</p>
 			<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
 		</div>
 	</div>
@@ -70,7 +69,7 @@
 		<button type="button" class="collapsible">Delete wallet</button>
 		<div class="content">
 			<p><button type="button" class="buttonB" id="clear">Delete</button></p>
-			<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser)</p>
+			<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser).</p>
 			<p id="alert2"></p>
 		</div>
 	</div>
@@ -167,8 +166,8 @@
 		<button type="button" class="collapsible">Sweep paper wallet</button>
 		<div class="content">
 			<p>Before sweeping, check the balance of the paper wallet.<br> 
-				You can create a wallet or import an existing wallet into Microfi wallet and paste the BCH address into the recipient field,<br>
-				or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field
+				You can create a wallet or import an existing wallet into the Microfi wallet and paste the BCH address into the recipient field,<br>
+				or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
 			</p>
 			<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
 			<p><button type="button" class="buttonB" id="balancePw">Check paper wallet balance</button></p>
@@ -176,7 +175,7 @@
 			<p id="tokenbalancePw"></p>
 			<br>
 			<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-			<p><button type="button" class="buttonB" id="sweepPw">Sweep tokens and BCH</button><br>* if paper the wallet has tokens and BCH</p>
+			<p><button type="button" class="buttonB" id="sweepPw">Sweep tokens and BCH</button><br>* if the paper wallet has tokens and BCH</p>
 			<p><button type="button" class="buttonB" id="sweepPwBch">Sweep BCH</button><br>* if the paper wallet has only BCH</p>
 			<p id="swept"></p>
 		</div>
@@ -206,7 +205,7 @@
 
 			<p>Scan the Qr-code or copy and paste url below</p>
 			<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
-			<p><button type="button" class="buttonB" id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
+			<p><button type="button" class="buttonB" id="usePaymentRequest">Use payment url</button><br>* with an external wallet</p>
 			<p id="usepayurl"></p>
 		</div>
 	</div>
@@ -215,7 +214,7 @@
 		<button type="button" class="collapsible">Sign or verify a message</button>
 		<div class="content">
 			<p><input id="smessage" type="text" size="50" placeholder="message"></p>
-			<p><button type="button" class="buttonB" id="signM">Sign a message</button><br>* with Microfi wallet</p>
+			<p><button type="button" class="buttonB" id="signM">Sign a message</button><br>* with the Microfi wallet</p>
 			<p id="signMessage"></p>
 			<br>
 			<p>To verify signature paste message above and BCH address and signatiure below</p>
@@ -229,13 +228,13 @@
 	<div>
 		<button type="button" class="collapsible">Microfi Notary</button>
 		<div class="content">
-			<p>To notarize a document with Microfi wallet 0.01 XMI and a few satoshi for a transaction fee are required<br>
-				Your document is not uploaded anywhwere
+			<p>To notarize a document (file) with the Microfi wallet, 0.01 XMI CashTokens and a few BCH satoshi for a transaction fee are required.<br>
+				Your document (file) won`t be uploaded anywhere.
 			</p>
 			<p><input id="optitle" type="text" size="50" placeholder="document title"></p>
 			<p><input id="opfile" type="file"></p>
 			<p><button type="button" class="buttonB" id="notarize">Notarize</button></p>
-			<p>Wait a few seconds. Save txId, document hash and wallet signature of document hash</p>
+			<p>Wait a few seconds. Save txId, document hash and wallet signature of document hash.</p>
 			<p id="notarized"></p>
 			<p id="dHash"></p>
 			<p id="signature"></p>
