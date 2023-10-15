@@ -6,7 +6,7 @@ Config.EnforceCashTokenReceiptAddresses = true;
 BaseWallet.StorageProvider = IndexedDBProvider;
 
 document.getElementById("create").onclick = async () => {
-	var wallet = await TestNetWallet.named("tmicrofi");
+	const wallet = await TestNetWallet.named("tmicrofi");
 	localStorage.setItem("seed", wallet.mnemonic);
 	localStorage.setItem("wif", wallet.privateKeyWif);
 	alert("Done. You can open the wallet. Save the seed phrase and private key.");
@@ -14,9 +14,9 @@ document.getElementById("create").onclick = async () => {
 };
 
 document.getElementById("import").onclick = async () => {
-	let seedphrase = document.querySelector("#importSeedPhrase").value;
+	const seedphrase = document.getElementById("importSeedPhrase").value;
 	localStorage.setItem("seed", seedphrase);
-	let privatekey = document.querySelector("#importPrivateKey").value;
+	const privatekey = document.getElementById("importPrivateKey").value;
 	localStorage.setItem("wif", privatekey);
 	alert("Done. The wallet is imported. You can open the wallet.");
 	document.getElementById("alert1").textContent = "Done. The wallet is imported. You can open the wallet.";
@@ -35,7 +35,7 @@ document.getElementById("open").onclick = async () => {
 		var wallet = await TestNetWallet.replaceNamed("tmicrofi", walletId2);
 	}
 	let bchAddress = await wallet.getDepositAddress();
-	let pubKey = await wallet.getPublicKey(true);
+	let pubKey = await wallet.getPublicKeyCompressed(true);
 	let bchBalance = await wallet.getBalance();
 	let tokenAddress = await wallet.getTokenDepositAddress();
 	let tokenBalance = await wallet.getAllTokenBalances();
@@ -70,9 +70,9 @@ document.getElementById("clear").onclick = async () => {
 
 document.getElementById("sendBCH").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let bchAddress = document.querySelector("#sendAddr").value;
-	let bchAmount = document.querySelector("#sendAmount").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let bchAddress = document.getElementById("sendAddr").value;
+	let bchAmount = document.getElementById("sendAmount").value;
 	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress,
@@ -86,8 +86,8 @@ document.getElementById("sendBCH").onclick = async () => {
 
 document.getElementById("sendBCHmax").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let bchAddress = document.querySelector("#sendAddr").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let bchAddress = document.getElementById("sendAddr").value;
 	let bchBalanceMax = await wallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
@@ -104,10 +104,10 @@ document.getElementById("sendBCHmax").onclick = async () => {
 
 document.getElementById("sendTokens").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let tokenAddress = document.querySelector("#sendAddrToken").value;
-	let token = document.querySelector("#sendTokenId").value;
-	let tokenAmount = document.querySelector("#sendAmountToken").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let tokenAddress = document.getElementById("sendAddrToken").value;
+	let token = document.getElementById("sendTokenId").value;
+	let tokenAmount = document.getElementById("sendAmountToken").value;
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress,
@@ -122,11 +122,11 @@ document.getElementById("sendTokens").onclick = async () => {
 
 document.getElementById("sendNfts").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let tokenAddress1 = document.querySelector("#sendAddrToken1").value;
-	let token1 = document.querySelector("#sendNftTokenId").value;
-	let nftCommitment = document.querySelector("#nftCommitment").value;
-	let capabilityLists = document.querySelector("#capabilityLists").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let tokenAddress1 = document.getElementById("sendAddrToken1").value;
+	let token1 = document.getElementById("sendNftTokenId").value;
+	let nftCommitment = document.getElementById("nftCommitment").value;
+	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
@@ -143,7 +143,7 @@ document.getElementById("sendNfts").onclick = async () => {
 
 document.getElementById("createTokenId").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
+	const wallet = await TestNetWallet.named("tmicrofi");
 	async function getValidPreGensis() {
 		let walletUtxos = await wallet.getAddressUtxos();
 		return walletUtxos.filter(utxo => !utxo.token && utxo.vout === 0);
@@ -162,7 +162,7 @@ document.getElementById("createTokenId").onclick = async () => {
 
 document.getElementById("createTokens").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
+	const wallet = await TestNetWallet.named("tmicrofi");
 	let cashtokensAddress = await wallet.getTokenDepositAddress();
 	//const fetchLocation = "https://" + document.getElementById("tokenUri").value;
 	//const url = document.getElementById("tokenUri").value;
@@ -192,7 +192,7 @@ document.getElementById("createTokens").onclick = async () => {
 
 document.getElementById("createGroupTokens").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
+	const wallet = await TestNetWallet.named("tmicrofi");
 	let cashtokensAddress = await wallet.getTokenDepositAddress();
 	let sfAmount = document.getElementById("sfAmount").value;
 	//let fetchLocation = "https://" + document.getElementById("tokenUriSf").value;
@@ -223,12 +223,12 @@ document.getElementById("createGroupTokens").onclick = async () => {
 
 document.getElementById("mintNft").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
+	const wallet = await TestNetWallet.named("tmicrofi");
 	let cashtokensAddress = await wallet.getTokenDepositAddress();
 	let tokenId1 = document.getElementById("mnftId").value;
 	let mnftCommitment = document.getElementById("mnftCommitment").value;
 	let commitmentHex = mnftCommitment.toString(16);
-	let capabilityList1 = document.querySelector("#capabilityList1").value;
+	let capabilityList1 = document.getElementById("capabilityList1").value;
 	let capabilityMint = capabilityList1.substr(14, capabilityList1.length);
 	const response1 = await wallet.tokenMint(
 		tokenId1,
@@ -249,9 +249,9 @@ document.getElementById("mintNft").onclick = async () => {
 
 document.getElementById("burnFt").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let burnTokenId = document.querySelector("#burnTokenId").value;
-	let burnAmount = document.querySelector("#burnAmount").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let burnTokenId = document.getElementById("burnTokenId").value;
+	let burnAmount = document.getElementById("burnAmount").value;
 	let burnResponse = await wallet.tokenBurn(
 		{
 			tokenId: burnTokenId,
@@ -266,10 +266,10 @@ document.getElementById("burnFt").onclick = async () => {
 
 document.getElementById("burnNft").onclick = async () => {
 	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let burnNftTokenId = document.querySelector("#burnNftId").value;
-	let burnCommitment = document.querySelector("#burnCommitment").value;
-	let capabilityList2 = document.querySelector("#capabilityList2").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let burnNftTokenId = document.getElementById("burnNftId").value;
+	let burnCommitment = document.getElementById("burnCommitment").value;
+	let capabilityList2 = document.getElementById("capabilityList2").value;
 	let capabilityBurn = capabilityList2.substr(14, capabilityList2.length);
 	const burnResponse = await wallet.tokenBurn(
 		{
@@ -286,8 +286,8 @@ document.getElementById("burnNft").onclick = async () => {
 
 document.getElementById("balancePw").onclick = async () => {
 	try {
-	let sweepPk = document.querySelector("#sweepPk").value;
-	let tempWallet = await TestNetWallet.fromWIF(sweepPk);
+	let sweepPk = document.getElementById("sweepPk").value;
+	const tempWallet = await TestNetWallet.fromWIF(sweepPk);
 	let bchBalancePw = await tempWallet.getBalance();
 	let tokenBalancePw = await tempWallet.getAllTokenBalances();
 	document.getElementById("bchbalancePw").textContent = "tBCH balance: " + JSON.stringify(bchBalancePw);
@@ -298,9 +298,9 @@ document.getElementById("balancePw").onclick = async () => {
 document.getElementById("sweepPw").onclick = async () => {
 	try {
 	//var wallet = await TestNetWallet.named("tmicrofi");
-	let sweepPk = document.querySelector("#sweepPk").value;
-	let recipientPw = document.querySelector("#recipientAddress").value;
-	let tempWallet = await TestNetWallet.fromWIF(sweepPk);
+	let sweepPk = document.getElementById("sweepPk").value;
+	let recipientPw = document.getElementById("recipientAddress").value;
+	const tempWallet = await TestNetWallet.fromWIF(sweepPk);
 	let bchBalancePw = await tempWallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalancePw});
 	let bchBal = bchBalanceObj[1];
@@ -330,9 +330,9 @@ document.getElementById("sweepPw").onclick = async () => {
 document.getElementById("sweepPwBch").onclick = async () => {
 	try {
 	//var wallet = await TestNetWallet.named("tmicrofi");
-	let sweepPk = document.querySelector("#sweepPk").value;
-	let recipientPw = document.querySelector("#recipientAddress").value;
-	var tempWallet = await TestNetWallet.fromWIF(sweepPk);
+	let sweepPk = document.getElementById("sweepPk").value;
+	let recipientPw = document.getElementById("recipientAddress").value;
+	const tempWallet = await TestNetWallet.fromWIF(sweepPk);
 	let bchBalancePw = await tempWallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalancePw});
 	let bchBal = bchBalanceObj[1];
@@ -349,80 +349,57 @@ document.getElementById("sweepPwBch").onclick = async () => {
 });
 
 document.getElementById("spy").onclick = async () => {
-	let wAddress = document.querySelector("#wAddress").value;
-	let wallet = await TestNetWallet.watchOnly(wAddress);
-	let wbchBalance = await wallet.getBalance();
-	let wtokenBalance = await wallet.getAllTokenBalances();
-	let wnftBalance = await wallet.getAllNftTokenBalances();
+	let wAddress = document.getElementById("wAddress").value;
+	let wWallet = await TestNetWallet.watchOnly(wAddress);
+	let wbchBalance = await wWallet.getBalance();
+	let wtokenBalance = await wWallet.getAllTokenBalances();
+	let wnftBalance = await wWallet.getAllNftTokenBalances();
 	document.getElementById("wbchbalance").textContent = "tBCH balance: " + JSON.stringify(wbchBalance);
 	document.getElementById("wtokens").textContent = "tokenId(category): amount: " + JSON.stringify(wtokenBalance, null, "\t");
 	document.getElementById("wnfts").textContent = "NFT Id(category): amount: " + JSON.stringify(wnftBalance, null, "\t");
 };
 
-document.getElementById("createPaymentRequest").onclick = async () => {
-	let pAddress = document.querySelector("#address").value;
-	let pAmount = document.querySelector("#amount").value;
-	let pLabel = document.querySelector("#label").value;
-	let pUrl = pAddress + "?amount=" + pAmount + "&label=" + pLabel;">";
-	document.getElementById("payurl").textContent = pUrl;
-};
-document.getElementById("usePaymentRequest").onclick = async () => {
-	let uPayUrl = document.querySelector("#upayurl").value;
-	document.getElementById("usepayurl").textContent = uPayUrl;
-	location.href = uPayUrl;
-};
-
 document.getElementById("signM").onclick = async () => {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let sMessage = document.querySelector("#smessage").value;
+	const wallet = await TestNetWallet.named("tmicrofi");
+	let sMessage = document.getElementById("smessage").value;
 	wallet.cashaddr;
 	sign = (await wallet.sign(sMessage)).signature;
 	document.getElementById("signMessage").textContent = sign;
 };
 document.getElementById("verifyM").onclick = async () => {
-	let vAddress = document.querySelector("#vaddress").value;
-	let signatureHash = document.querySelector("#signH").value;
-	let someWallet = await TestNetWallet.watchOnly(vAddress);
+	let vAddress = document.getElementById("vaddress").value;
+	let signatureHash = document.getElementById("signH").value;
+	const someWallet = await TestNetWallet.watchOnly(vAddress);
 	let verifyResult = await someWallet.verify(vAddress, signatureHash);
 	document.getElementById("verifyMessage").textContent = verifyResult.valid;
 };
 
-document.getElementById("sendOp").onclick = async () => {
-	try {
-	var wallet = await TestNetWallet.named("tmicrofi");
-	let opMessage = document.querySelector("#opmessage").value;
-	let document_hash = sha256.hash(utf8ToBin(opMessage));
-	//let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
-	//let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
-	let chunks = ["MicrofiNotary", opMessage, document_hash];
-	let opreturnData = OpReturnData.fromArray(chunks);
-	const { txId } = await wallet.send([ opreturnData ]);
-	//const { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
-		//{
-			//cashaddr: tokenAddress2,
-			//amount: 1,
-			//tokenId: tokenId4
-		//}
-	//)
-	//]);
-	document.getElementById("opsent").textContent = "https://chipnet.imaginary.cash/tx/" + txId;
-	fetch("https://chipnet.imaginary.cash/api/raw-tx-with-inputs/" + txId)
-	.then(response => response.json())
-	.then(data => { 
-		let result = data[0].transactions[0].vout[0].scriptPubKey.asm;
-		//console.log(result);
-		let messages = [];
-		if (result.includes("OP_RETURN")) {
-			result = result.replace("OP_RETURN", " ");
-			result = result.trim();
-		}
-		let dat = result.split(" ");
-		dat.forEach((message) => {
-			message = Buffer.from(message, "utf8").toString();
-			messages.push(message);
-		});
-		//console.log(messages[2]);
-		document.getElementById("dochash").textContent = "Document hash: " + messages[2];
-	});
-	} catch (error) { alert(error) }
+document.getElementById("notarize").onclick = async () => {
+	const fileInput = document.getElementById("opfile");
+	const file = fileInput.files[0];
+	const reader = new FileReader();
+
+	reader.readAsArrayBuffer(file);
+
+	reader.onload = async function() {
+		const buffer = reader.result;
+		crypto.subtle.digest('SHA-256', buffer)
+		.then(async function(hash) {
+			const hashArray = Array.from(new Uint8Array(hash));
+			const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+			//console.log(hashHex);
+			const wallet = await TestNetWallet.named("tmicrofi");
+			wallet.cashaddr;
+			sign = (await wallet.sign(hashHex)).signature;
+			let opTitle = document.getElementById("optitle").value;
+			let titleHash = sha256.hash(utf8ToBin(opTitle));
+			let documentHash = hexToBin(hashHex);
+			let chunks = ["Microfi_Notary", opTitle, titleHash, documentHash, sign];
+			let opreturnData = OpReturnData.fromArray(chunks);
+			const { txId } = await wallet.send([ opreturnData ]);
+			document.getElementById("notarized").textContent = "txId: " + "https://chipnet.imaginary.cash/tx/" + txId;
+			document.getElementById("dHash").textContent = "Document hash: " + hashHex;
+			document.getElementById("signature").textContent = "Wallet signature of document hash: " + sign;
+		})
+	}
 };

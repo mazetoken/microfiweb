@@ -8,21 +8,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Microfi Free Flow Testnet Paper Wallet</title>
 	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens Testnet Paper Wallet.">
-  	<meta name="web" content="https://microfi.eu/paperwallet/">
+  	<meta name="web" content="https://microfi.eu/testnet/paperwallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
-	<link rel="stylesheet" href="../../styles.css">
-	<script defer src="https://cdn.mainnet.cash/mainnet-2.2.2.js" integrity="sha384-XW0MI8SYEAOV+RVBXGEmonvlmdN+DZtebQCxl3FngxweBlCCKuc2rOEwwOkwK6BZ" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../styles.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@2.2.4/dist/mainnet-2.2.4.js" integrity="sha256-uMuLqyXW5lNUFZTmaeCq70qi8zTIqoGjlxztEhditBQ=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
 	<div>
 		<p><button type="button" class="buttonB"><a href="../../paperwallet/"><b>Mainnet paper wallet</b></a></button></p>
-		<h2>Microfi Free Flow Project</h2>
-		<h3>testnet (chipnet)</h3>
+		<h3>Microfi Free Flow Project</h3>
 		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper wallet</h3>
+		<p>on testnet (chipnet)</p>
 		<p><button type="button" class="buttonB" id="createPW">Generate CashTokens paper wallet</button></p>
-		<p>Send min 1600 satoshi (0.000016 tBCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
-			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/testnet/">Microfi</a> wallet (https://microfi.eu/testnet/).
+		<p>Send min 1600 satoshi (0.000016 tBCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift)<br>
+			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/testnet/">Microfi</a> testnet wallet (https://microfi.eu/testnet/)
 		</p>
 	</div>
 	<hr>
@@ -43,7 +43,7 @@
 	<footer>
 		<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://github.com/bitjson/qr-code/">bitjson qr-code</a></p>
 		<br>
-		<p><a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet/index.html"><img src="../../img/githubwhite.png" alt="Github" width="32"></a> <a href="https://t.me/mazetokens/"><img src="../../img/telegram.png" alt="Telegram" width="32"></a></p>
+		<p><a href="https://microfi.eu"><img src="../../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet/index.html"><img src="../../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../../img/telegram.png" alt="Telegram" width="36"></a></p>
 		<p>Microfi Free Flow Project, 2023</p>
 	</footer>
 
@@ -56,8 +56,8 @@
 
 		document.getElementById("createPW").onclick = async () => {
 			const wallet = await TestNetWallet.newRandom();
-			const bchAddress = await wallet.getDepositAddress();
-			const tokenAddress = await wallet.getTokenDepositAddress();
+			let bchAddress = await wallet.getDepositAddress();
+			let tokenAddress = await wallet.getTokenDepositAddress();
 			document.getElementById("bchaddress1").textContent = "tBCH address: " + bchAddress;
 			document.getElementById("qr1").contents = bchAddress;
 			document.getElementById("cashtokensaddress1").textContent = "CashTokens address: " + tokenAddress;

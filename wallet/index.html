@@ -5,15 +5,17 @@
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
+	<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Microfi Free Flow Wallet</title>
 	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens Wallet">
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
-	<link rel="stylesheet" href="../styles.css">
+	<link rel="stylesheet" href="./styles.css">
 	<script defer src="https://cdn.jsdelivr.net/npm/mainnet-js@2.2.4/dist/mainnet-2.2.4.js" integrity="sha256-uMuLqyXW5lNUFZTmaeCq70qi8zTIqoGjlxztEhditBQ=" crossorigin="anonymous"></script>
 	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.2.2.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
 	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.2.0.js" integrity="sha384-bRtfzokfnoUHbKE5JGDxWvT45LfyhNaIySVtXltm9Xc2Quleax5nYvhGti4W6C8a" crossorigin="anonymous"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
 	<div>
@@ -23,7 +25,14 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" class="collapsible">Create or import a wallet</button>
+	<p>Microfi wallet is under development<br>Use it at your own risk and with small amount of BCH<br>
+		This is a client-side wallet for demonstration purposes<br>Microfi Free Flow is not Virtual Asset Service Provider<br>Download the source code from Github and run it locally<br>
+		Delete Microfi wallet from your browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet
+	</p>
+	</div>
+	<br>
+	<div>
+		<button type="button" class="collapsible">Create or import wallet</button>
 		<div class="content">
 			<p>Create a new wallet:</p>
 			<p><button type="button" class="buttonB" id="create">Create</button></p>
@@ -42,9 +51,9 @@
 			<p id="derivation"></p>
 			<p id="mnemonic"></p>
 			<p id="privatekey"></p>
+			<p id="pubKey"></p>
 			<p id="bchaddress"></p>
 			<p><img src id="bchQr" width="200"></p>
-			<p id="pubKey"></p>
 			<p id="bchbalance"></p>
 			<p id="cashtokensaddress"></p>
 			<p><img src id="tokenQr" width="200"></p>
@@ -58,10 +67,10 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" class="collapsible">Clear local storage</button>
+		<button type="button" class="collapsible">Delete wallet</button>
 		<div class="content">
-			<p><button type="button" class="buttonB" id="clear">Clear</button></p>
-			<p>The wallet will be deleted - the seed phrase / private key will be removed from the local storage of the browser.</p>
+			<p><button type="button" class="buttonB" id="clear">Delete</button></p>
+			<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser)</p>
 			<p id="alert2"></p>
 		</div>
 	</div>
@@ -96,7 +105,8 @@
 		<button type="button" class="collapsible">Send BCH</button>
 		<div class="content">
 			<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-			<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshis"></p>
+			<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
+			<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
 			<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
 			<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
 			<p id="bchsent"></p>
@@ -109,6 +119,7 @@
 			<p><input id="sendAddrToken" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
 			<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
 			<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
+			<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
 			<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
 			<p id="ftsent"></p>
 		</div>
@@ -156,15 +167,17 @@
 		<button type="button" class="collapsible">Sweep paper wallet</button>
 		<div class="content">
 			<p>Before sweeping, check the balance of the paper wallet.<br> 
-				You can create a wallet or import an existing wallet into Microfi wallet and paste the BCH address into the recipient field, or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
+				You can create a wallet or import an existing wallet into Microfi wallet and paste the BCH address into the recipient field,<br>
+				or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field
 			</p>
 			<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
 			<p><button type="button" class="buttonB" id="balancePw">Check paper wallet balance</button></p>
 			<p id="bchbalancePw"></p>
 			<p id="tokenbalancePw"></p>
+			<br>
 			<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-			<p><button type="button" class="buttonB" id="sweepPw">Sweep tokens and BCH</button> * if paper the wallet has tokens and BCH</p>
-			<p><button type="button" class="buttonB" id="sweepPwBch">Sweep BCH</button> * if the paper wallet has only BCH</p>
+			<p><button type="button" class="buttonB" id="sweepPw">Sweep tokens and BCH</button><br>* if paper the wallet has tokens and BCH</p>
+			<p><button type="button" class="buttonB" id="sweepPwBch">Sweep BCH</button><br>* if the paper wallet has only BCH</p>
 			<p id="swept"></p>
 		</div>
 	</div>
@@ -181,14 +194,17 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" class="collapsible">Payment request url (BCH only)</button>
+		<button type="button" class="collapsible">Payment request</button>
 		<div class="content">
+			<p>Payment request works with Bitcoin Cash, Bitcoin, Litecoin, Dogecoin and Nexa</p>
 			<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
 			<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
-			<p><input id="label" type="text" size="50" placeholder="some text"></p>
+			<p><input id="label" type="text" size="50" placeholder="label/message"></p>
 			<p><button type="button" class="buttonB" id="createPaymentRequest">Create payment url</button></p>
+			<p><qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code></p>
 			<p id="payurl"></p>
-			
+
+			<p>Scan the Qr-code or copy and paste url below</p>
 			<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
 			<p><button type="button" class="buttonB" id="usePaymentRequest">Use payment url</button> * with an external wallet</p>
 			<p id="usepayurl"></p>
@@ -199,9 +215,10 @@
 		<button type="button" class="collapsible">Sign or verify a message</button>
 		<div class="content">
 			<p><input id="smessage" type="text" size="50" placeholder="message"></p>
-			<p><button type="button" class="buttonB" id="signM">Sign a message</button> * with Microfi wallet</p>
+			<p><button type="button" class="buttonB" id="signM">Sign a message</button><br>* with Microfi wallet</p>
 			<p id="signMessage"></p>
-			
+			<br>
+			<p>To verify signature paste message above and BCH address and signatiure below</p>
 			<p><input id="vaddress" type="text" size="50" placeholder="signing address"></p>
 			<p><input id="signH" type="text" size="50" placeholder="signature"></p>
 			<p><button type="button" class="buttonB" id="verifyM">Verify a message</button></p>
@@ -210,26 +227,30 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" class="collapsible">Send blockchain message</button>
+		<button type="button" class="collapsible">Microfi Notary</button>
 		<div class="content">
-			<p>Sending a message in op_return with Microfi wallet requires 0.01 XMI and a few satoshi for a transaction fee</p>
-			<p><input id="opmessage" type="text" size="50" placeholder="message"></p>
-			<p><button type="button" class="buttonB" id="sendOp">Send</button></p>
-			<p id="opsent"></p>
+			<p>To notarize a document with Microfi wallet 0.01 XMI and a few satoshi for a transaction fee are required<br>
+				Your document is not uploaded anywhwere
+			</p>
+			<p><input id="optitle" type="text" size="50" placeholder="document title"></p>
+			<p><input id="opfile" type="file"></p>
+			<p><button type="button" class="buttonB" id="notarize">Notarize</button></p>
+			<p>Wait a few seconds. Save txId, document hash and wallet signature of document hash</p>
+			<p id="notarized"></p>
+			<p id="dHash"></p>
+			<p id="signature"></p>
 		</div>
 	</div>
 	<br><br>
 	<footer>
-		<p>Microfi wallet is under development<br>Use it at your own risk and with small amount of BCH</p>
-		<p>Clear local storage if the wallet is being used on someone else's device or if you want to create a new wallet</p>
-		<br>
 		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">cashonize</a> | <a href="https://bcmr.paytaca.com">paytaca api</a> | <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a></p>
 		<br>
 		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
 		<p>Microfi Free Flow Project, 2023</p>
 	</footer>
 	<br>
-	<script src="../collapsible.js"></script>
-	<script src="../wallet.js"></script>
+	<script src="./collapsible.js"></script>
+	<script src="./wallet.js"></script>
+	<script src="./payment.js"></script>
 </body>
 </html>
