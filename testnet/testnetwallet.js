@@ -74,11 +74,11 @@ document.getElementById("clear").onclick = async () => {
 document.getElementById("sendBCH").onclick = async () => {
 	try {
 	const wallet = await TestNetWallet.named("tmicrofi");
-	let bchAddress = document.getElementById("sendAddr").value;
+	let bchAddress1 = document.getElementById("sendAddr").value;
 	let bchAmount = document.getElementById("sendAmount").value;
 	const { txId } = await wallet.send([
 		{
-			cashaddr: bchAddress,
+			cashaddr: bchAddress1,
 			value: bchAmount,
 			unit: "sats"
 		}
@@ -90,13 +90,13 @@ document.getElementById("sendBCH").onclick = async () => {
 document.getElementById("sendBCHmax").onclick = async () => {
 	try {
 	const wallet = await TestNetWallet.named("tmicrofi");
-	let bchAddress = document.getElementById("sendAddr").value;
+	let bchAddress2 = document.getElementById("sendAddr").value;
 	let bchBalanceMax = await wallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
 	const { txId } = await wallet.send([
 		{
-			cashaddr: bchAddress,
+			cashaddr: bchAddress2,
 			value: bchBalMax - 546,
 			unit: "sats"
 		}
@@ -108,12 +108,12 @@ document.getElementById("sendBCHmax").onclick = async () => {
 document.getElementById("sendTokens").onclick = async () => {
 	try {
 	const wallet = await TestNetWallet.named("tmicrofi");
-	let tokenAddress = document.getElementById("sendAddrToken").value;
+	let tokenAddress1 = document.getElementById("sendAddrToken").value;
 	let token = document.getElementById("sendTokenId").value;
 	let tokenAmount = document.getElementById("sendAmountToken").value;
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
-			cashaddr: tokenAddress,
+			cashaddr: tokenAddress1,
 			amount: tokenAmount,
 			tokenId: token
 		}
@@ -126,14 +126,14 @@ document.getElementById("sendTokens").onclick = async () => {
 document.getElementById("sendNfts").onclick = async () => {
 	try {
 	const wallet = await TestNetWallet.named("tmicrofi");
-	let tokenAddress1 = document.getElementById("sendAddrToken1").value;
+	let tokenAddress2 = document.getElementById("sendAddrToken1").value;
 	let token1 = document.getElementById("sendNftTokenId").value;
 	let nftCommitment = document.getElementById("nftCommitment").value;
 	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
-			cashaddr: tokenAddress1,
+			cashaddr: tokenAddress2,
 			tokenId: token1,
 			commitment: nftCommitment,
 			capability: capabilitySend

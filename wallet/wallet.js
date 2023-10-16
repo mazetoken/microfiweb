@@ -150,18 +150,18 @@ document.getElementById("viewTokens3").onclick = async () => {
 document.getElementById("sendBCH").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
-	let bchAddress = document.getElementById("sendAddr").value;
+	let bchAddress1 = document.getElementById("sendAddr").value;
 	let bchAmount = document.getElementById("sendAmount").value;
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["XMI", opMessage];
+	let chunks = ["Microfi_message_", opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
-		opreturnData,
 		{
-			cashaddr: bchAddress,
+			cashaddr: bchAddress1,
 			value: bchAmount,
 			unit: "sats"
-		}
+		},
+		opreturnData,
 	]);
 	document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
@@ -170,20 +170,20 @@ document.getElementById("sendBCH").onclick = async () => {
 document.getElementById("sendBCHmax").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
-	let bchAddress = document.getElementById("sendAddr").value;
+	let bchAddress2 = document.getElementById("sendAddr").value;
 	let bchBalanceMax = await wallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["XMI", opMessage];
+	let chunks = ["Microfi_message_", opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
-		opreturnData,
 		{
-			cashaddr: bchAddress,
+			cashaddr: bchAddress2,
 			value: bchBalMax - 546,
 			unit: "sats"
-		}
+		},
+		opreturnData,
 	]);
 	document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
@@ -192,20 +192,20 @@ document.getElementById("sendBCHmax").onclick = async () => {
 document.getElementById("sendTokens").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
-	let tokenAddress = document.getElementById("sendAddrToken").value;
-	let token = document.getElementById("sendTokenId").value;
+	let tokenAddress1 = document.getElementById("sendAddrToken1").value;
 	let tokenAmount = document.getElementById("sendAmountToken").value;
-	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["XMI", opMessage];
+	let token = document.getElementById("sendTokenId").value;
+	let opMessage1 = document.getElementById("opmessage1").value;
+	let chunks = ["Microfi_message_", opMessage1];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
-		opreturnData,
 		{
-			cashaddr: tokenAddress,
+			cashaddr: tokenAddress1,
 			amount: tokenAmount,
 			tokenId: token
 		}
-	)
+	),
+	opreturnData,
 	]);
 	document.getElementById("ftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
@@ -214,19 +214,23 @@ document.getElementById("sendTokens").onclick = async () => {
 document.getElementById("sendNfts").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
-	let tokenAddress1 = document.getElementById("sendAddrToken1").value;
+	let tokenAddress2 = document.getElementById("sendAddrToken2").value;
 	let token1 = document.getElementById("sendNftTokenId").value;
 	let nftCommitment = document.getElementById("nftCommitment").value;
 	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
+	let opMessage2 = document.getElementById("opmessage2").value;
+	let chunks = ["Microfi_message_", opMessage2];
+	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
-			cashaddr: tokenAddress1,
+			cashaddr: tokenAddress2,
 			tokenId: token1,
 			commitment: nftCommitment,
 			capability: capabilitySend
 		}
-	)
+	),
+	opreturnData,
 	]);
 	document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
@@ -380,14 +384,14 @@ document.getElementById("notarize").onclick = async () => {
 			let opTitle = document.getElementById("optitle").value;
 			let titleHash = sha256.hash(utf8ToBin(opTitle));
 			let documentHash = hexToBin(hashHex);
-			let tokenAddress2 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
+			let tokenAddress3 = "bitcoincash:zr8j9fzlmsdfy52n37pg2frqaddsjs99qy6pkdq0c5";
 			let tokenId4 = "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe";
-			let chunks = ["Microfi_Notary", opTitle, titleHash, documentHash, sign];
+			let chunks = ["Microfi_Notary_", opTitle, titleHash, documentHash, sign];
 			let opreturnData = OpReturnData.fromArray(chunks);
 			//const { txId } = await wallet.send([ opreturnData ]);
 			const { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
 				{
-					cashaddr: tokenAddress2,
+					cashaddr: tokenAddress3,
 					amount: 1,
 					tokenId: tokenId4
 				}

@@ -26,8 +26,8 @@
 	<br>
 	<div>
 	<p>Microfi wallet is under development.<br>Use it at your own risk and with small amount of BCH.<br>
-		This is a non-custodial client-side wallet for demonstration purposes.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>Download the source code from Github and run it locally.<br><br>
-		Delete the wallet from your browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
+		This is a non-custodial client-side wallet for demonstration purposes.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.<br><br>
+		Delete the wallet from the browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
 	</p>
 	</div>
 	<br>
@@ -115,10 +115,10 @@
 	<div>
 		<button type="button" class="collapsible">Send fungible CashTokens</button>
 		<div class="content">
-			<p><input id="sendAddrToken" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+			<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
 			<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
 			<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
-			<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
+			<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
 			<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
 			<p id="ftsent"></p>
 		</div>
@@ -127,7 +127,7 @@
 	<div>
 		<button type="button" class="collapsible">Send NFT CashTokens</button>
 		<div class="content">
-			<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+			<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
 			<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
 			<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
 			<select id="capabilityLists">
@@ -136,6 +136,7 @@
 				<option value="NFTCapability.mutable">Mutable</option>
 			</select>
 			<p>* choose NFT capability from the list</p>
+			<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
 			<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
 			<p id="nftsent"></p>
 		</div>
