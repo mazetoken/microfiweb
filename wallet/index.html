@@ -25,8 +25,10 @@
 	</div>
 	<br>
 	<div>
-	<p>Microfi wallet is under development.<br>Use it at your own risk and with small amount of BCH.<br>
-		This is a non-custodial client-side wallet for demonstration purposes.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.<br><br>
+	<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.<br>
+		This is a non-custodial client-side wallet for demonstration purposes.<br>For now, the token's ticker or icon is not displayed in the wallet.<br><br>
+		Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.<br><br>
+		Microfi wallet supports "BCMR" and "CRC" CashTokens.<br><br>
 		Delete the wallet from the browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
 	</p>
 	</div>
@@ -77,18 +79,21 @@
 	<div>
 		<button type="button" class="collapsible">View token details</button>
 		<div class="content">
+			<p>Paste tokenId (category) below.</p>
 			<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
+			<p>Click View button of yor choice.</p>
 			<p><button type="button" class="buttonB" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
-			<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca token Api</button></p>
-			<p>Choose metadata registry from the list.<br>
+			<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca Api</button></p>
+			<p>Choose "CRC" metadata registry from the list.<br>
 				If custom BCMR is selected, paste url in the input field.</p>
 			<select id="bcmrList">
 				<option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
-				<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">Dark Labs CRC20 and CRC721 BCMR</option>
+				<option value="https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Scalingcash CRC20</option>
+				<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
 				<option value="">custom BCMR</option>
 			</select>
 			<p><input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR"></p>
-			<p><button type="button" class="buttonB" id="viewTokens3">View - BCMR list</button></p>
+			<p><button type="button" class="buttonB" id="viewTokens3">View - BCMR from the list</button></p>
 			<p id="tokencategory"></p>
 			<p id="tokenname"></p>
 			<p id="tokensymbol"></p>
