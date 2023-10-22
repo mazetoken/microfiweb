@@ -88,7 +88,7 @@
 				If custom BCMR is selected, paste url in the input field.</p>
 			<select id="bcmrList">
 				<option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
-				<option value="https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Scalingcash CRC20</option>
+				<option value="https://microfi.eu/.well-known/scalingcashbcmr.json">BCMR for Scalingcash CRC20</option>
 				<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
 				<option value="">custom BCMR</option>
 			</select>
@@ -201,10 +201,11 @@
 	<div>
 		<button type="button" class="collapsible">Payment request</button>
 		<div class="content">
-			<p>Payment request works with Bitcoin Cash, Bitcoin, Litecoin, Dogecoin and Nexa</p>
+			<p>Payment request works with Bitcoin Cash</p>
 			<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
 			<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
-			<p><input id="label" type="text" size="50" placeholder="label/message"></p>
+			<p><input id="label" type="text" size="50" placeholder="label"></p>
+			<p><input id="message" type="text" size="50" placeholder="message"></p>
 			<p><button type="button" class="buttonB" id="createPaymentRequest">Create payment url</button></p>
 			<p><qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code></p>
 			<p id="payurl"></p>
