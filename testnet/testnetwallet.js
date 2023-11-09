@@ -7,17 +7,17 @@ BaseWallet.StorageProvider = IndexedDBProvider;
 
 document.getElementById("create").onclick = async () => {
 	const wallet = await TestNetWallet.named("tmicrofi");
-	localStorage.setItem("seed", wallet.mnemonic);
-	localStorage.setItem("wif", wallet.privateKeyWif);
+	localStorage.setItem("tseed", wallet.mnemonic);
+	localStorage.setItem("twif", wallet.privateKeyWif);
 	alert("Done. You can open the wallet. Save the seed phrase and private key.");
 	document.getElementById("alert1").textContent = "Done. You can open the wallet. Save the seed phrase and private key.";
 };
 
 document.getElementById("import").onclick = async () => {
 	const seedphrase = document.getElementById("importSeedPhrase").value;
-	localStorage.setItem("seed", seedphrase);
+	localStorage.setItem("tseed", seedphrase);
 	const privatekey = document.getElementById("importPrivateKey").value;
-	localStorage.setItem("wif", privatekey);
+	localStorage.setItem("twif", privatekey);
 	alert("Done. The wallet is imported. You can open the wallet.");
 	document.getElementById("alert1").textContent = "Done. The wallet is imported. You can open the wallet.";
 }
@@ -25,10 +25,10 @@ document.getElementById("import").onclick = async () => {
 document.getElementById("open").onclick = async () => {
 	try {
 	var wallet = await TestNetWallet.named("tmicrofi");
-	const sd = localStorage.getItem("seed");
+	const sd = localStorage.getItem("tseed");
 	const derivationPath = "m/44'/145'/0'/0/0";
 	const walletId1 = `seed:testnet:${sd}:${derivationPath}`;
-	const pk = localStorage.getItem("wif");
+	const pk = localStorage.getItem("twif");
 	const walletId2 = `wif:testnet:${pk}`;
 	if (wallet = sd) {
 		var wallet = await TestNetWallet.replaceNamed("tmicrofi", walletId1);
@@ -64,8 +64,8 @@ document.getElementById("refresh").onclick = async () => {
 document.getElementById("clear").onclick = async () => {
 	indexedDB.deleteDatabase("bitcoincash");
 	//localStorage.clear();
-	localStorage.removeItem("seed");
-	localStorage.removeItem("wif");
+	localStorage.removeItem("tseed");
+	localStorage.removeItem("twif");
 	alert("Seed phrase / private key were removed. You have to import a wallet again.");
 	document.getElementById("alert2").textContent = "Seed phrase / private key were removed. You have to import a wallet again.";
 	location.reload();
