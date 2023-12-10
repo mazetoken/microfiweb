@@ -10,6 +10,6 @@ Microfi Free Flow is not Virtual Asset Service Provider.
 Download the source code from Github and run it locally.
 
 
-index.html SHA256: E5C9AD934E47D36F9C0D681DDD18DFCFF9184C5170DD4B5E31140188CEF9B389
+index.html SHA256: F178847EE3F1CDE4B696B1A0F66EF6727256740DB4FD95AE15E4B6629EB61027
 
 
