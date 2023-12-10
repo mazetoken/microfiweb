@@ -97,3 +97,12 @@ a:visited {
 	overflow: hidden;
 }
 @media screen and (max-width: 600px) {}
+
+@media print {
+	.no-printme  {
+		display: none;
+	}
+	.printme  {
+		display: block;
+	}
+}

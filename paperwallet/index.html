@@ -16,10 +16,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
-	<div>
+	<div class = "no-printme">
 		<p><button type="button" class="buttonB"><a href="../"><b>Home</b></a></button> <button type="button" class="buttonB"><a href="../testnet/paperwallet/"><b>Testnet paper wallet</b></a></button></p>
 		<h3>Microfi Free Flow</h3>
-		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper wallet</h3>
+		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper (gift) wallet</h3>
 		<p>This is a client-side wallet for demonstration purposes.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>Download the source code from Github and run it locally.</p>
 		<p><button type="button" class="buttonB" id="createPW">Generate CashTokens paper wallet</button></p>
 		<p>Send min 1600 satoshi (0.000016 BCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
@@ -27,21 +27,30 @@
 		</p>
 	</div>
 	<hr>
-	<div>
+	<div class='printme'>
+		<p><img src="../img/microfi.png" alt="Microfi" width="150"></a><br>Microfi Free Flow Paper (Gift) Wallet</p>
+		<p>Sweep the private key with Bitcoin Cash CashTokens compatible wallet</p>
+		<hr>
+	</div>
+	<div class='no-printme'>
 		<p id="bchaddress1"></p>
 		<qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
 		<hr>
 		<p id="cashtokensaddress1"></p>
 		<qr-code id="qr2" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
 		<hr>
+	</div>
+	<div class='printme'>
 		<p id="privatekey1"></p>
 		<qr-code id="qr3" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
-		<hr>
-		<!-- <p id="mnemonic1"></p>
-		<p id="derivation1"></p> -->
 	</div>
+	<hr>
+	<div class = "no-printme">
+		<p><button onclick="window.print()">Print</button></p>
+	</div>
+	
 	<br><br>
-	<footer>
+	<footer class = "no-printme">
 		<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://github.com/bitjson/qr-code/">bitjson qr-code</a></p>
 		<br>
 		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet/index.html"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
