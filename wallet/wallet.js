@@ -5,6 +5,10 @@ Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
 Config.EnforceCashTokenReceiptAddresses = true;
 BaseWallet.StorageProvider = IndexedDBProvider;
 
+BigInt.prototype.toJSON = function () {
+	return this.toString();
+};
+
 document.getElementById("create").onclick = async () => {
 	const wallet = await Wallet.named("microfi");
 	localStorage.setItem("seed", wallet.mnemonic);
@@ -201,7 +205,7 @@ document.getElementById("sendTokens").onclick = async () => {
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress1,
-			amount: tokenAmount,
+			amount: BigInt(tokenAmount),
 			tokenId: token
 		}
 	),
@@ -244,7 +248,7 @@ document.getElementById("burnFt").onclick = async () => {
 	let burnResponse = await wallet.tokenBurn(
 		{
 			tokenId: burnTokenId,
-			amount: burnAmount
+			amount: BigInt(burnAmount)
 		},
 		"burn",
 	);
@@ -298,7 +302,7 @@ document.getElementById("sweepPw").onclick = async () => {
 	let tokenCat = tokenCategoriesObj[0];
 	tokenAmountsObj = Object.values({...tokenBalancePw});
 	let tokenAmo = tokenAmountsObj[0];
-	const { txId } = await tempWallet.sendMax([
+	const { txId } = await tempWallet.send([
 		{
 			cashaddr: recipientPw,
 			value: bchBal - 546,
@@ -307,7 +311,7 @@ document.getElementById("sweepPw").onclick = async () => {
 		new TokenSendRequest(
 		{
 			cashaddr: recipientPw,
-			amount: tokenAmo,
+			amount: BigInt(tokenAmo),
 			tokenId: tokenCat
 		}
 		)
@@ -325,7 +329,7 @@ document.getElementById("sweepPwBch").onclick = async () => {
 	let bchBalancePw = await tempWallet.getBalance();
 	bchBalanceObj = Object.values({...bchBalancePw});
 	let bchBal = bchBalanceObj[1];
-	const { txId } = await tempWallet.sendMax([
+	const { txId } = await tempWallet.send([
 		{
 			cashaddr: recipientPw,
 			value: bchBal - 546,
@@ -392,7 +396,7 @@ document.getElementById("notarize").onclick = async () => {
 			const { txId } = await wallet.send([ opreturnData, new TokenSendRequest(
 				{
 					cashaddr: tokenAddress3,
-					amount: 1,
+					amount: 1n,
 					tokenId: tokenId4
 				}
 			)

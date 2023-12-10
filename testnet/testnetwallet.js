@@ -5,6 +5,10 @@ Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
 Config.EnforceCashTokenReceiptAddresses = true;
 BaseWallet.StorageProvider = IndexedDBProvider;
 
+BigInt.prototype.toJSON = function () {
+	return this.toString();
+};  
+
 document.getElementById("create").onclick = async () => {
 	const wallet = await TestNetWallet.named("tmicrofi");
 	localStorage.setItem("tseed", wallet.mnemonic);
@@ -79,7 +83,7 @@ document.getElementById("sendBCH").onclick = async () => {
 	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress1,
-			value: bchAmount,
+			value: BigInt(bchAmount),
 			unit: "sats"
 		}
 	]);
@@ -114,7 +118,7 @@ document.getElementById("sendTokens").onclick = async () => {
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress1,
-			amount: tokenAmount,
+			amount: BigInt(tokenAmount),
 			tokenId: token
 		}
 	)
@@ -182,7 +186,7 @@ document.getElementById("createTokens").onclick = async () => {
 	const genesisResponse = await wallet.tokenGenesis(
 		{
 			cashaddr: cashtokensAddress,
-			amount: tokenAmount,
+			amount: BigInt(tokenAmount),
 			value: 800
 		},
 		opreturnData
@@ -211,7 +215,7 @@ document.getElementById("createGroupTokens").onclick = async () => {
 	const genesisResponse = await wallet.tokenGenesis(
 		{
 			cashaddr: cashtokensAddress,
-			amount: sfAmount,
+			amount: BigInt(sfAmount),
 			commitment: "00",
 			capability: NFTCapability.minting,
 			value: 800
@@ -258,7 +262,7 @@ document.getElementById("burnFt").onclick = async () => {
 	let burnResponse = await wallet.tokenBurn(
 		{
 			tokenId: burnTokenId,
-			amount: burnAmount
+			amount: BigInt(burnAmount)
 		},
 		"burn",
 	);
@@ -321,7 +325,7 @@ document.getElementById("sweepPw").onclick = async () => {
 		new TokenSendRequest(
 		{
 			cashaddr: recipientPw,
-			amount: tokenAmo,
+			amount: BigInt(tokenAmo),
 			tokenId: tokenCat
 		}
 		)

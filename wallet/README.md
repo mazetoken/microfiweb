@@ -1,4 +1,4 @@
-## Microfi Free Flow Bitcoin Cash CashTokens wallet with payment request and notary
+## Microfi Free Flow Bitcoin Cash CashTokens wallet with payment request and notary system
 
 Microfi wallet is under development.
 
@@ -11,6 +11,6 @@ Microfi Free Flow is not Virtual Asset Service Provider.
 Download the source code from Github and run it locally.
 
 
-index.html SHA256: 75916A771866F5E2DE8A88057AE4C16939D60E00CCB39C6D601A1D4DEAB3BB78
+index.html SHA256: 8908C5CC1C3F26BE43F7308102CCCDD06078E11B04AE7D2458C9269EAAC72248
 
-wallet.js SHA256: SHA256: 998A612BFFE2BB4DF4810B0A9E168D133CF18291C7A7D02D21C74BADBD67B951
+wallet.js SHA256: FA7200D89DF1B58FBBA83C31517E3858E0D99B6E650824CDF1FFF8478AA72AB0
