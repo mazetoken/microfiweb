@@ -3,13 +3,13 @@
 
 Use it at your own risk and with small amount of BCH.
 
-This is a non-custodial client-side paper wallet for demonstration purposes.
+This is a non-custodial client-side paper wallet.
 
 Microfi Free Flow is not Virtual Asset Service Provider.
 
 Download the source code from Github and run it locally.
 
 
-index.html SHA256: A78BD5831747D385123EE4F21C36E122A1261CC616DA253F8FF5D28D93E3D332
+index.html SHA256: 7A63EF08A6CFB15A68C4A168EF151A7653E97623B627F1E34E0F123D782B133A
 
 
