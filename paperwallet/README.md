@@ -1,4 +1,4 @@
-## Microfi Free Flow Bitcoin Cash CashTokens paper wallet
+## Microfi Free Flow Bitcoin Cash CashTokens paper (gift) wallet
 
 
 Use it at your own risk and with small amount of BCH.
@@ -10,6 +10,6 @@ Microfi Free Flow is not Virtual Asset Service Provider.
 Download the source code from Github and run it locally.
 
 
-index.html SHA256: 4BCEAF9FF6B1A2D0A351CFA24E004111C0715618FDB5383740E6B7E2DA5B1B24
+index.html SHA256: A78BD5831747D385123EE4F21C36E122A1261CC616DA253F8FF5D28D93E3D332
 
 
