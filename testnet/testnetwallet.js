@@ -83,7 +83,7 @@ document.getElementById("sendBCH").onclick = async () => {
 	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress1,
-			value: BigInt(bchAmount),
+			value: bchAmount,
 			unit: "sats"
 		}
 	]);
