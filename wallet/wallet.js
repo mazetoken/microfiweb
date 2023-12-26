@@ -157,7 +157,7 @@ document.getElementById("sendBCH").onclick = async () => {
 	let bchAddress1 = document.getElementById("sendAddr").value;
 	let bchAmount = document.getElementById("sendAmount").value;
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["Microfi_message_", opMessage];
+	let chunks = [opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
 		{
@@ -179,7 +179,7 @@ document.getElementById("sendBCHmax").onclick = async () => {
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["Microfi_message_", opMessage];
+	let chunks = [opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
 		{
@@ -200,7 +200,7 @@ document.getElementById("sendTokens").onclick = async () => {
 	let tokenAmount = document.getElementById("sendAmountToken").value;
 	let token = document.getElementById("sendTokenId").value;
 	let opMessage1 = document.getElementById("opmessage1").value;
-	let chunks = ["Microfi_message_", opMessage1];
+	let chunks = [opMessage1];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
@@ -224,7 +224,7 @@ document.getElementById("sendNfts").onclick = async () => {
 	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 	let opMessage2 = document.getElementById("opmessage2").value;
-	let chunks = ["Microfi_message_", opMessage2];
+	let chunks = [opMessage2];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
