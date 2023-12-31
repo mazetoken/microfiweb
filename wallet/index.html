@@ -12,8 +12,6 @@
   	<meta name="web" content="https://microfi.eu/wallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
 	<link rel="stylesheet" href="./styles.css">
-	<!-- <script defer src="https://cdn.mainnet.cash/mainnet-2.2.8.js" integrity="sha384-NswiNvbLm1lC8zX4UW8VCrbBDmqJMg4rZuRE76NavhPS80E9PLNRs3IQ2ZF0dFWk" crossorigin="anonymous"></script>
-	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.2.8.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script> -->
 	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.0.js" integrity="sha384-jbtbNOaekggSRRTM2XSOvZnftiETbGejyHUM8wF4ZNGemnBBLsn3VjZfn5blq+iR" crossorigin="anonymous"></script>
 	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.3.0.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
 	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.2.8.js" integrity="sha384-tsaSUTw6BLYmyVgmFGt+p/voYsawHSLnpRlkvJGbE4p4K4QnC1IKuO66E3eYK4U4" crossorigin="anonymous"></script> -->
@@ -28,8 +26,7 @@
 	<br>
 	<div>
 	<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.<br>
-		This is a non-custodial client-side wallet for demonstration purposes.<br>For now, the token's ticker or icon is not displayed in the wallet.<br><br>
-		Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.<br><br>
+		This is a non-custodial client-side wallet.<br>For now, the token's ticker or icon is not displayed in the wallet.<br><br>
 		Microfi wallet supports "BCMR" and "CRC" CashTokens.<br><br>
 		Delete the wallet from the browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
 	</p>
@@ -63,7 +60,8 @@
 			<p><img src id="tokenQr" width="200"></p>
 			<p id="tokensbalance"></p>
 			<p id="nftsbalance"></p>
-			<p>Wait a few seconds.</p>
+			<!-- <p>Wait a few seconds.</p> -->
+			<p><iframe id="exp" width="400" height="400"></iframe></p>
 			<p>To update balance, refresh the page and open the wallet again.</p>
 			<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
 		</div>
@@ -85,11 +83,11 @@
 			<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
 			<p>Click View button of yor choice.</p>
 			<p><button type="button" class="buttonB" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
-			<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca Api</button></p>
+			<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca Api BCMR</button></p>
 			<p>Choose "CRC" metadata registry from the list.<br>
 				If custom BCMR is selected, paste url in the input field.</p>
 			<select id="bcmrList">
-				<option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option>
+				<!-- <option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option> -->
 				<option value="https://microfi.eu/.well-known/scalingcashbcmr.json">BCMR for Scalingcash CRC20</option>
 				<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
 				<option value="">custom BCMR</option>
@@ -104,6 +102,10 @@
 			<p><img src id="tokenicon" width="200"></p>
 			<p id="explorer"></p>
 			<p id="tokenapi"></p>
+
+			<!-- <p><input id="viewOpR" type="text" size="50" placeholder="txid"></p>
+			<p><button type="button" class="buttonB" id="decode">View - opReturn</button></p>
+			<p id="decoded"></p> -->
 		</div>
 	</div>
 	<br>
@@ -150,6 +152,27 @@
 	</div>
 	<br>
 	<div>
+		<button type="button" class="collapsible">Create CashTokens</button>
+		<div class="content">
+			<h3>1. Generate tokenId</h3>
+			<p>Generate a new tokenId (category) for every new token you create.</p>
+			<p><button type="button" class="buttonB" id="createTokenId">Generate</button></p>
+			<p id="generateId"></p>
+	
+			<h3>2. Create fungible tokens (experimental)</h3>
+			<p>These are neither "BCMR" nor "CRC20" CashTokens.<br>Token name, symbol, icon uri and decimals are on-chain.</p>
+			<p><input id="tokenName1" type="text" size="50" placeholder="name e.g. TEST TEST"></p>
+			<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol e.g. TEST"></p>
+			<p><input id="tokenAmount1" type="text" size="50" placeholder="amount with decimals e.g. 10000000000"></p>
+			<p><input id="tokenIcon" type="text" size="50" placeholder="icon uri e.g. ipfs://bafy..."></p>
+			<p><input id="tokenDecimals" type="text" size="50" placeholder="decimals e.g. 4"></p>
+			<p><button type="button" class="buttonB" id="createTokens">Create tokens</button></p>
+			<p id="createFt"></p>
+			<br>
+		</div>
+	</div>
+	<br>
+	<div>
 		<button type="button" class="collapsible">Burn tokens</button>
 		<div class="content">
 			<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
@@ -171,8 +194,9 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" class="collapsible">Sweep paper wallet</button>
+		<button type="button" class="collapsible">Create or sweep a paper wallet</button>
 		<div class="content">
+			<p>To create a paper wallet go <a href="https://microfi.eu/paperwallet">here</a>.</p>
 			<p>Before sweeping, check the balance of the paper wallet.<br> 
 				You can create a wallet or import an existing wallet into the Microfi wallet and paste the BCH address into the recipient field,<br>
 				or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
@@ -251,10 +275,13 @@
 	</div>
 	<br><br>
 	<footer>
-		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">cashonize</a> | <a href="https://bcmr.paytaca.com">paytaca api</a> | <a href="https://gitlab.com/0353F40E/crc20-to-bcmr/-/blob/master/bcmr/bitcoin-cash-metadata-registry.json">crc20-to-bcmr</a></p>
+		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize wallet</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a> | <a href="https://explorer.salemkode.com">SalemKode explorer</a></p>
 		<br>
+		<p>Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.</p>
+		<br>
+		<p>Created for fun by <img src="../img/mtu.png" alt="MTU" width="36"> Maze Tokens Underworld, 2020-2023</p>
 		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
-		<p>Microfi Free Flow Project, 2023<br><img src="../img/mtu.png" alt="MazeTokensUnderworld" width="36"> Maze Tokens Underworld, 2020-2023</p>
+		<p>Microfi Free Flow Project, 2023</p>
 	</footer>
 	<br>
 	<script src="./collapsible.js"></script>

@@ -58,6 +58,8 @@ document.getElementById("open").onclick = async () => {
 	document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
 	document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
 
+	document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
+
 	} catch (error) { alert(error) }
 };
 
@@ -157,7 +159,7 @@ document.getElementById("sendBCH").onclick = async () => {
 	let bchAddress1 = document.getElementById("sendAddr").value;
 	let bchAmount = document.getElementById("sendAmount").value;
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = [opMessage];
+	let chunks = ["Message_", opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
 		{
@@ -179,7 +181,7 @@ document.getElementById("sendBCHmax").onclick = async () => {
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = [opMessage];
+	let chunks = ["Message_", opMessage];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([
 		{
@@ -200,7 +202,7 @@ document.getElementById("sendTokens").onclick = async () => {
 	let tokenAmount = document.getElementById("sendAmountToken").value;
 	let token = document.getElementById("sendTokenId").value;
 	let opMessage1 = document.getElementById("opmessage1").value;
-	let chunks = [opMessage1];
+	let chunks = ["Message_", opMessage1];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
@@ -224,7 +226,7 @@ document.getElementById("sendNfts").onclick = async () => {
 	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 	let opMessage2 = document.getElementById("opmessage2").value;
-	let chunks = [opMessage2];
+	let chunks = ["Message_", opMessage2];
 	let opreturnData = OpReturnData.fromArray(chunks);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
@@ -237,6 +239,51 @@ document.getElementById("sendNfts").onclick = async () => {
 	opreturnData,
 	]);
 	document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
+	} catch (error) { alert(error) }
+};
+
+document.getElementById("createTokenId").onclick = async () => {
+	try {
+	const wallet = await Wallet.named("microfi");
+	async function getValidPreGensis() {
+		let walletUtxos = await wallet.getAddressUtxos();
+		return walletUtxos.filter(utxo => !utxo.token && utxo.vout === 0);
+	}
+	let validPreGenesis = await getValidPreGensis();
+	console.log(validPreGenesis);
+	if (validPreGenesis.length === 0) {
+		await wallet.send([{ cashaddr: wallet.tokenaddr, value: 800, unit: "sats" }]);
+		//console.log("Created output with vout zero for token genesis");
+		validPreGenesis = await getValidPreGensis();
+	}
+	const tokenId = validPreGenesis[0].txid;
+	document.getElementById("generateId").textContent = "tokenId: " + tokenId;
+	} catch (error) { alert(error) }
+};
+
+document.getElementById("createTokens").onclick = async () => {
+	try {
+	const wallet = await Wallet.named("microfi");
+	let cashtokensAddress = await wallet.getTokenDepositAddress();
+	let name = document.getElementById("tokenName1").value;
+	let symbol = document.getElementById("tokenSymbol1").value;
+	let tokenAmount1 = document.getElementById("tokenAmount1").value;
+	let icon = document.getElementById("tokenIcon").value;
+	let decimals = document.getElementById("tokenDecimals").value;
+	let opreturnData;
+	const chunks = [name, symbol, icon, decimals];
+	opreturnData = OpReturnData.fromArray(chunks);
+	const genesisResponse = await wallet.tokenGenesis(
+		{
+			cashaddr: cashtokensAddress,
+			amount: BigInt(tokenAmount1),
+			value: 800
+		},
+		opreturnData
+	);
+	const tokenId = genesisResponse.tokenIds[0];
+	const { txId } = genesisResponse;
+	document.getElementById("createFt").textContent = "tokenId: " + tokenId + " " + "txId: " + "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
 };
 
@@ -290,7 +337,6 @@ document.getElementById("balancePw").onclick = async () => {
 
 document.getElementById("sweepPw").onclick = async () => {
 	try {
-	//var wallet = await Wallet.named("microfi");
 	let sweepPk = document.getElementById("sweepPk").value;
 	let recipientPw = document.getElementById("recipientAddress").value;
 	const tempWallet = await Wallet.fromWIF(sweepPk);
@@ -322,7 +368,6 @@ document.getElementById("sweepPw").onclick = async () => {
 
 document.getElementById("sweepPwBch").onclick = async () => {
 	try {
-	//const wallet = await Wallet.named("microfi");
 	let sweepPk = document.getElementById("sweepPk").value;
 	let recipientPw = document.getElementById("recipientAddress").value;
 	const tempWallet = await Wallet.fromWIF(sweepPk);
