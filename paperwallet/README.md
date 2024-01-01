@@ -9,6 +9,6 @@ Download the source code from Github and run it locally. The paper wallet uses m
 
 Paper wallet derivation path is `m/44'/145'/0'/0/0`
 
-index.html SHA256: B4100C97CC88F83A7DCC37E73E500FB7D692A29C49A0A142B4A30A00E32420D7
+index.html SHA256: 949756D2796710C5327E9FFBE3853070E45A1EDE60B333A3ADC13FB22A734676
 
 
