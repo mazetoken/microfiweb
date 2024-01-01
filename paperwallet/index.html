@@ -7,11 +7,10 @@
 	<meta http-equiv="Referrer-Policy" content="no-referrer">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Microfi Free Flow Paper Wallet</title>
-	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens Paper Wallet.">
+	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens Paper (Gift) Wallet">
   	<meta name="web" content="https://microfi.eu/paperwallet/">
 	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_paper.png">
 	<link rel="stylesheet" href="./styles.css">
-	<!-- <script defer src="https://cdn.mainnet.cash/mainnet-2.2.8.js" integrity="sha384-NswiNvbLm1lC8zX4UW8VCrbBDmqJMg4rZuRE76NavhPS80E9PLNRs3IQ2ZF0dFWk" crossorigin="anonymous"></script> -->
 	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.0.js" integrity="sha384-jbtbNOaekggSRRTM2XSOvZnftiETbGejyHUM8wF4ZNGemnBBLsn3VjZfn5blq+iR" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
@@ -20,19 +19,24 @@
 		<p><button type="button" class="buttonB"><a href="../"><b>Home</b></a></button> <button type="button" class="buttonB"><a href="../testnet/paperwallet/"><b>Testnet paper wallet</b></a></button></p>
 		<h3>Microfi Free Flow</h3>
 		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper (gift) wallet</h3>
-		<p>This is a client-side paper wallet.<br>Microfi Free Flow is not Virtual Asset Service Provider.<br>You can download the source code from Github and run it locally.</p>
+		<p>This is a client-side paper wallet.<br>You can download the source code from Github and run it locally.</p>
 		<p><button type="button" class="buttonB" id="createPW">Generate a paper wallet</button></p>
-		<p>Send 1600 satoshi (0.000016 BCH) and only one category of CashTokens to a paper wallet Bitcoin Cash address and share the private key of the paper wallet with someone (e.g. as a gift)</p>
+		<p>Send 1600 satoshi (0.000016 BCH) and only one category of CashTokens (or BCH without CashTokens) to a paper wallet Bitcoin Cash address and share the private key of the paper wallet with someone (e.g. as a gift)</p>
 	</div>
 	<div class="printme">
-		<p><img src="../img/microfi.png" alt="Microfi" width="150"></a><br>Microfi Free Flow Paper (Gift) Wallet</p>
-		<p>Sweep the private key with Bitcoin Cash CashTokens compatible wallet (e.g. https://microfi.eu/wallet)</p>
-	
+		<!-- <p><img src="../img/microfi.png" alt="Microfi" width="150"></a><br>Microfi Free Flow Paper (Gift) Wallet</p> -->
+		<p>Microfi Free Flow Paper (Gift) Wallet.<br>
+			Sweep the private key with Bitcoin Cash CashTokens compatible wallet (e.g. https://microfi.eu/wallet).<br>
+			Derivation path: m/44'/145'/0'/0/0<br><br>
+			<input type="checkbox" id="CT" name="cashtokens" value="Yes">
+			<label for="CT">CashTokens included</label><br>
+			<input type="checkbox" id="BCH" name="cashtokens" value="No">
+			<label for="BCH">BCH only</label>
+		</p>
 		<p id="bchaddress1"></p>
 		<qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
 		<p id="cashtokensaddress1"></p>
 		<qr-code id="qr2" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
-	
 		<p id="privatekey1"></p>
 		<qr-code id="qr3" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
 	</div>
@@ -44,8 +48,9 @@
 		<br><br>
 		<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://github.com/bitjson/qr-code/">bitjson qr-code</a></p>
 		<br>
-		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet/index.html"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
-		<p>Microfi Free Flow Project, 2023<br><img src="../img/mtu.png" alt="MazeTokensUnderworld" width="36"> Maze Tokens Underworld, 2020-2023</p>
+		<p>Created for fun by <img src="../img/mtu.png" alt="MTU" width="36"> Maze Tokens Underworld, 2020-2024</p>
+		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
+		<p>Microfi Free Flow Project, 2023-2024</p>
 		<br>
 	</footer>
 

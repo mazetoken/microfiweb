@@ -5,11 +5,10 @@ Use it at your own risk and with small amount of BCH.
 
 This is a non-custodial client-side paper wallet.
 
-Microfi Free Flow is not Virtual Asset Service Provider.
+Download the source code from Github and run it locally. The paper wallet uses mainnet.js library by https://mainnet.cash devs
 
-Download the source code from Github and run it locally.
+Paper wallet derivation path is `m/44'/145'/0'/0/0`
 
-
-index.html SHA256: 7A63EF08A6CFB15A68C4A168EF151A7653E97623B627F1E34E0F123D782B133A
+index.html SHA256: B4100C97CC88F83A7DCC37E73E500FB7D692A29C49A0A142B4A30A00E32420D7
 
 

@@ -17,25 +17,28 @@
 <body>
 	<div>
 		<p><button type="button" class="buttonB"><a href="../../paperwallet/"><b>Mainnet paper wallet</b></a></button></p>
-		<h3>Microfi Free Flow Project</h3>
+		<h3>Microfi Free Flow</h3>
 		<h3>Bitcoin Cash <a href="https://cashtokens.org">CashTokens</a> paper wallet</h3>
 		<p>on testnet (chipnet)</p>
 		<p><button type="button" class="buttonB" id="createPW">Generate CashTokens paper wallet</button></p>
-		<p>Send min 1600 satoshi (0.000016 tBCH) and only one category of CashTokens to a paper wallet and share the private key of the paper wallet with someone (e.g. as a gift).<br>
-			The private key of the paper wallet can be swept in the <a href="https://microfi.eu/testnet/">Microfi</a> testnet wallet (https://microfi.eu/testnet/).
+		<p>Send 1600 satoshi (0.000016 tBCH) and only one category of CashTokens (or tBCH without CashTokens) to a paper wallet Bitcoin Cash address and share the private key of the paper wallet with someone (e.g. as a gift).
 		</p>
 	</div>
-	<hr>
 	<div>
+		<p>Microfi Free Flow Paper (Gift) Wallet.<br>
+			Sweep the private key with Bitcoin Cash CashTokens compatible wallet (e.g. https://microfi.eu/testnet).<br>
+			Derivation path: m/44'/145'/0'/0/0<br><br>
+			<input type="checkbox" id="CT" name="cashtokens" value="Yes">
+			<label for="CT">CashTokens included</label><br>
+			<input type="checkbox" id="BCH" name="cashtokens" value="No">
+			<label for="BCH">BCH only</label>
+		</p>
 		<p id="bchaddress1"></p>
 		<qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
-		<hr>
 		<p id="cashtokensaddress1"></p>
 		<qr-code id="qr2" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
-		<hr>
 		<p id="privatekey1"></p>
 		<qr-code id="qr3" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code>
-		<hr>
 		<!-- <p id="mnemonic1"></p>
 		<p id="derivation1"></p> -->
 	</div>
@@ -43,8 +46,8 @@
 	<footer>
 		<p>Credits: <a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://github.com/bitjson/qr-code/">bitjson qr-code</a></p>
 		<br>
-		<p><a href="https://microfi.eu"><img src="../../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/paperwallet/index.html"><img src="../../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../../img/telegram.png" alt="Telegram" width="36"></a></p>
-		<p>Microfi Free Flow Project, 2023</p>
+		<p><a href="https://microfi.eu"><img src="../../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/testnet/paperwallet"><img src="../../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../../img/telegram.png" alt="Telegram" width="36"></a></p>
+		<p>Microfi Free Flow Project, 2023-2024</p>
 	</footer>
 
 	<script>
