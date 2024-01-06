@@ -159,8 +159,9 @@ document.getElementById("sendBCH").onclick = async () => {
 	let bchAddress1 = document.getElementById("sendAddr").value;
 	let bchAmount = document.getElementById("sendAmount").value;
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["Message_", opMessage];
-	let opreturnData = OpReturnData.fromArray(chunks);
+	//let chunks = ["Message_", opMessage];
+	//let opreturnData = OpReturnData.fromArray(chunks);
+	let opreturnData = OpReturnData.from(opMessage);
 	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress1,
@@ -181,8 +182,9 @@ document.getElementById("sendBCHmax").onclick = async () => {
 	bchBalanceObj = Object.values({...bchBalanceMax});
 	let bchBalMax = bchBalanceObj[1];
 	let opMessage = document.getElementById("opmessage").value;
-	let chunks = ["Message_", opMessage];
-	let opreturnData = OpReturnData.fromArray(chunks);
+	//let chunks = ["Message_", opMessage];
+	//let opreturnData = OpReturnData.fromArray(chunks);
+	let opreturnData = OpReturnData.from(opMessage);
 	const { txId } = await wallet.send([
 		{
 			cashaddr: bchAddress2,
@@ -202,13 +204,15 @@ document.getElementById("sendTokens").onclick = async () => {
 	let tokenAmount = document.getElementById("sendAmountToken").value;
 	let token = document.getElementById("sendTokenId").value;
 	let opMessage1 = document.getElementById("opmessage1").value;
-	let chunks = ["Message_", opMessage1];
-	let opreturnData = OpReturnData.fromArray(chunks);
+	//let chunks = ["Message_", opMessage1];
+	//let opreturnData = OpReturnData.fromArray(chunks);
+	let opreturnData = OpReturnData.from(opMessage1);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress1,
 			amount: BigInt(tokenAmount),
-			tokenId: token
+			tokenId: token,
+			value: 800
 		}
 	),
 	opreturnData,
@@ -226,14 +230,16 @@ document.getElementById("sendNfts").onclick = async () => {
 	let capabilityLists = document.getElementById("capabilityLists").value;
 	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
 	let opMessage2 = document.getElementById("opmessage2").value;
-	let chunks = ["Message_", opMessage2];
-	let opreturnData = OpReturnData.fromArray(chunks);
+	//let chunks = ["Message_", opMessage2];
+	//let opreturnData = OpReturnData.fromArray(chunks);
+	let opreturnData = OpReturnData.from(opMessage2);
 	const { txId } = await wallet.send([ new TokenSendRequest(
 		{
 			cashaddr: tokenAddress2,
 			tokenId: token1,
 			commitment: nftCommitment,
-			capability: capabilitySend
+			capability: capabilitySend,
+			value: 800
 		}
 	),
 	opreturnData,
@@ -253,7 +259,6 @@ document.getElementById("createTokenId").onclick = async () => {
 	console.log(validPreGenesis);
 	if (validPreGenesis.length === 0) {
 		await wallet.send([{ cashaddr: wallet.tokenaddr, value: 800, unit: "sats" }]);
-		//console.log("Created output with vout zero for token genesis");
 		validPreGenesis = await getValidPreGensis();
 	}
 	const tokenId = validPreGenesis[0].txid;
@@ -295,7 +300,8 @@ document.getElementById("burnFt").onclick = async () => {
 	let burnResponse = await wallet.tokenBurn(
 		{
 			tokenId: burnTokenId,
-			amount: BigInt(burnAmount)
+			amount: BigInt(burnAmount),
+			value: 800
 		},
 		"burn",
 	);
@@ -315,7 +321,8 @@ document.getElementById("burnNft").onclick = async () => {
 		{
 			tokenId: burnNftTokenId,
 			capability: capabilityBurn,
-			commitment: burnCommitment
+			commitment: burnCommitment,
+			value: 800
 		},
 		"burn",
 	);
@@ -358,7 +365,8 @@ document.getElementById("sweepPw").onclick = async () => {
 		{
 			cashaddr: recipientPw,
 			amount: BigInt(tokenAmo),
-			tokenId: tokenCat
+			tokenId: tokenCat,
+			value: 800
 		}
 		)
 	]);
@@ -442,7 +450,8 @@ document.getElementById("notarize").onclick = async () => {
 				{
 					cashaddr: tokenAddress3,
 					amount: 1n,
-					tokenId: tokenId4
+					tokenId: tokenId4,
+					value: 800
 				}
 			)
 			]);
