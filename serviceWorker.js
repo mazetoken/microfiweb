@@ -1,18 +1,24 @@
 const staticMicrofi = "microfi-site-v1"
 const assets = [
-  "/",
-  "/index.html",
-  "/styles.css",
-  "/app.js",
-  "/img/coffee1.jpg",
-  "/img/coffee2.jpg",
-  "/img/coffee3.jpg",
-  "/img/coffee4.jpg",
-  "/img/coffee5.jpg",
-  "/img/coffee6.jpg",
-  "/img/coffee7.jpg",
-  "/img/coffee8.jpg",
-  "/img/coffee9.jpg",
+  "./",
+  "./index.html",
+  "./styles.css",
+  "./app.js",
+  "./img/bitcoin-cash-logo.png",
+  "./img/microfi_app.png",
+  "./img/microfi_ecosystem.png",
+  "./img/microfi_icon.png",
+  "./img/microfi_paper.png",
+  "./img/microfi_wallet.png",
+  "./img/microfi_web.png",
+  "./token/index.html",
+  "./wallet/index.html",
+  "./paperwallet/index.html",
+  "./testnet/index.html",
+  "./js/collapsible.js",
+  "./js/payment.js",
+  "./js/wallet.js",
+  "./ecosystem/index.js"
 ]
 
 self.addEventListener("install", installEvent => {

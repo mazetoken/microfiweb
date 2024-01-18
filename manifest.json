@@ -1,10 +1,10 @@
 {
-  "name": "Microfi Free Flow Project",
-  "short_name": "Microfi",
+  "name": "Microfi Free Flow Project on Bitcoin Cash",
+  "short_name": "Microfi Free Flow",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#fdfdfd",
-  "theme_color": "#db4938",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
   "orientation": "portrait-primary",
   "icons": [
     {

@@ -11,5 +11,5 @@ Paper wallet derivation path is `m/44'/145'/0'/0/0`
 
 Website can be installed as Progressive Web Application (PWA) and added to mobile home screen as an app.
 
-index.html SHA256: E17F6A06DFBE74146AFFCB80FA1FF05CD925C6DEC1CED3274A8FF525B96F86C1
+index.html SHA256: 006BFC0A397F3CF09FD3019F31AC96094D97F1A6CEDBF3BDB573A652DD941C24
 
