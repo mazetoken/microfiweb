@@ -2,33 +2,53 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
+	<!-- <meta http-equiv="X-Frame-Options" content="deny">
+	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN"> -->
+	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
-	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-	<meta http-equiv="Referrer-Policy" content="no-referrer">
-	<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*" /> -->
+	<meta name="referrer" content="no-referrer">
+	<meta name="description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash">
+  	<meta name="web" content="https://microfi.eu/wallet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Microfi Free Flow Wallet</title>
-	<meta name="description" content="Microfi Free Flow Bitcoin Cash CashTokens Wallet">
-  	<meta name="web" content="https://microfi.eu/wallet/">
-	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfiweb.png">
-	<link rel="stylesheet" href="./styles.css">
+	<meta property="og:title" content="Microfi Free Flow Wallet">
+	<meta property="og:description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash">
+	<meta property="og:image" content="https://microfi.eu/img/microfi_wallet.png">
+	<title>Microfi Free Flow Wallet</title>
+	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_wallet.png">
+	<link rel="stylesheet" href="../styles.css">
+	<link rel="manifest" href="../manifest.json" />
+	<!-- ios support -->
+	<link rel="apple-touch-icon" href="../img/icons/72.png" />
+	<link rel="apple-touch-icon" href="../img/icons/96.png" />
+	<link rel="apple-touch-icon" href="../img/icons/128.png" />
+	<link rel="apple-touch-icon" href="../img/icons/144.png" />
+	<link rel="apple-touch-icon" href="../img/icons/152.png" />
+	<link rel="apple-touch-icon" href="../img/icons/192.png" />
+	<link rel="apple-touch-icon" href="../img/icons/384.png" />
+	<link rel="apple-touch-icon" href="../img/icons/500.png" />
+	<meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+	<meta name="theme-color" content="#db4938" />
 	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.0.js" integrity="sha384-jbtbNOaekggSRRTM2XSOvZnftiETbGejyHUM8wF4ZNGemnBBLsn3VjZfn5blq+iR" crossorigin="anonymous"></script>
 	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.3.0.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
-	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.2.8.js" integrity="sha384-tsaSUTw6BLYmyVgmFGt+p/voYsawHSLnpRlkvJGbE4p4K4QnC1IKuO66E3eYK4U4" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.3.0.js" integrity="sha384-UtzTae75sVzC1dP4PoULkjDsmwYN81TAEv5+bEfV83fXwfPaOQslCgt6qX+xztia" crossorigin="anonymous"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
 	<div>
 		<p><button type="button" class="buttonB"><a href="../"><b>Home</b></a></button> <button type="button" class="buttonB"><a href="../testnet/"><b>Testnet wallet</b></a></button></p>
+		<h1>Microfi Free Flow Project</h1>
+    	<h3>BCH CashTokens Wallet with notary system</h3>
 		<p><img src="../img/microfi.png" alt="Microfi" width="420"></p>
 		<p><img src="../img/bitcoin-cash-logo.png" alt="BCH logo" width="200"></p>
 	</div>
 	<br>
 	<div>
-	<p>Microfi wallet is under development. Use it at your own risk and with small amount of BCH.<br>
-		This is a non-custodial client-side wallet.<br>For now, the token's ticker or icon is not displayed in the wallet.<br><br>
+	<p>Microfi wallet is under development.<br>Use it for demonstration purposes and at your own risk and with small amount of BCH.<br>
+		This is an open-sourced, non-custodial client-side wallet.<br>For now, token name, symbol, icon and decimal places are not displayed in the wallet.<br><br>
 		Microfi wallet supports "BCMR" and "CRC" CashTokens.<br><br>
-		Delete the wallet from the browser (local storage, idexedDb) if it is being used on someone else's device<br>or if you want to create a new wallet.
+		Delete the wallet from the browser if it is being used on someone else's device<br>or if you want to create a new wallet.
 	</p>
 	</div>
 	<br>
@@ -58,8 +78,12 @@
 			<p id="bchbalance"></p>
 			<p id="cashtokensaddress"></p>
 			<p><img src id="tokenQr" width="200"></p>
-			<p id="tokensbalance"></p>
-			<p id="nftsbalance"></p>
+			<!-- <p id="tokensbalance"></p> -->
+			<p>Tokens:</p>
+			<p id="container1"></p>
+			<p>NFTs:</p>
+			<!-- <p id="nftsbalance"></p> -->
+			<p id="container2"></p>
 			<!-- <p>Wait a few seconds.</p> -->
 			<p><iframe id="exp" width="400" height="400"></iframe></p>
 			<p>To update balance, refresh the page and open the wallet again.</p>
@@ -160,14 +184,21 @@
 			<p id="generateId"></p>
 	
 			<h3>2. Create fungible tokens (experimental)</h3>
-			<p>These are neither "BCMR" nor "CRC20" CashTokens.<br>Token name, symbol, icon uri and decimals are on-chain.</p>
-			<p><input id="tokenName1" type="text" size="50" placeholder="name e.g. TEST TEST"></p>
-			<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol e.g. TEST"></p>
-			<p><input id="tokenAmount1" type="text" size="50" placeholder="amount with decimals e.g. 10000000000"></p>
-			<p><input id="tokenIcon" type="text" size="50" placeholder="icon uri e.g. ipfs://bafy... (optional)"></p>
-			<p><input id="tokenDecimals" type="text" size="50" placeholder="decimals e.g. 4"></p>
+			<p>These are neither "BCMR" nor "CRC20" CashTokens.<br>Token name, symbol, icon or web uri, decimals and genesis text are on-chain.</p>
+			<p><input id="tokenName1" type="text" size="50" placeholder="name e.g. USED GOLDEN TOOTH"></p>
+			<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol e.g. UGT"></p>
+			<p><input id="tokenAmount1" type="text" size="50" placeholder="amount with decimals e.g. 100000000000000"></p>
+			<p><input id="tokenUri1" type="text" size="50" placeholder="icon or web uri e.g. ipfs://... or https://... (optional)"></p>
+			<p><input id="tokenDecimals1" type="text" size="50" placeholder="decimals e.g. 8"></p>
+			<p><textarea id="genesisText1" type="text" size="50" placeholder="genesis text e.g. Cointelegraph 10/Jan/2024 SEC did not have 2FA enabled (optional)"></textarea></p>
 			<p><button type="button" class="buttonB" id="createTokens">Create tokens</button></p>
 			<p id="createFt"></p>
+
+			<!-- <h3>3. Transfer token authHead</h3>
+			<p>Before sending your new CashToken you need to transfer its authHead to a new wallet.<br>You can add "BCMR" to the authHead later.<br>A new wallet will be created - save the wallet private key.</p>
+			<p><input id="tokenIdA" type="text" size="50" placeholder="tokenId"></p>
+			<p><button type="button" class="buttonB" id="authHeadTransfer">Transfer authHead</button></p>
+			<p id="authTransfer"></p> -->
 			<br>
 		</div>
 	</div>
@@ -273,19 +304,32 @@
 			<p id="signature"></p>
 		</div>
 	</div>
+	<!-- <br>
+	<div>
+		<button type="button" class="collapsible">CashTokens Airdrop tool</button>
+		<div class="content">
+			<p><input id="sendTokenId3" type="text" size="50" placeholder="tokenId"></p>
+			<p><input id="sendAmountToken3" type="text" size="50" placeholder="amount with decimals for each address"></p>
+			<p>upload .json file with address list</p>
+			<p><input id="airdroplist" type="file"></p>
+			<p><button type="button" class="buttonB" id="drop">Drop</button></p>
+			<p id="dropped"></p>
+		</div>
+	</div> -->
 	<br><br>
 	<footer>
 		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize wallet</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a> | <a href="https://explorer.salemkode.com">SalemKode explorer</a></p>
 		<br>
-		<p>Microfi Free Flow is not Virtual Asset Service Provider.<br>Users can download the source code from Github and run it locally.</p>
+		<p>This website can be installed as Progressive Web Application (PWA) and added to mobile home screen as an app.</p>
+		<p>Microfi Free Flow is not Crypto-Asset Service Provider.<br>Users can download the source code and run it locally.</p>
+		<p>Created for fun by<br><img src="../img/mtu.png" alt="MTU" width="36"> Maze Tokens Underworld, 2020-2024</p>
 		<br>
-		<p>Created for fun by <img src="../img/mtu.png" alt="MTU" width="36"> Maze Tokens Underworld, 2020-2024</p>
 		<p><a href="https://microfi.eu"><img src="../img/microfi_icon.png" alt="Microfi" width="36"></a> <a href="https://github.com/mazetoken/microfiweb/tree/main/wallet/"><img src="../img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens/"><img src="../img/telegram.png" alt="Telegram" width="36"></a></p>
 		<p>Microfi Free Flow Project, 2023-2024</p>
 	</footer>
 	<br>
-	<script src="./collapsible.js"></script>
-	<script src="./wallet.js"></script>
-	<script src="./payment.js"></script>
+	<script src="../js/collapsible.js"></script>
+	<script src="../js/wallet.js"></script>
+	<script src="../js/payment.js"></script>
 </body>
 </html>

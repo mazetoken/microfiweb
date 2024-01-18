@@ -96,4 +96,16 @@ a:visited {
 	padding: 0 16px;
 	overflow: hidden;
 }
-@media screen and (max-width: 600px) {}
+@media screen and (max-width: 600px) {
+}
+
+@media print {
+	.no-printme  {
+		display: none;
+	}
+	.printme  {
+		background-color: #ffffff;
+		color: #000000;
+		display: block;
+	}
+}

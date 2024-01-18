@@ -46,6 +46,38 @@ document.getElementById("open").onclick = async () => {
 	let tokenBalance = await wallet.getAllTokenBalances();
 	let nftBalance = await wallet.getAllNftTokenBalances();
 
+	const jsonString1 = JSON.stringify(tokenBalance); 
+	const jsonObject1 = JSON.parse(jsonString1);
+	const container1 = document.getElementById("container1");
+	for (const key in jsonObject1) {
+	if (jsonObject1.hasOwnProperty(key)) {	
+		const keyElement = document.createElement("span");
+		keyElement.textContent = key + ': ';
+		const valueElement = document.createElement("span");
+		valueElement.textContent = jsonObject1[key];
+		const lineBreak = document.createElement("br");
+		container1.appendChild(keyElement);
+		container1.appendChild(valueElement);
+		container1.appendChild(lineBreak);
+	};
+	};
+
+	const jsonString2 = JSON.stringify(nftBalance); 
+	const jsonObject2 = JSON.parse(jsonString2);
+	const container2 = document.getElementById("container2");
+	for (const key in jsonObject2) {
+	if (jsonObject2.hasOwnProperty(key)) {
+		const keyElement = document.createElement("span");
+		keyElement.textContent = key + ': ';
+		const valueElement = document.createElement("span");
+		valueElement.textContent = jsonObject2[key];
+		const lineBreak = document.createElement("br");
+		container2.appendChild(keyElement);
+		container2.appendChild(valueElement);
+		container2.appendChild(lineBreak);
+	};
+	};
+
 	document.getElementById("derivation").textContent = "Derivation path: " + wallet.derivationPath;
 	document.getElementById("mnemonic").textContent = "Seed phrase: " + wallet.mnemonic;
 	document.getElementById("privatekey").textContent ="Private key: " + wallet.privateKeyWif;
@@ -55,9 +87,8 @@ document.getElementById("open").onclick = async () => {
 	document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
 	document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
 	document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
-	document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
-	document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
-
+	//document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
+	//document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
 	document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
 
 	} catch (error) { alert(error) }
@@ -269,18 +300,19 @@ document.getElementById("createTokenId").onclick = async () => {
 document.getElementById("createTokens").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
-	let cashtokensAddress = await wallet.getTokenDepositAddress();
+	let tokenAddress = await wallet.getTokenDepositAddress();
 	let name = document.getElementById("tokenName1").value;
 	let symbol = document.getElementById("tokenSymbol1").value;
 	let tokenAmount1 = document.getElementById("tokenAmount1").value;
-	let icon = document.getElementById("tokenIcon").value;
-	let decimals = document.getElementById("tokenDecimals").value;
+	let tokenUri1 = document.getElementById("tokenUri1").value;
+	let tokenDecimals1 = document.getElementById("tokenDecimals1").value;
+	let genesisText1 = document.getElementById("genesisText1").value;
 	let opreturnData;
-	const chunks = [name, symbol, icon, decimals];
+	const chunks = [name, symbol, tokenUri1, tokenDecimals1, genesisText1];
 	opreturnData = OpReturnData.fromArray(chunks);
 	const genesisResponse = await wallet.tokenGenesis(
 		{
-			cashaddr: cashtokensAddress,
+			cashaddr: tokenAddress,
 			amount: BigInt(tokenAmount1),
 			value: 800
 		},
@@ -291,6 +323,45 @@ document.getElementById("createTokens").onclick = async () => {
 	document.getElementById("createFt").textContent = "tokenId: " + tokenId + " " + "txId: " + "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
 };
+
+//document.getElementById("authHeadTransfer").onclick = async () => {
+	//try {
+	//const wallet = await Wallet.named("microfi");
+	//let tokenAddressA = await wallet.getTokenDepositAddress();
+	//let tokenIdA = document.getElementById("tokenIdA").value;
+	//let tokenBalanceA = await wallet.getTokenBalance(tokenIdA);
+	//const authWallet = await Wallet.newRandom();
+	//let newAuthAddress = await authWallet.getTokenDepositAddress();
+	//let authPk = authWallet.privateKeyWif;
+	//let utxos = wallet.getTokenUtxos(tokenIdA);
+	//utxos.forEach(utxo => {
+		//if(utxo.txid == authHeadTxId && utxo.vout == 0) {
+		//authUtxo;
+		//}
+	//});
+	//const opreturnData = OpReturnData.from("AuthHeadTransfer");
+	//const { txId } = await wallet.send([ 
+		//{ 
+		//cashaddr: newAuthAddress,
+		//value: 546,
+		//unit: "sats"
+		//},
+		//new TokenSendRequest(
+		//{
+		//cashaddr: tokenAddressA,
+		//amount: BigInt(tokenBalanceA),
+		//tokenId: tokenIdA,
+		//value: 800
+		//}
+		//),
+		//opreturnData
+	//], { ensureUtxos: [authUtxo] }
+	//);
+	
+	//document.getElementById("authTransfer").textContent = "tokenId: " + tokenIdA + " " + "txId: " + "https://bch.loping.net/tx/" + txId + " " + " AuthHead Wallet private key: " + authPk + " " + "Save the private key!" + newAuthAddress;
+	//} catch (error) { alert(error) }
+//};
+
 
 document.getElementById("burnFt").onclick = async () => {
 	try {
