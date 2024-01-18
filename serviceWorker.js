@@ -11,14 +11,10 @@ const assets = [
   "./img/microfi_paper.png",
   "./img/microfi_wallet.png",
   "./img/microfi_web.png",
-  "./token/index.html",
   "./wallet/index.html",
   "./paperwallet/index.html",
-  "./testnet/index.html",
   "./js/collapsible.js",
-  "./js/payment.js",
-  "./js/wallet.js",
-  "./ecosystem/index.js"
+  "./js/wallet.js"
 ]
 
 self.addEventListener("install", installEvent => {
