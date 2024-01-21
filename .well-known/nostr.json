@@ -1,0 +1,24 @@
+{
+  "names": {
+      "microfi": "28b443dd5c91ce2e079399a4435424b8c790a8fa8dc47aa0ec0905123e774ab8"
+  },
+  "relays": {
+    "28b443dd5c91ce2e079399a4435424b8c790a8fa8dc47aa0ec0905123e774ab8": [
+      "wss://relay.damus.io",
+      "wss://relay.primal.net",
+      "wss://relay.stoner.com",
+      "wss://relay.nostr.band",
+      "wss://relay.snort.social",
+      "wss://relay.current.fyi",
+      "wss://relay.mostr.pub",
+      "wss://nostr.600.wtf",
+      "wss://pyramid.fiatjaf.com",
+      "wss://nos.lol",
+      "wss://nostr.wine",
+      "wss://welcome.nostr.wine",
+      "wss://eden.nostr.land",
+      "wss://nostr.filmweb.pl",
+      "wss://orangepiller.org"
+    ]
+  }
+}
