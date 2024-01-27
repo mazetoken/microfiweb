@@ -52,7 +52,18 @@ document.getElementById("open").onclick = async () => {
 	for (const key in jsonObject1) {
 	if (jsonObject1.hasOwnProperty(key)) {	
 		const keyElement = document.createElement("span");
-		keyElement.textContent = key + ': ';
+
+		let apiUrl = "https://bcmr.paytaca.com/api/tokens/" + key;
+		fetch(apiUrl)
+		.then(response => response.json())
+		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+		
+		let apiUrl1 = "https://microfi.eu/.well-known/scalingcashbcmr.json";
+		await BCMR.addMetadataRegistryFromUri(apiUrl1);
+		let tokenInfo = BCMR.getTokenInfo(key);
+		keyElement.textContent = tokenInfo.token.symbol + " " + key + ": ";
+
+		//keyElement.textContent = key + ': ';
 		const valueElement = document.createElement("span");
 		valueElement.textContent = jsonObject1[key];
 		const lineBreak = document.createElement("br");
@@ -68,7 +79,13 @@ document.getElementById("open").onclick = async () => {
 	for (const key in jsonObject2) {
 	if (jsonObject2.hasOwnProperty(key)) {
 		const keyElement = document.createElement("span");
-		keyElement.textContent = key + ': ';
+
+		let apiUrl2 = "https://bcmr.paytaca.com/api/tokens/" + key;
+		fetch(apiUrl2)
+		.then(response => response.json())
+		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+
+		keyElement.textContent = key + ": ";
 		const valueElement = document.createElement("span");
 		valueElement.textContent = jsonObject2[key];
 		const lineBreak = document.createElement("br");
@@ -89,7 +106,7 @@ document.getElementById("open").onclick = async () => {
 	document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
 	//document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
 	//document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
-	document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
+	//document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
 
 	} catch (error) { alert(error) }
 };
@@ -301,22 +318,47 @@ document.getElementById("createTokens").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
 	let tokenAddress = await wallet.getTokenDepositAddress();
+
+	let url = document.getElementById("tokenUriFT").value;
+	let HttpsPrefix = "https://";
+	let IpfsPrefix = "ipfs://";
+	if (url.startsWith(HttpsPrefix)) {
+		fetchLocation = url;
+	} else if (url.startsWith(IpfsPrefix)) {
+		fetchLocation = "https://dweb.link/ipfs/" + url.substr(7, url.length);
+	}
+	//let fetchLocation = "https://" + url;
+	// let fetchLocation ="https://dweb.link/ipfs/" + url;
+	let bcmrUrl;
+	if (url.startsWith(HttpsPrefix)) {
+		bcmrUrl = url.substr(8, url.length);
+	} else if (url.startsWith(IpfsPrefix)) {
+		bcmrUrl = url.substr(7, url.length);
+	}
+	let response = await fetch(fetchLocation);
+	let bcmrContent = await response.text();
+	let document_hash = sha256.hash(utf8ToBin(bcmrContent));
+	let opreturnData1;
+	const chunks1 = ["BCMR", document_hash, bcmrUrl];
+	opreturnData1 = OpReturnData.fromArray(chunks1);
+
 	let name = document.getElementById("tokenName1").value;
 	let symbol = document.getElementById("tokenSymbol1").value;
 	let tokenAmount1 = document.getElementById("tokenAmount1").value;
 	let tokenUri1 = document.getElementById("tokenUri1").value;
 	let tokenDecimals1 = document.getElementById("tokenDecimals1").value;
 	let genesisText1 = document.getElementById("genesisText1").value;
-	let opreturnData;
-	const chunks = [name, symbol, tokenUri1, tokenDecimals1, genesisText1];
-	opreturnData = OpReturnData.fromArray(chunks);
+	let opreturnData2;
+	const chunks2 = [name, symbol, tokenUri1, tokenDecimals1, genesisText1];
+	opreturnData2 = OpReturnData.fromArray(chunks2);
 	const genesisResponse = await wallet.tokenGenesis(
 		{
 			cashaddr: tokenAddress,
 			amount: BigInt(tokenAmount1),
 			value: 800
 		},
-		opreturnData
+		opreturnData1,
+		opreturnData2
 	);
 	const tokenId = genesisResponse.tokenIds[0];
 	const { txId } = genesisResponse;

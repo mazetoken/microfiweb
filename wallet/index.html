@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
-	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
-	<!-- <meta http-equiv="X-Frame-Options" content="deny">
-	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN"> -->
-	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
-	<meta http-equiv="X-Content-Type-Options" content="nosniff">
-	<meta name="referrer" content="no-referrer">
-	<meta name="description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash">
-  	<meta name="web" content="https://microfi.eu/wallet">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta property="og:title" content="Microfi Free Flow Wallet">
-	<meta property="og:description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash">
-	<meta property="og:image" content="https://microfi.eu/img/microfi_wallet.png">
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" /> -->
+	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000" />
+	<!-- <meta http-equiv="X-Frame-Options" content="deny" />
+	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN" /> -->
+	<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+	<meta name="referrer" content="no-referrer" />
+	<meta name="description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash" />
+  	<meta name="web" content="https://microfi.eu/wallet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:title" content="Microfi Free Flow Wallet" />
+	<meta property="og:description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash" />
+	<meta property="og:image" content="https://microfi.eu/img/microfi_wallet.png" />
 	<title>Microfi Free Flow Wallet</title>
-	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_wallet.png">
-	<link rel="stylesheet" href="../styles.css">
+	<link rel="icon" type="image/png" sizes="42x42" href="../img/microfi_wallet.png /">
+	<link rel="stylesheet" href="../styles.css" />
 	<link rel="manifest" href="../manifest.json" />
 	<meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
 	<meta name="theme-color" content="#ffffff" />
-	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.0.js" integrity="sha384-jbtbNOaekggSRRTM2XSOvZnftiETbGejyHUM8wF4ZNGemnBBLsn3VjZfn5blq+iR" crossorigin="anonymous"></script>
-	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.3.0.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
-	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.3.0.js" integrity="sha384-UtzTae75sVzC1dP4PoULkjDsmwYN81TAEv5+bEfV83fXwfPaOQslCgt6qX+xztia" crossorigin="anonymous"></script> -->
+	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.3.js" integrity="sha384-yc2g480sL35tqWN5Ki20D//ZvQI7oUGrHZ0EFaeuJs4tvG6HaVInXqe7RSrHbbSG" crossorigin="anonymous"></script>
+	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.3.3.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.mainnet.cash/contract/contract-2.3.3.js" integrity="sha384-e2Qg1yGqBL3xF5wdtk9reVqeF/Wl0eIgryobojftkQY6SpmNkYBZFxcP1/a15FDz" crossorigin="anonymous"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/@bitjson/qr-code@1.0.2/dist/qr-code.min.js"></script>
 </head>
 <body>
@@ -35,265 +35,317 @@
 		<!-- <p><img src="../img/microfi.png" alt="Microfi" width="420"></p> -->
 	</div>
 	<br>
-	<div>
-	<p>Microfi wallet is under development.<br>
-		This is an open-sourced, non-custodial client-side wallet.<br>Use it for demonstration purposes, at your own risk and with small amount of BCH.<br>
-		For now, token name, symbol, icon and decimal places are not displayed in the wallet.<br><br>
-		Microfi wallet supports "BCMR" and "CRC" CashTokens.<br><br>
-		Delete the wallet from the browser if it is being used on someone else's device<br>or if you want to create a new wallet.
-	</p>
+	<div class="container">
+			<div class="card">
+				<p>Microfi wallet is under development.<br>
+					This is an open-sourced, non-custodial client-side wallet.<br>Use it for demonstration purposes, at your own risk and with small amount of BCH.<br>
+					For now, token name, symbol, icon and decimal places are not displayed in the wallet.<br><br>
+					Microfi wallet supports "BCMR" and "CRC" CashTokens.<br><br>
+					Delete the wallet from the browser if it is being used on someone else's device<br>or if you want to create a new wallet.
+				</p>
+			</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Create or import wallet</button>
 		<div class="content">
-			<p>Create a new wallet:</p>
-			<p><button type="button" class="buttonB" id="create">Create</button></p>
-			<p>Import a wallet from seed phrase or private key:</p>
-			<p><input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase"></p>
-			<p>or</p>
-			<p><input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)"></p>
-			<p><button type="button" class="buttonB" id="import">Import</button></p>
-			<p id="alert1"></p>
+			<div class="card">
+				<p>Create a new wallet:</p>
+				<p><button type="button" class="buttonB" id="create">Create</button></p>
+				<p>Import a wallet from seed phrase or private key:</p>
+				<p><input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase"></p>
+				<p>or</p>
+				<p><input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)"></p>
+				<p><button type="button" class="buttonB" id="import">Import</button></p>
+				<p id="alert1"></p>
+			</div>
+		</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible" id="open">Open wallet</button>
 		<div class="content">
-			<p id="derivation"></p>
-			<p id="mnemonic"></p>
-			<p id="privatekey"></p>
-			<p id="pubKey"></p>
-			<p id="bchaddress"></p>
-			<p><img src id="bchQr" width="200"></p>
-			<p id="bchbalance"></p>
-			<p id="cashtokensaddress"></p>
-			<p><img src id="tokenQr" width="200"></p>
-			<!-- <p id="tokensbalance"></p> -->
-			<p>Tokens:</p>
-			<p id="container1"></p>
-			<p>NFTs:</p>
-			<!-- <p id="nftsbalance"></p> -->
-			<p id="container2"></p>
-			<!-- <p>Wait a few seconds.</p> -->
-			<p><iframe id="exp" width="400" height="400"></iframe></p>
-			<p>To update balance, refresh the page and open the wallet again.</p>
-			<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
+			<div class="card">
+				<p id="derivation"></p>
+				<p id="mnemonic"></p>
+				<p id="privatekey"></p>
+				<p id="pubKey"></p>
+				<p id="bchaddress"></p>
+				<p><img src id="bchQr" width="200"></p>
+				<p id="bchbalance"></p>
+				<p id="cashtokensaddress"></p>
+				<p><img src id="tokenQr" width="200"></p>
+				<!-- <p id="tokensbalance"></p> -->
+				<p>Tokens:</p>
+				<p id="container1"></p>
+				<p>NFTs:</p>
+				<!-- <p id="nftsbalance"></p> -->
+				<p id="container2"></p>
+				<!-- <p>Wait a few seconds.</p> -->
+				<!-- <p><iframe id="exp" width="400" height="400"></iframe></p> -->
+				<p>To update balance, refresh the page and open the wallet again.</p>
+				<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Delete wallet</button>
 		<div class="content">
-			<p><button type="button" class="buttonB" id="clear">Delete</button></p>
-			<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser).</p>
-			<p id="alert2"></p>
+			<div class="card">
+				<p><button type="button" class="buttonB" id="clear">Delete</button></p>
+				<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser).</p>
+				<p id="alert2"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">View token details</button>
 		<div class="content">
-			<p>Paste tokenId (category) below.</p>
-			<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
-			<p>Click View button of yor choice.</p>
-			<p><button type="button" class="buttonB" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
-			<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca Api BCMR</button></p>
-			<p>Choose "CRC" metadata registry from the list.<br>
-				If custom BCMR is selected, paste url in the input field.</p>
-			<select id="bcmrList">
-				<!-- <option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option> -->
-				<option value="https://microfi.eu/.well-known/scalingcashbcmr.json">BCMR for Scalingcash CRC20</option>
-				<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
-				<option value="">custom BCMR</option>
-			</select>
-			<p><input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR"></p>
-			<p><button type="button" class="buttonB" id="viewTokens3">View - BCMR from the list</button></p>
-			<p id="tokencategory"></p>
-			<p id="tokenname"></p>
-			<p id="tokensymbol"></p>
-			<p id="tokendecimals"></p>
-			<p id="tokendescription"></p>
-			<p><img src id="tokenicon" width="200"></p>
-			<p id="explorer"></p>
-			<p id="tokenapi"></p>
+			<div class="card">
+				<p>Paste tokenId (category) below.</p>
+				<p><input id="viewTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p>Click View button of yor choice.</p>
+				<p><button type="button" class="buttonB" id="viewTokens1">View - AuthChain BCMR</button><br>* wait a few seconds</p>
+				<p><button type="button" class="buttonB" id="viewTokens2">View - Paytaca Api BCMR</button></p>
+				<p>Choose "CRC" metadata registry from the list.<br>
+					If custom BCMR is selected, paste url in the input field.</p>
+				<select id="bcmrList">
+					<!-- <option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option> -->
+					<option value="https://microfi.eu/.well-known/scalingcashbcmr.json">BCMR for Scalingcash CRC20</option>
+					<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
+					<option value="">custom BCMR</option>
+				</select>
+				<p><input id="bcmrCustom" type="text" size="50" placeholder="custom BCMR"></p>
+				<p><button type="button" class="buttonB" id="viewTokens3">View - BCMR from the list</button></p>
+				<p id="tokencategory"></p>
+				<p id="tokenname"></p>
+				<p id="tokensymbol"></p>
+				<p id="tokendecimals"></p>
+				<p id="tokendescription"></p>
+				<p><img src id="tokenicon" width="200"></p>
+				<p id="explorer"></p>
+				<p id="tokenapi"></p>
 
-			<!-- <p><input id="viewOpR" type="text" size="50" placeholder="txid"></p>
-			<p><button type="button" class="buttonB" id="decode">View - opReturn</button></p>
-			<p id="decoded"></p> -->
+				<!-- <p><input id="viewOpR" type="text" size="50" placeholder="txid"></p>
+				<p><button type="button" class="buttonB" id="decode">View - opReturn</button></p>
+				<p id="decoded"></p> -->
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Send BCH</button>
 		<div class="content">
-			<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-			<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
-			<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
-			<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
-			<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
-			<p id="bchsent"></p>
+			<div class="card">
+				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
+				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
+				<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
+				<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
+				<p id="bchsent"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Send fungible CashTokens</button>
 		<div class="content">
-			<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-			<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
-			<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
-			<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
-			<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
-			<p id="ftsent"></p>
+			<div class="card">
+				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
+				<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
+				<p id="ftsent"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Send NFT CashTokens</button>
 		<div class="content">
-			<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-			<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
-			<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
-			<select id="capabilityLists">
-				<option value="NFTCapability.none">Immutable</option>
-				<option value="NFTCapability.minting">Minting</option>
-				<option value="NFTCapability.mutable">Mutable</option>
-			</select>
-			<p>* choose NFT capability from the list</p>
-			<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
-			<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
-			<p id="nftsent"></p>
+			<div class="card">
+				<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
+				<select id="capabilityLists">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
+				<p id="nftsent"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Create CashTokens</button>
 		<div class="content">
-			<h3>1. Generate tokenId</h3>
-			<p>Generate a new tokenId (category) for every new token you create.</p>
-			<p><button type="button" class="buttonB" id="createTokenId">Generate</button></p>
-			<p id="generateId"></p>
-	
-			<h3>2. Create fungible tokens (experimental)</h3>
-			<p>These are neither "BCMR" nor "CRC20" CashTokens.<br>Token name, symbol, icon or web uri, decimals and genesis text are on-chain.</p>
-			<p><input id="tokenName1" type="text" size="50" placeholder="name e.g. USED GOLDEN TOOTH"></p>
-			<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol e.g. UGT"></p>
-			<p><input id="tokenAmount1" type="text" size="50" placeholder="amount with decimals e.g. 100000000000000"></p>
-			<p><input id="tokenUri1" type="text" size="50" placeholder="icon or web uri e.g. ipfs://... or https://... (optional)"></p>
-			<p><input id="tokenDecimals1" type="text" size="50" placeholder="decimals e.g. 8"></p>
-			<p><textarea id="genesisText1" type="text" size="50" placeholder="genesis text e.g. Cointelegraph 10/Jan/2024 SEC did not have 2FA enabled (optional)"></textarea></p>
-			<p><button type="button" class="buttonB" id="createTokens">Create tokens</button></p>
-			<p id="createFt"></p>
+			<div class="card">
+				<h3>1. Generate tokenId</h3>
+				<p>Generate a new tokenId (category) for every new token you create.</p>
+				<p><button type="button" class="buttonB" id="createTokenId">Generate</button></p>
+				<p id="generateId"></p>
 
-			<!-- <h3>3. Transfer token authHead</h3>
-			<p>Before sending your new CashToken you need to transfer its authHead to a new wallet.<br>You can add "BCMR" to the authHead later.<br>A new wallet will be created - save the wallet private key.</p>
-			<p><input id="tokenIdA" type="text" size="50" placeholder="tokenId"></p>
-			<p><button type="button" class="buttonB" id="authHeadTransfer">Transfer authHead</button></p>
-			<p id="authTransfer"></p> -->
-			<br>
+				<h3>2. Create BCMR</h3>
+				<p>Create json metadata</p>
+				<p><input id="registryName1" type="text" size="45" placeholder="registry name"></p>
+				<p><input id="registryDescription1" type="text" size="45" placeholder="registry description"></p>
+				<!-- <p><input id="registryUri1" type="text" size="45" placeholder="registry url"></p> -->
+				<p><input id="tokenCategory1" type="text" size="45" placeholder="generated token category / Id"></p>
+				<p><input id="name1" type="text" size="45" placeholder="token name"></p>
+				<p><input id="description1" type="text" size="45" placeholder="token description"></p>
+				<p><input id="decimals1" type="text" size="45" placeholder="token decimals"></p>
+				<p><input id="symbol1" type="text" size="45" placeholder="token symbol1"></p>
+				<p><input id="icon1" type="text" size="45" placeholder="token icon url"></p>
+				<p><input id="website1" type="text" size="45" placeholder="token website url"></p>
+				<p><button type="button" class="buttonB" id="createBCMR">Create json</button></p>
+				<p><button type="button" class="buttonB" id="metadatajson">Download</button></p>
+
+				<p>Encode json metadata to Base64 (optional)</p>
+				<p><input id="metafile" type="file"></p>
+				<p><button type="button" class="buttonB" id="encodeBCMR">Encode</button></p>
+				<p id="encodedBCMR"></p>
+		
+				<h3>3. Create fungible tokens (experimental)</h3>
+				<p>These can be both "BCMR" or "on-chain" CashTokens (two op_return are used).</p>
+				<p><input id="tokenUriFT" type="text" size="50" placeholder="BCMR uri without prefix (https:// or ipfs://) "></p>
+				<p><input id="tokenName1" type="text" size="50" placeholder="name e.g. USED GOLDEN TOOTH"></p>
+				<p><input id="tokenSymbol1" type="text" size="50" placeholder="symbol e.g. UGT"></p>
+				<p><input id="tokenAmount1" type="text" size="50" placeholder="amount with decimals e.g. 100000000000000"></p>
+				<p><input id="tokenUri1" type="text" size="50" placeholder="icon or web uri e.g. ipfs://... or https://... (optional)"></p>
+				<p><input id="tokenDecimals1" type="text" size="50" placeholder="decimals e.g. 8"></p>
+				<p><textarea id="genesisText1" type="text" rows="3" cols="50" placeholder="genesis text e.g. Cointelegraph 10/Jan/2024 SEC did not have 2FA enabled (optional)"></textarea></p>
+				<p><button type="button" class="buttonB" id="createTokens">Create tokens</button></p>
+				<p id="createFt"></p>
+
+				<!-- <h3>4. Transfer token authHead</h3>
+				<p>Before sending your new CashToken you need to transfer its authHead to a new wallet.<br>You can add "BCMR" to the authHead later.<br>A new wallet will be created - save the wallet private key.</p>
+				<p><input id="tokenIdA" type="text" size="50" placeholder="tokenId"></p>
+				<p><button type="button" class="buttonB" id="authHeadTransfer">Transfer authHead</button></p>
+				<p id="authTransfer"></p> -->
+				<br>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Burn tokens</button>
 		<div class="content">
-			<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
-			<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
-			<p><button type="button" class="buttonB" id="burnFt">Burn fungible tokens</button></p>
-			<p id="burnFtTx"></p>
-			<br>
-			<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
-			<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
-			<select id="capabilityList">
-				<option value="NFTCapability.none">Immutable</option>
-				<option value="NFTCapability.minting">Minting</option>
-				<option value="NFTCapability.mutable">Mutable</option>
-			</select>
-			<p>* choose NFT capability from the list</p>
-			<p><button type="button" class="buttonB" id="burnNft">Burn NFT</button></p>
-			<p id="burnNftTx"></p>
+			<div class="card">
+				<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
+				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
+				<p><button type="button" class="buttonB" id="burnFt">Burn fungible tokens</button></p>
+				<p id="burnFtTx"></p>
+				<br>
+				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
+				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
+				<select id="capabilityList">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><button type="button" class="buttonB" id="burnNft">Burn NFT</button></p>
+				<p id="burnNftTx"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Create or sweep a paper wallet</button>
 		<div class="content">
-			<p>To create a paper wallet go <a href="https://microfi.eu/paperwallet">here</a>.</p>
-			<p>Before sweeping, check the balance of the paper wallet.<br> 
-				You can create a wallet or import an existing wallet into the Microfi wallet and paste the BCH address into the recipient field,<br>
-				or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
-			</p>
-			<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
-			<p><button type="button" class="buttonB" id="balancePw">Check paper wallet balance</button></p>
-			<p id="bchbalancePw"></p>
-			<p id="tokenbalancePw"></p>
-			<br>
-			<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-			<p><button type="button" class="buttonB" id="sweepPw">Sweep CashTokens</button></p>
-			<p><button type="button" class="buttonB" id="sweepPwBch">Sweep only BCH</button></p>
-			<p id="swept"></p>
+			<div class="card">
+				<p>To create a paper wallet go <a href="https://microfi.eu/paperwallet">here</a>.</p>
+				<p>Before sweeping, check the balance of the paper wallet.<br> 
+					You can create a wallet or import an existing wallet into the Microfi wallet and paste the BCH address into the recipient field,<br>
+					or simply use your favorite BCH wallet address (which supports CashTokens) in the recipient field.
+				</p>
+				<p><input id="sweepPk" type="text" size="50" placeholder="Paste a paper wallet private key (WIF) here"></p>
+				<p><button type="button" class="buttonB" id="balancePw">Check paper wallet balance</button></p>
+				<p id="bchbalancePw"></p>
+				<p id="tokenbalancePw"></p>
+				<br>
+				<p><input id="recipientAddress" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
+				<p><button type="button" class="buttonB" id="sweepPw">Sweep CashTokens</button></p>
+				<p><button type="button" class="buttonB" id="sweepPwBch">Sweep only BCH</button></p>
+				<p id="swept"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Watch wallet</button>
 		<div class="content">
-			<p><input id="wAddress" type="text" size="50" placeholder="bitcoincash:q..."></p>
-			<p><button type="button" class="buttonB" id="spy">Watch wallet balances</button></p>
-			<p id="wbchbalance"></p>
-			<p id="wtokens"></p>
-			<p id="wnfts"></p>
+			<div class="card">
+				<p><input id="wAddress" type="text" size="50" placeholder="bitcoincash:q..."></p>
+				<p><button type="button" class="buttonB" id="spy">Watch wallet balances</button></p>
+				<p id="wbchbalance"></p>
+				<p id="wtokens"></p>
+				<p id="wnfts"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Payment request</button>
 		<div class="content">
-			<p>Payment request works with Bitcoin Cash</p>
-			<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
-			<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
-			<p><input id="label" type="text" size="50" placeholder="label"></p>
-			<p><input id="message" type="text" size="50" placeholder="message"></p>
-			<p><button type="button" class="buttonB" id="createPaymentRequest">Create payment url</button></p>
-			<p><qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code></p>
-			<p id="payurl"></p>
+			<div class="card">
+				<p>Payment request works with Bitcoin Cash</p>
+				<p><input id="address" type="text" size="50" placeholder="address e.g. bitcoincash:qzud8n6jjjukefrswrqlvwwk8l6wv7435yg56xw20s"></p>
+				<p><input id="amount" type="text" size="50" placeholder="amount e.g. 0.0001"></p>
+				<p><input id="label" type="text" size="50" placeholder="label"></p>
+				<p><input id="message" type="text" size="50" placeholder="message"></p>
+				<p><button type="button" class="buttonB" id="createPaymentRequest">Create payment url</button></p>
+				<p><qr-code id="qr1" style="width: 200px; height: 200px; margin: auto; background-color: white;"></qr-code></p>
+				<p id="payurl"></p>
 
-			<p>Scan the Qr-code or copy and paste url below</p>
-			<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
-			<p><button type="button" class="buttonB" id="usePaymentRequest">Use payment url</button><br>* with an external wallet</p>
-			<p id="usepayurl"></p>
+				<p>Scan the Qr-code or copy and paste url below</p>
+				<p><input id="upayurl" type="text" size="50" placeholder="payment request url"></p>
+				<p><button type="button" class="buttonB" id="usePaymentRequest">Use payment url</button><br>* with an external wallet</p>
+				<p id="usepayurl"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Sign or verify a message</button>
 		<div class="content">
-			<p><input id="smessage" type="text" size="50" placeholder="message"></p>
-			<p><button type="button" class="buttonB" id="signM">Sign a message</button><br>* with the Microfi wallet</p>
-			<p id="signMessage"></p>
-			<br>
-			<p>To verify signature paste message above and BCH address and signatiure below.</p>
-			<p><input id="vaddress" type="text" size="50" placeholder="signing address"></p>
-			<p><input id="signH" type="text" size="50" placeholder="signature"></p>
-			<p><button type="button" class="buttonB" id="verifyM">Verify a message</button></p>
-			<p id="verifyMessage"></p>
+			<div class="card">
+				<p><input id="smessage" type="text" size="50" placeholder="message"></p>
+				<p><button type="button" class="buttonB" id="signM">Sign a message</button><br>* with the Microfi wallet</p>
+				<p id="signMessage"></p>
+				<br>
+				<p>To verify signature paste message above and BCH address and signatiure below.</p>
+				<p><input id="vaddress" type="text" size="50" placeholder="signing address"></p>
+				<p><input id="signH" type="text" size="50" placeholder="signature"></p>
+				<p><button type="button" class="buttonB" id="verifyM">Verify a message</button></p>
+				<p id="verifyMessage"></p>
+			</div>
 		</div>
 	</div>
 	<br>
-	<div>
+	<div class="container">
 		<button type="button" class="collapsible">Microfi Notary System</button>
 		<div class="content">
-			<p>To notarize a document (file) with the Microfi wallet, 0.01 XMI CashTokens and a few BCH satoshi for a transaction fee are required.<br>
-				Your document (file) won`t be uploaded anywhere.
-			</p>
-			<p><input id="optitle" type="text" size="50" placeholder="filename"></p>
-			<p><input id="opfile" type="file"></p>
-			<p><button type="button" class="buttonB" id="notarize">Notarize</button></p>
-			<p>Wait a few seconds. Save txId, document hash and wallet signature of document hash.</p>
-			<p id="notarized"></p>
-			<p id="dHash"></p>
-			<p id="signature"></p>
+			<div class="card">
+				<p>To notarize a document (file) with the Microfi wallet, 0.01 XMI CashTokens and a few BCH satoshi for a transaction fee are required.<br>
+					Your document (file) won`t be uploaded anywhere.
+				</p>
+				<p><input id="optitle" type="text" size="50" placeholder="filename"></p>
+				<p><input id="opfile" type="file"></p>
+				<p><button type="button" class="buttonB" id="notarize">Notarize</button></p>
+				<p>Wait a few seconds. Save txId, document hash and wallet signature of document hash.</p>
+				<p id="notarized"></p>
+				<p id="dHash"></p>
+				<p id="signature"></p>
+			</div>
 		</div>
 	</div>
 	<!-- <br>
@@ -310,7 +362,7 @@
 	</div> -->
 	<br><br>
 	<footer>
-		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize wallet</a> | <a href="https://bcmr.paytaca.com">Paytaca api</a> | <a href="https://explorer.salemkode.com">SalemKode explorer</a></p>
+		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize wallet</a> | <a href="https://bcmr.paytaca.com/">Paytaca BCMR indexer</a></p>
 		<br>
 		<p>This website can be installed as Progressive Web Application (PWA) and added to mobile home screen as an app.</p>
 		<p>Microfi Free Flow is not Crypto-Asset Service Provider.<br>Users can download the source code and run it locally.</p>
@@ -323,5 +375,6 @@
 	<script src="../js/collapsible.js"></script>
 	<script src="../js/wallet.js"></script>
 	<script src="../js/payment.js"></script>
+	<script src="../js/bcmrmetadata.js"></script>
 </body>
 </html>

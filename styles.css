@@ -33,9 +33,9 @@ a:visited {
 	background-color: #212121;
 	color: whitesmoke;
 	margin: 10px;
-	border-radius: 10px;
+	border-radius: 12px;
 	overflow: hidden;
-	width: 420px;
+	width: 700px;
 	height: auto;
 }
 .card img {
@@ -45,6 +45,7 @@ a:visited {
 	text-align: center;
 	font-size: 16px;
 	margin: 10px;
+	border: none;
 }
 .buttonA {
 	background-color: #212121;
@@ -62,7 +63,7 @@ a:visited {
 	width: 70%;
 }
 .buttonB {
-	background-color: #212121;
+	background-color: black;
 	border: none;
 	border-radius: 12px;
 	color: #ffffff;
@@ -94,9 +95,14 @@ a:visited {
 	display: none;
 	overflow: hidden;
 	padding: 0 16px;
-	overflow: hidden;
 }
 @media screen and (max-width: 600px) {
+	.card {
+		max-width: 100%;
+	}
+	p img {
+		max-width: 95%;
+	}
 }
 
 @media print {
