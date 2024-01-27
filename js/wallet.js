@@ -49,19 +49,42 @@ document.getElementById("open").onclick = async () => {
 	const jsonString1 = JSON.stringify(tokenBalance); 
 	const jsonObject1 = JSON.parse(jsonString1);
 	const container1 = document.getElementById("container1");
+
 	for (const key in jsonObject1) {
+		const authChain = await BCMR.buildAuthChain(
+			{
+				transactionHash: key,
+				followToHead: true
+			}
+		)
 	if (jsonObject1.hasOwnProperty(key)) {	
 		const keyElement = document.createElement("span");
 
-		let apiUrl = "https://bcmr.paytaca.com/api/tokens/" + key;
-		fetch(apiUrl)
-		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+		if (authChain.at(-1)) {	
+		try {
+			await BCMR.addMetadataRegistryFromUri(authChain.at(-1).httpsUrl);
+			let tokenInfo = BCMR.getTokenInfo(key);
+			keyElement.textContent = tokenInfo.token.symbol + " " + key + ": ";
+		} catch (error) { alert(error) }
+		} else if (authChain == false) {
+			try {
+				await BCMR.addMetadataRegistryFromUri("https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json");
+				let tokenInfo = BCMR.getTokenInfo(key);
+				keyElement.textContent = tokenInfo.token.symbol + " " + key + ": ";
+			} catch (error) { alert(error) }
+		}
+
+		//let apiUrl = "https://bcmr.paytaca.com/api/tokens/" + key;
+		//fetch(apiUrl)
+		//.then(response => response.json())
+		//.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
 		
-		let apiUrl1 = "https://microfi.eu/.well-known/scalingcashbcmr.json";
-		await BCMR.addMetadataRegistryFromUri(apiUrl1);
-		let tokenInfo = BCMR.getTokenInfo(key);
-		keyElement.textContent = tokenInfo.token.symbol + " " + key + ": ";
+		//let apiUrl1 = "https://microfi.eu/.well-known/scalingcashbcmr.json";
+		//let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
+		//await BCMR.addMetadataRegistryFromUri(apiUrl);
+		//let tokenInfo = BCMR.getTokenInfo(key);
+		//keyElement.textContent = tokenInfo.token.symbol + " " + key + ": ";
+		//}
 
 		//keyElement.textContent = key + ': ';
 		const valueElement = document.createElement("span");
