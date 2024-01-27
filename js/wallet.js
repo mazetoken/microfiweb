@@ -58,13 +58,12 @@ document.getElementById("open").onclick = async () => {
 		.then(response => response.json())
 		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
 		
-		let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		await BCMR.addMetadataRegistryFromUri(apiUrl1);
-		let tokenInfo = BCMR.getTokenInfo(key);
-		let data = tokenInfo;
-		keyElement.textContent = data.token.symbol + " " + key + ": ";
+		//let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
+		//await BCMR.addMetadataRegistryFromUri(apiUrl1);
+		//let data = BCMR.getTokenInfo(key);
+		//keyElement.textContent = data.token.symbol + " " + key + ": ";
 
-		//keyElement.textContent = key + ': ';
+		keyElement.textContent = key + ': ';
 		const valueElement = document.createElement("span");
 		valueElement.textContent = jsonObject1[key];
 		const lineBreak = document.createElement("br");
@@ -87,11 +86,10 @@ document.getElementById("open").onclick = async () => {
 		.then(response => response.json())
 		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
 
-		let apiUrl3 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		await BCMR.addMetadataRegistryFromUri(apiUrl3);
-		let tokenInfo = BCMR.getTokenInfo(key);
-		let data = tokenInfo;
-		keyElement.textContent = data.token.symbol + " " + key + ": ";
+		//let apiUrl3 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
+		//await BCMR.addMetadataRegistryFromUri(apiUrl3);
+		//let data = BCMR.getTokenInfo(key);
+		//keyElement.textContent = data.token.symbol + " " + key + ": ";
 
 		keyElement.textContent = key + ": ";
 		const valueElement = document.createElement("span");
