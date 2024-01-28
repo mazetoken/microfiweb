@@ -45,63 +45,7 @@ document.getElementById("open").onclick = async () => {
 	let tokenAddress = await wallet.getTokenDepositAddress();
 	let tokenBalance = await wallet.getAllTokenBalances();
 	let nftBalance = await wallet.getAllNftTokenBalances();
-
-	const jsonString1 = JSON.stringify(tokenBalance); 
-	const jsonObject1 = JSON.parse(jsonString1);
-	const container1 = document.getElementById("container1");
-	for (const key in jsonObject1) {
-	if (jsonObject1.hasOwnProperty(key)) {	
-		const keyElement = document.createElement("span");
-
-		let apiUrl = "https://bcmr.paytaca.com/api/tokens/" + key;
-		fetch(apiUrl)
-		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
-		
-		//let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		//await BCMR.addMetadataRegistryFromUri(apiUrl1);
-		//let data = BCMR.getTokenInfo(key);
-		//keyElement.textContent = data.token.symbol + " " + key + ": ";
-
-		keyElement.textContent = key + ': ';
-		const valueElement = document.createElement("span");
-		valueElement.textContent = jsonObject1[key];
-		const lineBreak = document.createElement("br");
-		container1.appendChild(keyElement);
-		container1.appendChild(valueElement);
-		container1.appendChild(lineBreak);
-	};
-	};
 	
-
-	const jsonString2 = JSON.stringify(nftBalance); 
-	const jsonObject2 = JSON.parse(jsonString2);
-	const container2 = document.getElementById("container2");
-	for (const key in jsonObject2) {
-	if (jsonObject2.hasOwnProperty(key)) {
-		const keyElement = document.createElement("span");
-
-		let apiUrl2 = "https://bcmr.paytaca.com/api/tokens/" + key;
-		fetch(apiUrl2)
-		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
-
-		//let apiUrl3 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		//await BCMR.addMetadataRegistryFromUri(apiUrl3);
-		//let data = BCMR.getTokenInfo(key);
-		//keyElement.textContent = data.token.symbol + " " + key + ": ";
-
-		keyElement.textContent = key + ": ";
-		const valueElement = document.createElement("span");
-		valueElement.textContent = jsonObject2[key];
-		const lineBreak = document.createElement("br");
-		container2.appendChild(keyElement);
-		container2.appendChild(valueElement);
-		container2.appendChild(lineBreak);
-	};
-	};
-	
-
 	document.getElementById("derivation").textContent = "Derivation path: " + wallet.derivationPath;
 	document.getElementById("mnemonic").textContent = "Seed phrase: " + wallet.mnemonic;
 	document.getElementById("privatekey").textContent ="Private key: " + wallet.privateKeyWif;
@@ -114,6 +58,66 @@ document.getElementById("open").onclick = async () => {
 	//document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
 	//document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
 	//document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
+	
+	const jsonString1 = JSON.stringify(tokenBalance); 
+	const jsonObject1 = JSON.parse(jsonString1);
+	const container1 = document.getElementById("container1");
+	for (let key in jsonObject1) {
+	if (jsonObject1.hasOwnProperty(key)) {	
+		let keyElement = document.createElement("span");
+
+		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
+		.then(response => response.json())
+		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+
+		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
+		.then(response => response.json())
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + key + ": ");
+		
+		//let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
+		//await BCMR.addMetadataRegistryFromUri(apiUrl1);
+		//let data = BCMR.getTokenInfo(key);
+		//keyElement.textContent = data.token.symbol + " " + key + ": ";
+
+		keyElement.textContent = key + ': ';
+		let valueElement = document.createElement("span");
+		valueElement.textContent = jsonObject1[key];
+		const lineBreak = document.createElement("br");
+		container1.appendChild(keyElement);
+		container1.appendChild(valueElement);
+		container1.appendChild(lineBreak);
+	};
+	};
+	
+	const jsonString2 = JSON.stringify(nftBalance); 
+	const jsonObject2 = JSON.parse(jsonString2);
+	const container2 = document.getElementById("container2");
+	for (let key in jsonObject2) {
+	if (jsonObject2.hasOwnProperty(key)) {
+		let keyElement = document.createElement("span");
+
+		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
+		.then(response => response.json())
+		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+
+		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
+		.then(response => response.json())
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + key + ": ");
+
+		//let apiUrl3 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
+		//await BCMR.addMetadataRegistryFromUri(apiUrl3);
+		//let data = BCMR.getTokenInfo(key);
+		//keyElement.textContent = data.token.symbol + " " + key + ": ";
+
+		keyElement.textContent = key + ": ";
+		let valueElement = document.createElement("span");
+		valueElement.textContent = jsonObject2[key];
+		const lineBreak = document.createElement("br");
+		container2.appendChild(keyElement);
+		container2.appendChild(valueElement);
+		container2.appendChild(lineBreak);
+	};
+	};
 
 	} catch (error) { alert(error) }
 };
