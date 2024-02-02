@@ -29,7 +29,7 @@
 	</div>
 	<div class="container">
 		<p>Microfi Telegram Wallet is under development.<br>
-			Use it for demonstration purposes, at your own risk and with small amount of BCH.<br>
+			Use it for demonstration purposes at your own risk and with small amount of BCH.<br>
 			For now, token icon and decimal places are not displayed in the wallet.<br>
 			Microfi wallet supports "BCMR" and "CRC" CashTokens.<br>
 			Delete the wallet from the browser if it is being used on someone else's device<br>or if you want to create a new wallet.
@@ -133,6 +133,25 @@
 				<p>* choose NFT capability from the list</p>
 				<p><button type="button" class="buttonB" id="burnNft">Burn NFT</button></p>
 				<p id="burnNftTx"></p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<button type="button" class="collapsible">Generate CashTokens metadata (BCMR)</button>
+		<div class="content">
+			<div class="card">
+				<p><input id="registryName1" type="text" size="45" placeholder="registry name (e.g. Self-hosted BCMR)"></p>
+				<p><input id="registryDescription1" type="text" size="45" placeholder="registry description (e.g. BCMR for TEST CashToken)"></p>
+				<p><input id="tokenCategory1" type="text" size="45" placeholder="tokenId (category)"></p>
+				<p><input id="name1" type="text" size="45" placeholder="token name (e.g. TEST TOKEN)"></p>
+				<p><input id="description1" type="text" size="45" placeholder="token description (e.g. This is my CashToken)"></p>
+				<p><input id="decimals1" type="text" size="45" placeholder="token decimals (e.g. 8)"></p>
+				<p><input id="symbol1" type="text" size="45" placeholder="token symbol (e.g. TEST)"></p>
+				<p><input id="icon1" type="text" size="45" placeholder="token icon url (https://... or ipfs://...)"></p>
+				<p><input id="website1" type="text" size="45" placeholder="token website url (https://...)"></p>
+				<p><button type="button" class="buttonB" id="createBCMR">Create metadata json</button></p>
+				<p><button type="button" class="buttonB" id="metadatajson">Download</button></p>
 			</div>
 		</div>
 	</div>
