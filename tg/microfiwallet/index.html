@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000" />
+	<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+	<meta name="referrer" content="no-referrer" />
+	<meta name="description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash" />
+  	<meta name="web" content="https://microfi.eu/wallet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:title" content="Microfi Free Flow Telegram Wallet" />
+	<meta property="og:description" content="Microfi Free Flow CashTokens and Applications on Bitcoin Cash" />
+	<meta property="og:image" content="https://microfi.eu/img/microfi_wallet.png" />
+	<title>Microfi Free Flow Telegram Wallet</title>
+	<link rel="icon" type="image/png" sizes="42x42" href="../../img/microfi_wallet.png /">
+	<link rel="stylesheet" href="../../styles.css" />
+	<link rel="manifest" href="../../manifest.json" />
+	<meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
+	<meta name="theme-color" content="#ffffff" />
+	<script defer src="https://cdn.mainnet.cash/mainnet-2.3.7.js" integrity="sha384-xyhUcEqqWmKMdKok/BZDNFudd2UJ63/gkzbaUdWW+Eecp0qnFOfYetEr3IzTE98C" crossorigin="anonymous"></script>
+	<script src="https://cdn.mainnet.cash/indexeddb-storage/indexeddb-storage-2.3.7.js" integrity="sha384-qqVFgmZr8EaZywDSVt4zYf435HWx1HNwmQlqIvIoMDLI/4shAMmHrr/FQooKY75N" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>
+		<h1>Microfi Free Flow Project</h1>
+		<p><img src="../../img/bitcoin-cash-logo.png" alt="BCH logo" width="200"></p>
+    	<h3>Bitcoin Cash CashTokens Telegram Wallet</h3>
+	</div>
+	<div class="container">
+		<p>Microfi Telegram Wallet is under development.<br>
+			Use it for demonstration purposes, at your own risk and with small amount of BCH.<br>
+			For now, token icon and decimal places are not displayed in the wallet.<br>
+			Microfi wallet supports "BCMR" and "CRC" CashTokens.<br>
+			Delete the wallet from the browser if it is being used on someone else's device<br>or if you want to create a new wallet.
+		</p>
+	</div>
+	<br>
+	<div class="container">
+		<button type="button" class="collapsible">Create or import wallet</button>
+		<div class="content">
+			<div class="card">
+				<p>Create a new wallet:</p>
+				<p><button type="button" class="buttonB" id="create">Create</button></p>
+				<p>Import a wallet from seed phrase or private key:</p>
+				<p><input id="importSeedPhrase" type="text" size="50" placeholder="seed phrase"></p>
+				<p>or</p>
+				<p><input id="importPrivateKey" type="text" size="50" placeholder="private key (WIF)"></p>
+				<p><button type="button" class="buttonB" id="import">Import</button></p>
+				<p id="alert1"></p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<button type="button" class="collapsible" id="open">Open wallet</button>
+		<div class="content">
+			<div class="card">
+				<p id="derivation"></p>
+				<p id="mnemonic"></p>
+				<p id="privatekey"></p>
+				<p id="pubKey"></p>
+				<p id="bchaddress"></p>
+				<p><img src id="bchQr" width="200"></p>
+				<p id="bchbalance"></p>
+
+				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
+				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
+				<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
+				<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
+				<p id="bchsent"></p>
+
+				<p id="cashtokensaddress"></p>
+				<p><img src id="tokenQr" width="200"></p>
+				<p>Tokens:</p>
+				<p id="container1"></p>
+				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
+				<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
+				<p id="ftsent"></p>
+
+				<p>NFTs:</p>
+				<p id="container2"></p>
+				<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
+				<select id="capabilityLists">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
+				<p id="nftsent"></p>
+				<br>
+				<p>To update balance, refresh the page and open the wallet again.</p>
+				<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<button type="button" class="collapsible">Delete wallet</button>
+		<div class="content">
+			<div class="card">
+				<p><button type="button" class="buttonB" id="clear">Delete</button></p>
+				<p>The wallet will be deleted<br>(the seed phrase / private key will be removed from the local storage of the browser).</p>
+				<p id="alert2"></p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<button type="button" class="collapsible">Burn tokens</button>
+		<div class="content">
+			<div class="card">
+				<p><input id="burnTokenId" type="text" size="50" placeholder="tokenId (category)"></p>
+				<p><input id="burnAmount" type="text" size="50" placeholder="amount"></p>
+				<p><button type="button" class="buttonB" id="burnFt">Burn fungible tokens</button></p>
+				<p id="burnFtTx"></p>
+				<br>
+				<p><input id="burnNftId" type="text" size="50" placeholder="NFT tokenId (category)"></p>
+				<p><input id="burnCommitment" type="text" size="50" placeholder="NFT commitment (hex)"></p>
+				<select id="capabilityList">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><button type="button" class="buttonB" id="burnNft">Burn NFT</button></p>
+				<p id="burnNftTx"></p>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<footer>
+		<p><a href="https://microfi.eu"><img src="../../img/microfi_icon.png" alt="Microfi" width="36"></a></p>
+		<p>Microfi Free Flow Project, 2023-2024</p>
+	</footer>
+	<br>
+	<script src="../../js/collapsible.js"></script>
+	<script src="../../js/tgwallet.js"></script>
+	<script src="../../js/bcmrmetadata.js"></script>
+</body>
+</html>
