@@ -14,7 +14,9 @@ const assets = [
   "./wallet/index.html",
   "./paperwallet/index.html",
   "./js/collapsible.js",
-  "./js/wallet.js"
+  "./js/wallet.js",
+  "./js/tgwallet.js",
+  "./js/bcmrmetadata.js"
 ]
 
 self.addEventListener("install", installEvent => {
