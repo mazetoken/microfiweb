@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" /> -->
 	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000" />
-	<!-- <meta http-equiv="X-Frame-Options" content="deny" />
-	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN" /> -->
 	<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
 	<meta name="referrer" content="no-referrer" />
@@ -66,6 +63,7 @@
 		<button type="button" class="collapsible" id="open">Open wallet</button>
 		<div class="content">
 			<div class="card">
+				<div>
 				<p id="derivation"></p>
 				<p id="mnemonic"></p>
 				<p id="privatekey"></p>
@@ -73,16 +71,46 @@
 				<p id="bchaddress"></p>
 				<p><img src id="bchQr" width="200"></p>
 				<p id="bchbalance"></p>
+				</div>
+				<div>
+				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
+				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
+				<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
+				<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
+				<p id="bchsent"></p>
+				</div>
+				<div>	
 				<p id="cashtokensaddress"></p>
 				<p><img src id="tokenQr" width="200"></p>
-				<!-- <p id="tokensbalance"></p> -->
+				</div>
+				<div>
 				<p>Tokens:</p>
 				<p id="container1"></p>
+				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
+				<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
+				<p id="ftsent"></p>
+				</div>
+				<div>
 				<p>NFTs:</p>
-				<!-- <p id="nftsbalance"></p> -->
 				<p id="container2"></p>
-				<!-- <p>Wait a few seconds.</p> -->
-				<!-- <p><iframe id="exp" width="400" height="400"></iframe></p> -->
+				<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
+				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
+				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
+				<select id="capabilityLists">
+					<option value="NFTCapability.none">Immutable</option>
+					<option value="NFTCapability.minting">Minting</option>
+					<option value="NFTCapability.mutable">Mutable</option>
+				</select>
+				<p>* choose NFT capability from the list</p>
+				<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
+				<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
+				<p id="nftsent"></p>
+				</div>
+				<br>
 				<p>To update balance, refresh the page and open the wallet again.</p>
 				<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
 			</div>
@@ -112,7 +140,6 @@
 				<p>Choose "CRC" metadata registry from the list.<br>
 					If custom BCMR is selected, paste url in the input field.</p>
 				<select id="bcmrList">
-					<!-- <option value="https://microfi.eu/.well-known/crc20tobcmr.json">CRC20-to-BCMR</option> -->
 					<option value="https://microfi.eu/.well-known/scalingcashbcmr.json">BCMR for Scalingcash CRC20</option>
 					<option value="https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json">BCMR for Dark Labs CRC20 and CRC721</option>
 					<option value="">custom BCMR</option>
@@ -127,58 +154,6 @@
 				<p><img src id="tokenicon" width="200"></p>
 				<p id="explorer"></p>
 				<p id="tokenapi"></p>
-
-				<!-- <p><input id="viewOpR" type="text" size="50" placeholder="txid"></p>
-				<p><button type="button" class="buttonB" id="decode">View - opReturn</button></p>
-				<p id="decoded"></p> -->
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container">
-		<button type="button" class="collapsible">Send BCH</button>
-		<div class="content">
-			<div class="card">
-				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
-				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
-				<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
-				<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
-				<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
-				<p id="bchsent"></p>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container">
-		<button type="button" class="collapsible">Send fungible CashTokens</button>
-		<div class="content">
-			<div class="card">
-				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-				<p><input id="sendTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><input id="sendAmountToken" type="text" size="50" placeholder="amount with decimals e.g. 10000 is 100 with 2 decimals"></p>
-				<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
-				<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
-				<p id="ftsent"></p>
-			</div>
-		</div>
-	</div>
-	<br>
-	<div class="container">
-		<button type="button" class="collapsible">Send NFT CashTokens</button>
-		<div class="content">
-			<div class="card">
-				<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
-				<p><input id="sendNftTokenId" type="text" size="50" placeholder="tokenId"></p>
-				<p><input id="nftCommitment" type="text" size="50" placeholder="NFT commitment"></p>
-				<select id="capabilityLists">
-					<option value="NFTCapability.none">Immutable</option>
-					<option value="NFTCapability.minting">Minting</option>
-					<option value="NFTCapability.mutable">Mutable</option>
-				</select>
-				<p>* choose NFT capability from the list</p>
-				<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
-				<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
-				<p id="nftsent"></p>
 			</div>
 		</div>
 	</div>
@@ -364,6 +339,7 @@
 		<p>Credits:<br><a href="https://mainnet.cash">mainnet.cash</a> | <a href="https://cashonize.com">Cashonize wallet</a> | <a href="https://bcmr.paytaca.com/">Paytaca BCMR indexer</a></p>
 		<br>
 		<p>This website can be installed as Progressive Web Application (PWA) and added to mobile home screen as an app.</p>
+		<br>
 		<p>Microfi Free Flow is not Crypto-Asset Service Provider.<br>Users can download the source code and run it locally.</p>
 		<p>Created for fun by<br><img src="../img/mtu.png" alt="MTU" width="36"> Maze Tokens Underworld, 2020-2024</p>
 		<br>

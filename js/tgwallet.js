@@ -107,11 +107,11 @@ document.getElementById("open").onclick = async () => {
 
 		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
 		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": " + "|");
+		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": ");
 
 		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
 		.then(response => response.json())
-		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": " + "|");
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": ");
 
 		keyElement.textContent = key + ': ';
 		let valueElement = document.createElement("span");
@@ -153,11 +153,11 @@ document.getElementById("open").onclick = async () => {
 
 		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
 		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": " + "|");
+		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": ");
 
 		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
 		.then(response => response.json())
-		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": " + "|");
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": ");
 
 		keyElement.textContent = key + ": ";
 		let valueElement = document.createElement("span");

@@ -4,27 +4,30 @@ Object.assign(globalThis, await __mainnetPromise);
 Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
 Config.EnforceCashTokenReceiptAddresses = true;
 BaseWallet.StorageProvider = IndexedDBProvider;
-
 BigInt.prototype.toJSON = function () {
 	return this.toString();
 };
 
 document.getElementById("create").onclick = async () => {
+	try {
 	const wallet = await Wallet.named("microfi");
 	localStorage.setItem("seed", wallet.mnemonic);
 	localStorage.setItem("wif", wallet.privateKeyWif);
 	alert("Done. You can open the wallet. Save the seed phrase and private key.");
 	document.getElementById("alert1").textContent = "Done. You can open the wallet. Save the seed phrase and private key.";
+	} catch (error) { alert(error) }
 };
 
 document.getElementById("import").onclick = async () => {
+	try {
 	const seedphrase = document.getElementById("importSeedPhrase").value;
 	localStorage.setItem("seed", seedphrase);
 	const privatekey = document.getElementById("importPrivateKey").value;
 	localStorage.setItem("wif", privatekey);
 	alert("Done. The wallet is imported. You can open the wallet.");
 	document.getElementById("alert1").textContent = "Done. The wallet is imported. You can open the wallet.";
-}
+	} catch (error) { alert(error) }
+};
 
 document.getElementById("open").onclick = async () => {
 	try {
@@ -53,11 +56,46 @@ document.getElementById("open").onclick = async () => {
 	document.getElementById("bchaddress").textContent = "BCH address: " + bchAddress;
 	document.getElementById("bchQr").src = wallet.getDepositQr().src;
 	document.getElementById("bchbalance").textContent = "BCH balance: " + JSON.stringify(bchBalance);
+
+	document.getElementById("sendBCH").onclick = async () => {
+	try {
+	let bchAddress1 = document.getElementById("sendAddr").value;
+	let bchAmount = document.getElementById("sendAmount").value;
+	let opMessage = document.getElementById("opmessage").value;
+	let opreturnData = OpReturnData.from(opMessage);
+	const { txId } = await wallet.send([
+		{
+			cashaddr: bchAddress1,
+			value: bchAmount,
+			unit: "sats"
+		},
+		opreturnData,
+	]);
+	document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
+	} catch (error) { alert(error) }
+	};
+	document.getElementById("sendBCHmax").onclick = async () => {
+		try {
+		let bchAddress2 = document.getElementById("sendAddr").value;
+		let bchBalanceMax = await wallet.getBalance();
+		bchBalanceObj = Object.values({...bchBalanceMax});
+		let bchBalMax = bchBalanceObj[1];
+		let opMessage = document.getElementById("opmessage").value;
+		let opreturnData = OpReturnData.from(opMessage);
+		const { txId } = await wallet.send([
+			{
+				cashaddr: bchAddress2,
+				value: bchBalMax - 546,
+				unit: "sats"
+			},
+			opreturnData,
+		]);
+		document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
+		} catch (error) { alert(error) }
+	};
+
 	document.getElementById("cashtokensaddress").textContent = "CashTokens address: " + tokenAddress;
 	document.getElementById("tokenQr").src = wallet.getTokenDepositQr().src;
-	//document.getElementById("tokensbalance").textContent = "tokenId(category): amount: " + JSON.stringify(tokenBalance, null, "\t");
-	//document.getElementById("nftsbalance").textContent = "NFT Id(category): amount: " + JSON.stringify(nftBalance, null, "\t");
-	//document.getElementById("exp").src = "https://explorer.salemkode.com/address/" + bchAddress;
 	
 	const jsonString1 = JSON.stringify(tokenBalance); 
 	const jsonObject1 = JSON.parse(jsonString1);
@@ -68,16 +106,11 @@ document.getElementById("open").onclick = async () => {
 
 		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
 		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": ");
 
 		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
 		.then(response => response.json())
-		.then(data1 => keyElement.textContent = data1.token.symbol + " " + key + ": ");
-		
-		//let apiUrl1 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		//await BCMR.addMetadataRegistryFromUri(apiUrl1);
-		//let data = BCMR.getTokenInfo(key);
-		//keyElement.textContent = data.token.symbol + " " + key + ": ";
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": ");
 
 		keyElement.textContent = key + ': ';
 		let valueElement = document.createElement("span");
@@ -87,6 +120,27 @@ document.getElementById("open").onclick = async () => {
 		container1.appendChild(valueElement);
 		container1.appendChild(lineBreak);
 	};
+	};
+
+	document.getElementById("sendTokens").onclick = async () => {
+		try {
+		let tokenAddress1 = document.getElementById("sendAddrToken1").value;
+		let tokenAmount = document.getElementById("sendAmountToken").value;
+		let token = document.getElementById("sendTokenId").value;
+		let opMessage1 = document.getElementById("opmessage1").value;
+		let opreturnData1 = OpReturnData.from(opMessage1);
+		const { txId } = await wallet.send([ new TokenSendRequest(
+			{
+				cashaddr: tokenAddress1,
+				amount: BigInt(tokenAmount),
+				tokenId: token,
+				value: 800
+			}
+		),
+		opreturnData1,
+		]);
+		document.getElementById("ftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
+		} catch (error) { alert(error) }
 	};
 	
 	const jsonString2 = JSON.stringify(nftBalance); 
@@ -98,16 +152,11 @@ document.getElementById("open").onclick = async () => {
 
 		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
 		.then(response => response.json())
-		.then(data => keyElement.textContent = data.token.symbol + " " + key + ": ");
+		.then(data => keyElement.textContent = data.token.symbol + " " + "|" + " " + key + ": ");
 
 		fetch("https://darklabs.pages.dev/api/token/" + key + ".json")
 		.then(response => response.json())
-		.then(data1 => keyElement.textContent = data1.token.symbol + " " + key + ": ");
-
-		//let apiUrl3 = "https://scaling.cash/.well-known/bitcoin-cash-metadata-registry.json";
-		//await BCMR.addMetadataRegistryFromUri(apiUrl3);
-		//let data = BCMR.getTokenInfo(key);
-		//keyElement.textContent = data.token.symbol + " " + key + ": ";
+		.then(data1 => keyElement.textContent = data1.token.symbol + " " + "|" + " " + key + ": ");
 
 		keyElement.textContent = key + ": ";
 		let valueElement = document.createElement("span");
@@ -118,13 +167,35 @@ document.getElementById("open").onclick = async () => {
 		container2.appendChild(lineBreak);
 	};
 	};
-
+	document.getElementById("sendNfts").onclick = async () => {
+		try {
+		let tokenAddress2 = document.getElementById("sendAddrToken2").value;
+		let token1 = document.getElementById("sendNftTokenId").value;
+		let nftCommitment = document.getElementById("nftCommitment").value;
+		let capabilityLists = document.getElementById("capabilityLists").value;
+		let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
+		let opMessage2 = document.getElementById("opmessage2").value;
+		let opreturnData2 = OpReturnData.from(opMessage2);
+		const { txId } = await wallet.send([ new TokenSendRequest(
+			{
+				cashaddr: tokenAddress2,
+				tokenId: token1,
+				commitment: nftCommitment,
+				capability: capabilitySend,
+				value: 800
+			}
+		),
+		opreturnData2,
+		]);
+		document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
+		} catch (error) { alert(error) }
+	};
 	} catch (error) { alert(error) }
 };
 
 document.getElementById("refresh").onclick = async () => {
 	location.reload();
-}
+};
 
 document.getElementById("clear").onclick = async () => {
 	indexedDB.deleteDatabase("bitcoincash");
@@ -134,7 +205,7 @@ document.getElementById("clear").onclick = async () => {
 	alert("Seed phrase / private key were removed. You have to import a wallet again.");
 	document.getElementById("alert2").textContent = "Seed phrase / private key were removed. You have to import a wallet again.";
 	location.reload();
-}
+};
 
 document.getElementById("viewTokens1").onclick = async () => {
 	let viewTokenId1 = document.getElementById("viewTokenId").value;
@@ -212,101 +283,6 @@ document.getElementById("viewTokens3").onclick = async () => {
 	document.getElementById("explorer").textContent = "https://explorer.salemkode.com/token/" + viewTokenId3;
 };
 
-document.getElementById("sendBCH").onclick = async () => {
-	try {
-	const wallet = await Wallet.named("microfi");
-	let bchAddress1 = document.getElementById("sendAddr").value;
-	let bchAmount = document.getElementById("sendAmount").value;
-	let opMessage = document.getElementById("opmessage").value;
-	//let chunks = ["Message_", opMessage];
-	//let opreturnData = OpReturnData.fromArray(chunks);
-	let opreturnData = OpReturnData.from(opMessage);
-	const { txId } = await wallet.send([
-		{
-			cashaddr: bchAddress1,
-			value: bchAmount,
-			unit: "sats"
-		},
-		opreturnData,
-	]);
-	document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-	} catch (error) { alert(error) }
-};
-
-document.getElementById("sendBCHmax").onclick = async () => {
-	try {
-	const wallet = await Wallet.named("microfi");
-	let bchAddress2 = document.getElementById("sendAddr").value;
-	let bchBalanceMax = await wallet.getBalance();
-	bchBalanceObj = Object.values({...bchBalanceMax});
-	let bchBalMax = bchBalanceObj[1];
-	let opMessage = document.getElementById("opmessage").value;
-	//let chunks = ["Message_", opMessage];
-	//let opreturnData = OpReturnData.fromArray(chunks);
-	let opreturnData = OpReturnData.from(opMessage);
-	const { txId } = await wallet.send([
-		{
-			cashaddr: bchAddress2,
-			value: bchBalMax - 546,
-			unit: "sats"
-		},
-		opreturnData,
-	]);
-	document.getElementById("bchsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-	} catch (error) { alert(error) }
-};
-
-document.getElementById("sendTokens").onclick = async () => {
-	try {
-	const wallet = await Wallet.named("microfi");
-	let tokenAddress1 = document.getElementById("sendAddrToken1").value;
-	let tokenAmount = document.getElementById("sendAmountToken").value;
-	let token = document.getElementById("sendTokenId").value;
-	let opMessage1 = document.getElementById("opmessage1").value;
-	//let chunks = ["Message_", opMessage1];
-	//let opreturnData = OpReturnData.fromArray(chunks);
-	let opreturnData = OpReturnData.from(opMessage1);
-	const { txId } = await wallet.send([ new TokenSendRequest(
-		{
-			cashaddr: tokenAddress1,
-			amount: BigInt(tokenAmount),
-			tokenId: token,
-			value: 800
-		}
-	),
-	opreturnData,
-	]);
-	document.getElementById("ftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-	} catch (error) { alert(error) }
-};
-
-document.getElementById("sendNfts").onclick = async () => {
-	try {
-	const wallet = await Wallet.named("microfi");
-	let tokenAddress2 = document.getElementById("sendAddrToken2").value;
-	let token1 = document.getElementById("sendNftTokenId").value;
-	let nftCommitment = document.getElementById("nftCommitment").value;
-	let capabilityLists = document.getElementById("capabilityLists").value;
-	let capabilitySend = capabilityLists.substr(14, capabilityLists.length);
-	let opMessage2 = document.getElementById("opmessage2").value;
-	//let chunks = ["Message_", opMessage2];
-	//let opreturnData = OpReturnData.fromArray(chunks);
-	let opreturnData = OpReturnData.from(opMessage2);
-	const { txId } = await wallet.send([ new TokenSendRequest(
-		{
-			cashaddr: tokenAddress2,
-			tokenId: token1,
-			commitment: nftCommitment,
-			capability: capabilitySend,
-			value: 800
-		}
-	),
-	opreturnData,
-	]);
-	document.getElementById("nftsent").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
-	} catch (error) { alert(error) }
-};
-
 document.getElementById("createTokenId").onclick = async () => {
 	try {
 	const wallet = await Wallet.named("microfi");
@@ -376,6 +352,63 @@ document.getElementById("createTokens").onclick = async () => {
 	document.getElementById("createFt").textContent = "tokenId: " + tokenId + " " + "txId: " + "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
 };
+
+//document.getElementById("createGroupTokens").onclick = async () => {
+	//try {
+	//const wallet = await Wallet.named("microfi");
+	//let cashtokensAddress = await wallet.getTokenDepositAddress();
+	//let sfAmount = document.getElementById("sfAmount").value;
+	//let fetchLocation = "https://" + document.getElementById("tokenUriSf").value;
+	//let url = document.getElementById("tokenUriSf").value;
+	//let response = await fetch(fetchLocation);
+	//let bcmrContent = await response.text();
+	//let document_hash = sha256.hash(utf8ToBin(bcmrContent));
+	//const chunks = ["BCMR", document_hash, url];
+	//let symbol = document.getElementById("tokenSymbol2").value;
+	//let name = document.getElementById("tokenName2").value;
+	//const chunks = [symbol, name];
+	//const opreturnData = OpReturnData.fromArray(chunks);
+	//const genesisResponse = await wallet.tokenGenesis(
+		//{
+			//cashaddr: cashtokensAddress,
+			//amount: BigInt(sfAmount),
+			//commitment: "00",
+			//capability: NFTCapability.minting,
+			//value: 800
+		//}, 
+		//opreturnData
+	//);
+	//const tokenId = genesisResponse.tokenIds[0];
+	//const { txId } = genesisResponse;
+	//document.getElementById("createGroup").textContent = "Group tokenId: " + tokenId + " " + "https://chipnet.imaginary.cash/tx/" + txId;
+	//} catch (error) { alert(error) }
+//};
+
+//document.getElementById("mintNft").onclick = async () => {
+	//try {
+	//const wallet = await TestNetWallet.named("tmicrofi");
+	//let cashtokensAddress = await wallet.getTokenDepositAddress();
+	//let tokenId1 = document.getElementById("mnftId").value;
+	//let mnftCommitment = document.getElementById("mnftCommitment").value;
+	//let commitmentHex = mnftCommitment.toString(16);
+	//let capabilityList1 = document.getElementById("capabilityList1").value;
+	//let capabilityMint = capabilityList1.substr(14, capabilityList1.length);
+	//const response1 = await wallet.tokenMint(
+		//tokenId1,
+		//[
+		//new TokenMintRequest({
+			//cashaddr: cashtokensAddress,
+			//commitment: commitmentHex,
+			//capability: capabilityMint,
+			//value: 800
+		//}),
+		//],
+		//true,
+	//);
+	//const { txId } = response1;
+	//document.getElementById("mintGroup").textContent = "https://chipnet.imaginary.cash/tx/" + txId;
+	//} catch (error) { alert(error) }
+//};
 
 //document.getElementById("authHeadTransfer").onclick = async () => {
 	//try {
@@ -516,7 +549,7 @@ document.getElementById("sweepPwBch").onclick = async () => {
 	document.getElementById("swept").textContent = "https://explorer.bitcoinunlimited.info/tx/" + txId;
 	} catch (error) { alert(error) }
 };
-});
+//});
 
 document.getElementById("spy").onclick = async () => {
 	let wAddress = document.getElementById("wAddress").value;
@@ -586,3 +619,4 @@ document.getElementById("notarize").onclick = async () => {
 	}
 	} catch (error) { alert(error) }
 };
+});

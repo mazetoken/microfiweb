@@ -56,6 +56,7 @@
 		<button type="button" class="collapsible" id="open">Open wallet</button>
 		<div class="content">
 			<div class="card">
+				<div>
 				<p id="derivation"></p>
 				<p id="mnemonic"></p>
 				<p id="privatekey"></p>
@@ -63,16 +64,20 @@
 				<p id="bchaddress"></p>
 				<p><img src id="bchQr" width="200"></p>
 				<p id="bchbalance"></p>
-
+				</div>
+				<div>
 				<p><input id="sendAddr" type="text" size="50" placeholder="recipient address bitcoincash:..."></p>
 				<p><input id="sendAmount" type="text" size="50" placeholder="amount in satoshi (leave empty if send max)"></p>
 				<p><input id="opmessage" type="text" size="50" placeholder="message (optional)"></p>
 				<p><button type="button" class="buttonB" id="sendBCH">Send BCH</button></p>
 				<p><button type="button" class="buttonB" id="sendBCHmax">Send max</button></p>
 				<p id="bchsent"></p>
-
+				</div>
+				<div>	
 				<p id="cashtokensaddress"></p>
 				<p><img src id="tokenQr" width="200"></p>
+				</div>
+				<div>
 				<p>Tokens:</p>
 				<p id="container1"></p>
 				<p><input id="sendAddrToken1" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
@@ -81,7 +86,8 @@
 				<p><input id="opmessage1" type="text" size="50" placeholder="message (optional)"></p>
 				<p><button type="button" class="buttonB" id="sendTokens">Send tokens</button></p>
 				<p id="ftsent"></p>
-
+				</div>
+				<div>
 				<p>NFTs:</p>
 				<p id="container2"></p>
 				<p><input id="sendAddrToken2" type="text" size="50" placeholder="recipient address bitcoincash:z..."></p>
@@ -96,6 +102,7 @@
 				<p><input id="opmessage2" type="text" size="50" placeholder="message (optional)"></p>
 				<p><button type="button" class="buttonB" id="sendNfts">Send NFT</button></p>
 				<p id="nftsent"></p>
+				</div>
 				<br>
 				<p>To update balance, refresh the page and open the wallet again.</p>
 				<p><button type="button" class="buttonB" id="refresh">Refresh</button></p>
