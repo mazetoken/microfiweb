@@ -38,7 +38,8 @@ document.getElementById("createBCMR").onclick = async () => {
                     }
                 }
             }
-        }
+        },
+        "license": "CC0-1.0"
       }
     
     let data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));

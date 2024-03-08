@@ -103,6 +103,9 @@ document.getElementById("open").onclick = async () => {
 	for (let key in jsonObject1) {
 	if (jsonObject1.hasOwnProperty(key)) {	
 		let keyElement = document.createElement("span");
+	
+	//let info = await wallet.getTokenInfo(key);
+	//console.log(info);
 
 		fetch("https://bcmr.paytaca.com/api/tokens/" + key)
 		.then(response => response.json())
