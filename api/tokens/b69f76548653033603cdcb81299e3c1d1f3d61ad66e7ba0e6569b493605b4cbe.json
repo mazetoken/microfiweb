@@ -1,0 +1,15 @@
+{
+    "name": "Microfi Free Flow",
+    "description": "Microfi Free Flow (XMI) is a crypto-asset with no profit incentive, other than asset-referenced token or e-money token. The token is used to power the Microfi Free Flow Project, show appreciation, commemorate special events or express creativity. XMI can be a valuable asset for those who value the low supply of tokens, sentimental and collector's value and are not afraid of the speculative nature of crypto-assets.",
+    "token": {
+        "category": "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe",
+        "decimals": 2,
+        "symbol": "XMI"
+    },
+    "uris": {
+        "icon": "ipfs://bafybeiekc4wo27tmfi26zzujs3qfn2z5osncs74zzdr53l52apu2toswzm/",
+        "web": "https://microfi.eu/token",
+        "telegram": "https://t.me/mazetokens",
+        "github":"https://github.com/mazetoken/microfiweb"
+    }
+}

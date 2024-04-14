@@ -1,0 +1,15 @@
+{
+    "name": "MESH",
+    "description": "MESH is inspired by the mesh network and participation in the transmission of information.",
+    "token": {
+        "category": "15b6e0152a4ecb7a561ac0e1f3dca540db8133c520bffdaf532e6d99b4f980e3",
+        "decimals": 8,
+        "symbol": "MESH"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/mesh.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

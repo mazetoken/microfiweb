@@ -1,0 +1,15 @@
+{
+    "name": "Haniwa",
+    "description": "With an intriguing blend of talent, beauty, and a relentless spirit, Haniwa is an adventurer, journalist, hacker, and model extraordinaire, leaving an indelible mark on every path she walks.",
+    "token": {
+        "category": "0acba27424903e0fce7934b29654def7f5831052d34006ef0fedcd9e92957eaa",
+        "decimals": "0, is NFT",
+        "symbol": "Haniwa"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/haniwa.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

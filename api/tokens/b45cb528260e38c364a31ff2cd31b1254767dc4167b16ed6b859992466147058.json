@@ -1,0 +1,15 @@
+{
+    "name": "mitsuki",
+    "description": "Mitsuki Mini Aliens Collection.",
+    "token": {
+        "category": "b45cb528260e38c364a31ff2cd31b1254767dc4167b16ed6b859992466147058",
+        "decimals": "0, is NFT",
+        "symbol": "mitsuki"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/mitsuki.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Legendary Zombie Government Coins",
+    "description": "What happens in the Watchtower stays in the Watchtower ('Money for nothing and chicks for free'). Cinemagraph NFTs on Bitcoin Cash.",
+    "token": {
+        "category": "4b53fb421e760fa3d6d1250b921a7833a6dad04e3566314164059aa0afd987d6",
+        "decimals": "0, is NFT",
+        "symbol": "LZGC"
+    },
+    "uris": {
+        "icon": "https://zombiecoins.pages.dev/img/lzgc_bcmr_icon.png",
+        "web": "https://zombiecoins.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "license": "All rights reserved by the Zombie Government",
+        "registry": "https://zombiecoins.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

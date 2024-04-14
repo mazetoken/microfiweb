@@ -1,0 +1,15 @@
+{
+    "name": "DARK",
+    "description": "DARK is inspired by dark matter - despite decades of research, the exact nature of dark matter remains unknown.",
+    "token": {
+        "category": "4a3cf93cc0921e64c1f6dd6f8e348888be5e289d0b4f6cedb9b718b8d9590259",
+        "decimals": 8,
+        "symbol": "DARK"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/dark.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

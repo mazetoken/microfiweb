@@ -1,0 +1,15 @@
+{
+    "name": "LOLLIPOP",
+    "description": "LOLLIPOP is inspired by the security defense model - breaking one layer of security can lead to access to a given resource.",
+    "token": {
+        "category": "bc1faf2615c0b2bdf94036f40f7b3b7bca87f8e515660905b4c454e150ee4f68",
+        "decimals": 2,
+        "symbol": "LOLLIPOP"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/lollipop.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}

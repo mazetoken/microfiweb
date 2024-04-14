@@ -1,0 +1,15 @@
+{
+    "name": "HACKER",
+    "description": "HACKER - PoW Mining CashTokens. We don`t talk about HACKER.",
+    "token": {
+        "category": "3ec14185f5fee6a79c5973e5942d5a3df8958eddc3b073f474748e9820408a3b",
+        "decimals": 6,
+        "symbol": "HACKER"
+    },
+    "uris": {
+        "icon": "https://darklabs.pages.dev/img/hacker.png",
+        "web": "https://darklabs.pages.dev",
+        "telegram": "https://t.me/mazetokens/",
+        "registry": "https://darklabs.pages.dev/.well-known/bitcoin-cash-metadata-registry.json"
+    }
+}
